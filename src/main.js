@@ -142,9 +142,9 @@ export class MuJoCoDemo {
     [this.model, this.data, this.bodies, this.lights] =
       await loadSceneFromURL(mujoco, initialScene, this);
 
-    // ── lil-gui for camera / noise / keyframe controls ─────────────────────
-    this.gui = new GUI();
-    setupGUI(this);
+    // // ── lil-gui for camera / noise / keyframe controls ─────────────────────
+    // this.gui = new GUI();
+    // setupGUI(this);
 
     // ── SCUTL web control panel ────────────────────────────────────────────
     // Creates a floating overlay in the top-right corner.
