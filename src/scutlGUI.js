@@ -1377,9 +1377,26 @@ export class ScutlGUI {
       slider.step  = sp.step;
       slider.value = s[sp.key];
 
-      valEl.textContent = Number(s[sp.key]).toFixed(sp.dec);
+      // valEl.textContent = Number(s[sp.key]).toFixed(sp.dec);
 
-      tooltip.textContent = Number(s[sp.key]).toFixed(sp.dec);
+      // tooltip.textContent = Number(s[sp.key]).toFixed(sp.dec);
+
+      let displayValue = Number(s[sp.key]).toFixed(sp.dec);
+
+      if (sp.key === "STEER_MAX") {
+        const v = Number(s[sp.key]);
+
+        if (Math.abs(v - 0.5) < 1e-6) {
+          displayValue = "BIG";
+        } else if (Math.abs(v - 3.0) < 1e-6) {
+          displayValue = "SMALL";
+        } else {
+          displayValue = "";
+        }
+      }
+
+      valEl.textContent = displayValue;
+      tooltip.textContent = displayValue;
       
 
       const pct =
@@ -1406,8 +1423,23 @@ export class ScutlGUI {
 
       s[sp.key] = val;
 
-      valEl.textContent = val.toFixed(sp.dec);
-      tooltip.textContent = val.toFixed(sp.dec);
+      // valEl.textContent = val.toFixed(sp.dec);
+      // tooltip.textContent = val.toFixed(sp.dec);
+
+      let displayValue = val.toFixed(sp.dec);
+
+      if (sp.key === "STEER_MAX") {
+        if (Math.abs(val - 0.5) < 1e-6) {
+          displayValue = "BIG";
+        } else if (Math.abs(val - 3.0) < 1e-6) {
+          displayValue = "SMALL";
+        } else {
+          displayValue = "";
+        }
+      }
+
+      valEl.textContent = displayValue;
+      tooltip.textContent = displayValue;
 
       const pct =
           (val - parseFloat(slider.min)) /
