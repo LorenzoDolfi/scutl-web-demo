@@ -66,9 +66,13 @@ export class MuJoCoDemo {
     this.camera.name = 'PerspectiveCamera';
     // this.camera.position.set(2.0, 1.7, 1.7);
     this.camera.position.set(
-      2.84175187593427,
-      -0.55127776086459,
-      0.18539126483749335
+    //   2.84175187593427,
+    //   -0.55127776086459,
+    //   0.18539126483749335
+    // );
+      0.23546240317712652,
+      -0.31107733023432327,
+      -2.9085427420402246 
     );
 
     this.scene.add(this.camera);
@@ -113,9 +117,14 @@ export class MuJoCoDemo {
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     // this.controls.target.set(0, 0.7, 0);
     this.controls.target.set(
-      0.5890702571687148,
-      -1.3809601489295469,
-      0.5151907276595901
+    //   0.5890702571687148,
+    //   -1.3809601489295469,
+    //   0.5151907276595901
+    // );
+
+      0.3113039252833211,
+      -1.7759607844025347,
+      0.1813860823267129
     );
 
     this.controls.panSpeed        = 2;
