@@ -1,9 +1,11 @@
 import * as THREE from 'three';
+window.THREE = THREE;
 import { GUI } from '../node_modules/three/examples/jsm/libs/lil-gui.module.min.js';
 import { OrbitControls } from '../node_modules/three/examples/jsm/controls/OrbitControls.js';
 import { generateSimpleSteerTargets } from './scutlGait.js';
 import { ScutlGUI } from './scutlGUI.js';          // ← new
 import { DragStateManager } from './utils/DragStateManager.js';
+import * as GaussianSplats3D from '@mkkellogg/gaussian-splats-3d';
 import {
   setupGUI,
   downloadExampleScenesFolder,
@@ -15,6 +17,21 @@ import {
   standardNormal
 } from './mujocoUtils.js';
 import load_mujoco from '../node_modules/mujoco-js/dist/mujoco_wasm.js';
+
+function eulerDegToQuat(xDeg, yDeg, zDeg) {
+  const euler = new THREE.Euler(
+    THREE.MathUtils.degToRad(xDeg),
+    THREE.MathUtils.degToRad(yDeg),
+    THREE.MathUtils.degToRad(zDeg),
+    "XYZ"
+  );
+
+  const q = new THREE.Quaternion();
+  q.setFromEuler(euler);
+
+  return [q.x, q.y, q.z, q.w];
+}
+
 
 const mujoco = await load_mujoco();
 
@@ -73,6 +90,9 @@ export class MuJoCoDemo {
       0.23546240317712652,
       -0.31107733023432327,
       -2.9085427420402246 
+      // -1.0595671463750809,
+      // -7.651798074177322,
+      // 9.014369073954851
     );
 
     this.scene.add(this.camera);
@@ -113,6 +133,9 @@ export class MuJoCoDemo {
 
     this.renderer.setAnimationLoop(this.render.bind(this));
     this.container.appendChild(this.renderer.domElement);
+    this.splatViewer = null;
+    this.currentEnvironment = "none";
+    this.environmentSelect = null;
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     // this.controls.target.set(0, 0.7, 0);
@@ -125,6 +148,9 @@ export class MuJoCoDemo {
       0.3113039252833211,
       -1.7759607844025347,
       0.1813860823267129
+      // -0.8311778625249248,
+      // -3.775220663868011,
+      // -1.5888947833850986
     );
 
     this.controls.panSpeed        = 2;
@@ -147,9 +173,27 @@ export class MuJoCoDemo {
 
   async init() {
     await downloadExampleScenesFolder(mujoco);
-
     [this.model, this.data, this.bodies, this.lights] =
       await loadSceneFromURL(mujoco, initialScene, this);
+
+    // Find visual ground plane candidates only
+    this.groundVisuals = [];
+
+    this.scene.traverse(obj => {
+      if (obj.type === "Reflector") {
+        this.groundVisuals.push(obj);
+        console.log("Ground visual found:", obj);
+      }
+    });
+
+    // this.groundVisual = null;
+
+    // this.scene.traverse(obj => {
+    //   if (obj.type === "Reflector") {
+    //     this.groundVisual = obj;
+    //     console.log("Found ground visual:", obj);
+    //   }
+    // });
 
     // // ── lil-gui for camera / noise / keyframe controls ─────────────────────
     // this.gui = new GUI();
@@ -171,8 +215,244 @@ export class MuJoCoDemo {
     });
     document.body.appendChild(panelEl);
     this.scutlGUI.mount(panelEl);
-  }
+    // Environment dropdown
+    const envBox = document.createElement("div");
+    Object.assign(envBox.style, {
+      position: "fixed",
+      top: "10px",
+      right: "5vw",
+      zIndex: "1001",
+      background: "#161a24",
+      color: "#e2e8f0",
+      border: "1px solid #252a36",
+      borderRadius: "5px",
+      padding: "6px",
+      fontFamily: "Courier New, monospace",
+      fontSize: "12px",
+    });
 
+    envBox.innerHTML = `
+      <label style="margin-right:6px;">Environment</label>
+      <select id="env-select"
+              style="
+                background:#0f1117;
+                color:#e2e8f0;
+                border:1px solid #252a36;
+                border-radius:4px;
+                padding:4px;">
+        <option value="none">None</option>
+        <option value="garden">Garden</option>
+        <option value="truck">Truck</option>
+      </select>
+    `;
+
+    document.body.appendChild(envBox);
+
+    this.environmentSelect = envBox.querySelector("#env-select");
+
+    this.environmentSelect.addEventListener("change", async e => {
+      await this.setEnvironment(e.target.value);
+    });
+
+    // // 3D Gaussian Splat test background/object
+    // this.splatViewer = new GaussianSplats3D.Viewer({
+    //   threeScene: this.scene,
+    //   renderer: this.renderer,
+    //   camera: this.camera,
+    //   selfDrivenMode: false,
+    //   useBuiltInControls: false,
+    // });
+
+    // await this.splatViewer.addSplatScene('/assets/splats/scene.ply', {
+    //   splatAlphaRemovalThreshold: 5,
+    //   showLoadingUI: false,
+    //   position: [0, 0, 0],
+    //   rotation: [0, 0, 0, 1],
+    //   scale: [1, 1, 1],
+    // });
+
+    // await this.splatViewer.addSplatScene('/assets/splats/wooden_chair.ply', {
+    //   splatAlphaRemovalThreshold: 1,
+    //   showLoadingUI: false,
+    //   position: [0, 0, 0],
+    //   rotation: [0, 0, 0, 1],
+    //   scale: [5, 5, 5],
+    // });
+
+    // await this.splatViewer.addSplatScene('/assets/splats/wooden_chair.ply', {
+    //   splatAlphaRemovalThreshold: 1,
+    //   showLoadingUI: false,
+    //   position: [0, -1, 1],
+    //   rotation: [0, 0, 0, 1],
+    //   scale: [20, 20, 20],
+    // });
+
+    // this.splatViewer = new GaussianSplats3D.DropInViewer({
+    //   gpuAcceleratedSort: false,
+    //   sharedMemoryForWorkers: false,
+    // });
+
+    // this.scene.add(this.splatViewer);
+
+    // await this.splatViewer.addSplatScene('/assets/splats/wooden_chair.ply', {
+    //   splatAlphaRemovalThreshold: 1,
+    //   showLoadingUI: false,
+    //   position: [0, 0, 0],
+    //   rotation: [0, 0, 0, 1],
+    //   scale: [20, 20, 20],
+    // });
+
+    // console.log("Splat loaded");
+
+    // console.log("Splat loaded");
+    // // TEMP: focus camera on splat
+    // this.camera.position.set(0, 0, 3);
+    // this.controls.target.set(0, 0, 0);
+    // this.controls.update();
+
+    // this.splatViewer = new GaussianSplats3D.DropInViewer({
+    //   gpuAcceleratedSort: false,
+    //   sharedMemoryForWorkers: false,
+    // });
+
+    // this.scene.add(this.splatViewer);
+
+    // await this.splatViewer.addSplatScene('/assets/splats/wooden_chair.splat', {
+    //   splatAlphaRemovalThreshold: 1,
+    //   showLoadingUI: false,
+
+    //   // Try in front of/above the robot first
+    //   position: [0, 0, -5],
+
+    //   // Identity rotation
+    //   rotation: [0, 0, 0, 1],
+
+    //   // Big for testing
+    //   scale: [0.00001, 0.00001, 0.00001],
+    // });
+
+    // await this.splatViewer.addSplatScene('/assets/splats/wooden_chair.splat', {
+    //   splatAlphaRemovalThreshold: 1,
+    //   showLoadingUI: false,
+
+    //   position: [0, -2, 0],
+
+    //   // rotate 90 deg around X
+    //   rotation: [0,0,0,1],
+
+    //   scale: [0.000001, 0.000001, 0.000001],
+    // });
+
+    // await this.splatViewer.addSplatScene('/assets/splats/garden.ksplat', {
+    //   splatAlphaRemovalThreshold: 1,
+    //   showLoadingUI: false,
+    //   position: [0, -10, 0.0],
+    //   rotation: eulerDegToQuat(180, 0, 0),
+    //   scale: [1, 1, 1],
+    // });
+
+    // console.log("Splat loaded");
+    // TEMP: inspect and focus splat
+    // this.splatViewer.updateMatrixWorld(true);
+
+    // const box = new THREE.Box3().setFromObject(this.splatViewer);
+    // const center = box.getCenter(new THREE.Vector3());
+    // const size = box.getSize(new THREE.Vector3());
+
+    // console.log("Splat box min:", box.min);
+    // console.log("Splat box max:", box.max);
+    // console.log("Splat center:", center);
+    // console.log("Splat size:", size);
+
+    // // Focus camera on splat
+    // this.controls.target.copy(center);
+    // this.camera.position.set(
+    //   center.x,
+    //   center.y - Math.max(size.x, size.y, size.z) * 2.5,
+    //   center.z + Math.max(size.x, size.y, size.z) * 0.5
+    // );
+    // this.controls.update();
+  }
+  async setEnvironment(name) {
+    this.currentEnvironment = name;
+
+    if (this.splatViewer) {
+      this.scene.remove(this.splatViewer);
+
+      try {
+        await this.splatViewer.dispose();
+      } catch (e) {
+        console.warn("Could not dispose splat viewer:", e);
+      }
+
+      this.splatViewer = null;
+    }
+
+    if (name === "none") {
+      this.groundVisuals?.forEach(obj => {
+        obj.visible = true;
+      });
+      if (this.groundVisual) {
+        // this.groundVisual.visible = true;
+      }
+      console.log("Environment: none");
+      return;
+    }
+
+    if (name === "garden") {
+      this.splatViewer = new GaussianSplats3D.DropInViewer({
+        gpuAcceleratedSort: false,
+        sharedMemoryForWorkers: false,
+      });
+
+      this.scene.add(this.splatViewer);
+
+      await this.splatViewer.addSplatScene("/assets/splats/garden.ksplat", {
+        splatAlphaRemovalThreshold: 1,
+        showLoadingUI: false,
+        position: [1, 1.05, 0],
+        rotation: eulerDegToQuat(150, 0, 0),
+        scale: [1, 1, 1],
+      });
+
+      console.log("Environment: garden loaded");
+      this.groundVisuals?.forEach(obj => {
+        obj.visible = false;
+      });
+      if (this.groundVisual) {
+        // this.groundVisual.visible = false;
+      }
+    }
+    if (name === "truck") {
+      this.splatViewer = new GaussianSplats3D.DropInViewer({
+        gpuAcceleratedSort: false,
+        sharedMemoryForWorkers: false,
+      });
+
+      this.scene.add(this.splatViewer);
+
+      await this.splatViewer.addSplatScene(
+        "/assets/splats/truck.ksplat",
+        {
+          splatAlphaRemovalThreshold: 1,
+          showLoadingUI: false,
+
+          position: [0, -0.8, 2],
+          rotation: eulerDegToQuat(170, 0, 0),
+          scale: [1, 1, 1],
+        }
+      );
+
+      if (this.groundMesh) {
+        this.groundMesh.visible = false;
+      }
+
+      console.log("Environment: truck loaded");
+      this.groundVisuals?.forEach(obj => {
+        obj.visible = false;
+      });
+    }
+  }
   onWindowResize() {
     this.camera.aspect = window.innerWidth / window.innerHeight;
     this.camera.updateProjectionMatrix();
@@ -187,6 +467,10 @@ export class MuJoCoDemo {
 
     // Ask the GUI for the current params
     const guiParams = this.scutlGUI.getParams();
+    if (!window.lastParamPrint || timeMS - window.lastParamPrint > 500) {
+      // console.log("SCUTL params:", guiParams);
+      window.lastParamPrint = timeMS;
+    }
 
     // Smooth joystick-derived command values so robot motion transitions gradually
     if (!this.scutlSmoothParams) {
@@ -471,7 +755,13 @@ export class MuJoCoDemo {
     }
 
     drawTendonsAndFlex(this.mujocoRoot, this.model, this.data);
+    // this.renderer.render(this.scene, this.camera);
+    // if (this.splatViewer) {
+    //   this.splatViewer.update();
+    // }
+
     this.renderer.render(this.scene, this.camera);
+
   }
 }
 
