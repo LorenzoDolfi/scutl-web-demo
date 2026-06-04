@@ -1218,6 +1218,16 @@ export class ScutlGUI {
       ctx.clearRect(0, 0, 240, 240);
       ctx.strokeStyle = "#252a36"; ctx.lineWidth = 1.5;
       ctx.beginPath(); ctx.arc(JC, JC, JR, 0, 2 * _PI); ctx.stroke();
+      // Direction labels around joystick
+      ctx.fillStyle = "#94a3b8";
+      ctx.font = "bold 13px Courier New";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+
+      ctx.fillText("FWD", JC, JC - JR - 13);
+      ctx.fillText("REV", JC, JC + JR + 15);
+      ctx.fillText("L",   JC - JR - 13, JC);
+      ctx.fillText("R",   JC + JR + 13, JC);
       ctx.setLineDash([4, 4]); ctx.lineWidth = 1;
       ctx.beginPath(); ctx.moveTo(JC, JC - JR); ctx.lineTo(JC, JC + JR); ctx.stroke();
       ctx.beginPath(); ctx.moveTo(JC - JR, JC); ctx.lineTo(JC + JR, JC); ctx.stroke();
