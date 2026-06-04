@@ -228,12 +228,18 @@ function buildRadioRequest(s) {
         //   horz.steer_ratio = 0;
         //   flags.turnFlag = 0;
 
-        if (is_turn) {
-          const ampScale = s.amp_horz / 30.0;
+        // if (is_turn) {
+        //   const ampScale = s.amp_horz / 30.0;
 
-          horz.steer_ratio = s.STEER_MAX * ampScale;
-          horz.total_amplitude = 47.5 * ampScale;
-          flags.turnFlag = ampScale > 0 ? turn_flag : 0;
+        //   horz.steer_ratio = s.STEER_MAX * ampScale;
+        //   horz.total_amplitude = 47.5 * ampScale;
+        //   flags.turnFlag = ampScale > 0 ? turn_flag : 0;
+        // }
+        if (is_turn) {
+          horz.steer_ratio = steer_ratio;
+          horz.total_amplitude = s.amp_horz;
+          horz.spatial_frequency = s.freq_horz;
+          flags.turnFlag = turn_flag;
         // }
         
         // }
@@ -275,12 +281,19 @@ function buildRadioRequest(s) {
         //   horz.steer_ratio = 0;
         //   horz.total_amplitude = 0;
         // }
-        if (steer_ratio > 0) {
-          const ampScale = s.amp_horz / 45.0;
+        // if (steer_ratio > 0) {
+        //   const ampScale = s.amp_horz / 45.0;
 
-          horz.steer_ratio = steer_ratio * ampScale;
-          horz.total_amplitude = amp_horz_steer * ampScale;
+        //   horz.steer_ratio = steer_ratio * ampScale;
+        //   horz.total_amplitude = amp_horz_steer * ampScale;
+        // }
+
+        if (steer_ratio > 0) {
+          horz.steer_ratio = steer_ratio;
+          horz.total_amplitude = s.amp_horz;
+          horz.spatial_frequency = s.freq_horz;
         }
+
         if (Math.abs(amp_vert)           > 1e-6) vert.vertical_body_amplitude = amp_vert;
         if (Math.abs(freq_vert - 1)      > 1e-6) vert.spatial_frequency_vertical = freq_vert;
         if (Math.abs(s.vert_phase)       > 1e-6) vert.vertical_phase = s.vert_phase;
