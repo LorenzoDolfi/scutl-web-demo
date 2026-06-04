@@ -242,6 +242,7 @@ export class MuJoCoDemo {
                 padding:4px;">
         <option value="none">None</option>
         <option value="garden">Garden</option>
+        <option value="forest">Forest</option>
         <option value="truck">Truck</option>
       </select>
     `;
@@ -423,6 +424,61 @@ export class MuJoCoDemo {
         // this.groundVisual.visible = false;
       }
     }
+
+    if (name === "forest") {
+      this.splatViewer = new GaussianSplats3D.DropInViewer({
+        gpuAcceleratedSort: false,
+        sharedMemoryForWorkers: false,
+      });
+
+      this.scene.add(this.splatViewer);
+
+      await this.splatViewer.addSplatScene("/assets/splats/output.ksplat", {
+        splatAlphaRemovalThreshold: 1,
+        showLoadingUI: false,
+        position: [2, -0.7, 0],
+        rotation: eulerDegToQuat(180, 0, 0),
+        scale: [1, 1, 1],
+      });
+
+      console.log("Environment: garden loaded");
+      this.groundVisuals?.forEach(obj => {
+        obj.visible = false;
+      });
+      if (this.groundVisual) {
+        // this.groundVisual.visible = false;
+      }
+    }
+
+    // if (name === "bonsai") {
+    //   this.splatViewer = new GaussianSplats3D.DropInViewer({
+    //     gpuAcceleratedSort: false,
+    //     sharedMemoryForWorkers: false,
+    //   });
+
+    //   this.scene.add(this.splatViewer);
+
+    //   await this.splatViewer.addSplatScene(
+    //     "/assets/splats/bonsai_high.ksplat",
+    //     {
+    //       splatAlphaRemovalThreshold: 1,
+    //       showLoadingUI: false,
+
+    //       position: [0, 0, 0],
+    //       rotation: eulerDegToQuat(180, 0, 0),
+    //       scale: [1, 1, 1],
+    //     }
+
+        
+    //   );
+
+    //   this.groundVisuals?.forEach(obj => {
+    //     obj.visible = false;
+    //   });
+
+    //   console.log("Environment: bonsai loaded");
+    // }
+
     if (name === "truck") {
       this.splatViewer = new GaussianSplats3D.DropInViewer({
         gpuAcceleratedSort: false,
