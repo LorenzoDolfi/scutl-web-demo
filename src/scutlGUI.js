@@ -206,7 +206,7 @@ function buildRadioRequest(s) {
             total_amplitude: s.amp_horz 
           },
           VerticalBodyUndulation: {
-            vertical_phase: s.rx > 0 ? _PI : 0,
+            vertical_phase: s.rx > 0 ? 0 : _PI,
             spatial_frequency_vertical: 0.7,
             vertical_body_amplitude: Math.max(s.vert_amp, 30)
           },
@@ -218,8 +218,17 @@ function buildRadioRequest(s) {
       if (Math.abs(s.ry) >= STEER_TO_SIDEWIND) {
         const is_turn = Math.abs(s.rx) > STEER_DEADZONE;
         const horz = {}, vert = {}, leg = {}, flags = {};
-        if (is_turn) {
-          horz.steer_ratio = s.STEER_MAX;  horz.total_amplitude = 47.5;  flags.turnFlag = turn_flag;
+        // if (is_turn) {
+        if (is_turn && s.amp_horz > 0) {
+          horz.steer_ratio = s.STEER_MAX;
+          horz.total_amplitude = 47.5;
+          flags.turnFlag = turn_flag;
+        } else if (is_turn && s.amp_horz <= 0) {
+          horz.total_amplitude = 0;
+          horz.steer_ratio = 0;
+          flags.turnFlag = 0;
+        // }
+          // horz.steer_ratio = s.STEER_MAX;  horz.total_amplitude = 47.5;  flags.turnFlag = turn_flag;
         } else {
           if (Math.abs(s.amp_horz - 30) > 1e-6) horz.total_amplitude = s.amp_horz;
           if (Math.abs(s.freq_horz - 1)  > 1e-6) horz.spatial_frequency = s.freq_horz;
@@ -242,14 +251,21 @@ function buildRadioRequest(s) {
       if (Math.abs(s.ry) < STEER_TO_SIDEWIND && Math.abs(s.rx) > 30) {
         return { cmd: "Sidewind", tpc, dir, stop: false, params: {
           HorizontalBodyUndulation: { spatial_frequency: 0.7, total_amplitude: s.amp_horz },
-          VerticalBodyUndulation: { vertical_phase: s.rx > 0 ? _PI : 0, spatial_frequency_vertical: 0.7, vertical_body_amplitude: Math.max(s.vert_amp, 30) },
+          VerticalBodyUndulation: {vertical_phase: s.rx > 0 ? 0 : _PI, spatial_frequency_vertical: 0.7, vertical_body_amplitude: Math.max(s.vert_amp, 30) },
         }};
       }
       if (Math.abs(s.ry) >= STEER_TO_SIDEWIND) {
         const horz = {}, vert = {}, leg = {}, flags = {};
         if (Math.abs(s.amp_horz - 45)   > 1e-6) horz.total_amplitude = s.amp_horz;
         if (Math.abs(s.freq_horz - 0.92) > 1e-6) horz.spatial_frequency = s.freq_horz;
-        if (steer_ratio > 0) { horz.steer_ratio = steer_ratio;  horz.total_amplitude = amp_horz_steer; }
+        // if (steer_ratio > 0) { horz.steer_ratio = steer_ratio;  horz.total_amplitude = amp_horz_steer; }
+        if (steer_ratio > 0 && s.amp_horz > 0) {
+          horz.steer_ratio = steer_ratio;
+          horz.total_amplitude = amp_horz_steer;
+        } else if (steer_ratio > 0 && s.amp_horz <= 0) {
+          horz.steer_ratio = 0;
+          horz.total_amplitude = 0;
+        }
         if (Math.abs(amp_vert)           > 1e-6) vert.vertical_body_amplitude = amp_vert;
         if (Math.abs(freq_vert - 1)      > 1e-6) vert.spatial_frequency_vertical = freq_vert;
         if (Math.abs(s.vert_phase)       > 1e-6) vert.vertical_phase = s.vert_phase;
@@ -258,7 +274,9 @@ function buildRadioRequest(s) {
         const sd = _clamp(0.39 + s.duty_offset, 0.05, 0.95);
         if (Math.abs(sd - 0.39)          > 1e-6) leg.stance_duration = sd;
         if (steer_ratio > 0)                     leg.spatial_frequency_leg = s.freq_horz;
-        if (turn_flag !== 0)                     flags.turnFlag = turn_flag;
+        // if (turn_flag !== 0)                     flags.turnFlag = turn_flag;
+        if (turn_flag !== 0 && s.amp_horz > 0) flags.turnFlag = turn_flag;
+        else if (turn_flag !== 0 && s.amp_horz <= 0) flags.turnFlag = 0;
         const p = {};
         if (Object.keys(horz).length)  p.HorizontalBodyUndulation = horz;
         if (Object.keys(vert).length)  p.VerticalBodyUndulation   = vert;
@@ -279,7 +297,7 @@ function buildRadioRequest(s) {
     if (Math.abs(s.rx) > 30 && Math.abs(s.ry) < STEER_TO_SIDEWIND) {
       return { cmd: "Sidewind", tpc, dir, stop: false, params: {
         HorizontalBodyUndulation: { spatial_frequency: 0.7, total_amplitude: s.amp_horz },
-        VerticalBodyUndulation:   { vertical_phase: s.rx > 0 ? _PI : 0, spatial_frequency_vertical: 0.7, vertical_body_amplitude: Math.max(s.vert_amp, 30) },
+        VerticalBodyUndulation:   { vertical_phase: s.rx > 0 ? 0 : _PI, spatial_frequency_vertical: 0.7, vertical_body_amplitude: Math.max(s.vert_amp, 30) },
       }};
     }
   } else if (mode === MODE_CRAWL) {
@@ -294,7 +312,7 @@ function buildRadioRequest(s) {
     if (Math.abs(s.rx) > 30 && Math.abs(s.ry) < STEER_TO_SIDEWIND) {
       return { cmd: "Sidewind", tpc, dir, stop: false, params: {
         HorizontalBodyUndulation: { spatial_frequency: 0.7, total_amplitude: s.amp_horz },
-        VerticalBodyUndulation:   { vertical_phase: s.rx > 0 ? _PI : 0, spatial_frequency_vertical: 0.7, vertical_body_amplitude: Math.max(s.vert_amp, 30) },
+        VerticalBodyUndulation:   { vertical_phase: s.rx > 0 ? 0 : _PI, spatial_frequency_vertical: 0.7, vertical_body_amplitude: Math.max(s.vert_amp, 30) },
       }};
     }
   }
