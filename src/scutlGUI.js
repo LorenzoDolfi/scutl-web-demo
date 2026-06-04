@@ -1014,7 +1014,7 @@ const HTML = `
           <label class="sg-r"><input type="radio" name="sg-mode" value="pitter"> Pitter/Stepping</label>
           <label class="sg-r"><input type="radio" name="sg-mode" value="crawl"> Crawl</label>
           <label class="sg-c" style="margin-top:4px">
-            <input type="checkbox" id="sg-sdn" checked> SD normal
+            <input type="checkbox" id="sg-sdn" checked> SD normal (enable for Optimized Mode)
           </label>
         </div>
 
