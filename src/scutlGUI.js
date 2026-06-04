@@ -219,14 +219,23 @@ function buildRadioRequest(s) {
         const is_turn = Math.abs(s.rx) > STEER_DEADZONE;
         const horz = {}, vert = {}, leg = {}, flags = {};
         // if (is_turn) {
-        if (is_turn && s.amp_horz > 0) {
-          horz.steer_ratio = s.STEER_MAX;
-          horz.total_amplitude = 47.5;
-          flags.turnFlag = turn_flag;
-        } else if (is_turn && s.amp_horz <= 0) {
-          horz.total_amplitude = 0;
-          horz.steer_ratio = 0;
-          flags.turnFlag = 0;
+        // if (is_turn && s.amp_horz > 0) {
+        //   horz.steer_ratio = s.STEER_MAX;
+        //   horz.total_amplitude = 47.5;
+        //   flags.turnFlag = turn_flag;
+        // } else if (is_turn && s.amp_horz <= 0) {
+        //   horz.total_amplitude = 0;
+        //   horz.steer_ratio = 0;
+        //   flags.turnFlag = 0;
+
+        if (is_turn) {
+          const ampScale = s.amp_horz / 30.0;
+
+          horz.steer_ratio = s.STEER_MAX * ampScale;
+          horz.total_amplitude = 47.5 * ampScale;
+          flags.turnFlag = ampScale > 0 ? turn_flag : 0;
+        // }
+        
         // }
           // horz.steer_ratio = s.STEER_MAX;  horz.total_amplitude = 47.5;  flags.turnFlag = turn_flag;
         } else {
@@ -259,12 +268,18 @@ function buildRadioRequest(s) {
         if (Math.abs(s.amp_horz - 45)   > 1e-6) horz.total_amplitude = s.amp_horz;
         if (Math.abs(s.freq_horz - 0.92) > 1e-6) horz.spatial_frequency = s.freq_horz;
         // if (steer_ratio > 0) { horz.steer_ratio = steer_ratio;  horz.total_amplitude = amp_horz_steer; }
-        if (steer_ratio > 0 && s.amp_horz > 0) {
-          horz.steer_ratio = steer_ratio;
-          horz.total_amplitude = amp_horz_steer;
-        } else if (steer_ratio > 0 && s.amp_horz <= 0) {
-          horz.steer_ratio = 0;
-          horz.total_amplitude = 0;
+        // if (steer_ratio > 0 && s.amp_horz > 0) {
+        //   horz.steer_ratio = steer_ratio;
+        //   horz.total_amplitude = amp_horz_steer;
+        // } else if (steer_ratio > 0 && s.amp_horz <= 0) {
+        //   horz.steer_ratio = 0;
+        //   horz.total_amplitude = 0;
+        // }
+        if (steer_ratio > 0) {
+          const ampScale = s.amp_horz / 45.0;
+
+          horz.steer_ratio = steer_ratio * ampScale;
+          horz.total_amplitude = amp_horz_steer * ampScale;
         }
         if (Math.abs(amp_vert)           > 1e-6) vert.vertical_body_amplitude = amp_vert;
         if (Math.abs(freq_vert - 1)      > 1e-6) vert.spatial_frequency_vertical = freq_vert;
