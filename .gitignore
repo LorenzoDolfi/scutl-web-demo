@@ -61,3 +61,7 @@ test/test_runner
 node_modules/**/*
 jspm_packages/
 package-lock.jsonassets/splats/output.ksplat
+assets/scenes/truck.collision.glb
+assets/splats/truck.collision.glb
+assets/splats/truck.ply
+assets/splats/Mesh[truck - Cloud.stl
