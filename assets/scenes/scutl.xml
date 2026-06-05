@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="o_leg_3sections">
-  <option timestep="0.004" gravity="0 0 -9.84"/>
+  <option timestep="0.004" gravity="0 0 -9.81"/>
   <visual>
     <global offwidth="1920" offheight="1080"/>
   </visual>
@@ -15,7 +15,7 @@
     <camera name="side_cam2" pos="0.783 -0.953 3.350" xyaxes="-0.008 1.000 0.000 -0.989 -0.008 0.148"/>
 
     <!-- ===== SECTION 3 (root) ===== -->
-    <body name="body_middle6" pos="-0.00714 0.36184 -0.008">
+    <body name="body_middle6" pos="-0.00714 0.36184 0.008">
       <joint name="root_free" type="free"/>
       <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.4 0.6 0.8 1"/>
       <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>

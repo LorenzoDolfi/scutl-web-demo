@@ -4,7 +4,7 @@ import { GUI } from '../node_modules/three/examples/jsm/libs/lil-gui.module.min.
 import { OrbitControls } from '../node_modules/three/examples/jsm/controls/OrbitControls.js';
 import { generateSimpleSteerTargets } from './scutlGait.js';
 import { ScutlGUI } from './scutlGUI.js';          // ← new
-import { DragStateManager } from './utils/DragStateManager.js';
+// import { DragStateManager } from './utils/DragStateManager.js';
 import * as GaussianSplats3D from '@mkkellogg/gaussian-splats-3d';
 import {
   setupGUI,
@@ -36,12 +36,14 @@ function eulerDegToQuat(xDeg, yDeg, zDeg) {
 const mujoco = await load_mujoco();
 
 var initialScene = "scutl.xml";
+var truckScene = "scutl_coacd.xml";
 mujoco.FS.mkdir('/working');
 mujoco.FS.mount(mujoco.MEMFS, { root: '.' }, '/working');
 mujoco.FS.writeFile(
   "/working/" + initialScene,
   await (await fetch("./assets/scenes/" + initialScene)).text()
 );
+
 
 export class MuJoCoDemo {
   constructor() {
@@ -162,21 +164,26 @@ export class MuJoCoDemo {
 
     window.addEventListener('resize', this.onWindowResize.bind(this));
 
-    this.dragStateManager = new DragStateManager(
-      this.scene,
-      this.renderer,
-      this.camera,
-      this.container.parentElement,
-      this.controls
-    );
+    // this.dragStateManager = new DragStateManager(
+    //   this.scene,
+    //   this.renderer,
+    //   this.camera,
+    //   this.container.parentElement,
+    //   this.controls
+    // );
   }
 
   async init() {
     await downloadExampleScenesFolder(mujoco);
+  
+
+
     [this.model, this.data, this.bodies, this.lights] =
       await loadSceneFromURL(mujoco, initialScene, this);
 
-    // Find visual ground plane candidates only
+    this.resetRobotControlState();
+    mujoco.mj_forward(this.model, this.data);
+
     this.groundVisuals = [];
 
     this.scene.traverse(obj => {
@@ -184,6 +191,11 @@ export class MuJoCoDemo {
         this.groundVisuals.push(obj);
         console.log("Ground visual found:", obj);
       }
+    });
+
+    // this.hideGroundVisuals();
+    this.groundVisuals?.forEach(obj => {
+      obj.visible = true;
     });
 
     // this.groundVisual = null;
@@ -215,6 +227,22 @@ export class MuJoCoDemo {
     });
     document.body.appendChild(panelEl);
     this.scutlGUI.mount(panelEl);
+    requestAnimationFrame(() => {
+      const selects = panelEl.querySelectorAll("select");
+
+      for (const select of selects) {
+        const editOption = [...select.options].find(opt =>
+          opt.textContent.toLowerCase().includes("edit") ||
+          opt.value.toLowerCase().includes("edit")
+        );
+
+        if (editOption) {
+          select.value = editOption.value;
+          select.dispatchEvent(new Event("change", { bubbles: true }));
+          break;
+        }
+      }
+    });
     // Environment dropdown
     const envBox = document.createElement("div");
     Object.assign(envBox.style, {
@@ -241,8 +269,6 @@ export class MuJoCoDemo {
                 border-radius:4px;
                 padding:4px;">
         <option value="none">None</option>
-        <option value="garden">Garden</option>
-        <option value="forest">Forest</option>
         <option value="truck">Truck</option>
       </select>
     `;
@@ -255,125 +281,117 @@ export class MuJoCoDemo {
       await this.setEnvironment(e.target.value);
     });
 
-    // // 3D Gaussian Splat test background/object
-    // this.splatViewer = new GaussianSplats3D.Viewer({
-    //   threeScene: this.scene,
-    //   renderer: this.renderer,
-    //   camera: this.camera,
-    //   selfDrivenMode: false,
-    //   useBuiltInControls: false,
-    // });
-
-    // await this.splatViewer.addSplatScene('/assets/splats/scene.ply', {
-    //   splatAlphaRemovalThreshold: 5,
-    //   showLoadingUI: false,
-    //   position: [0, 0, 0],
-    //   rotation: [0, 0, 0, 1],
-    //   scale: [1, 1, 1],
-    // });
-
-    // await this.splatViewer.addSplatScene('/assets/splats/wooden_chair.ply', {
-    //   splatAlphaRemovalThreshold: 1,
-    //   showLoadingUI: false,
-    //   position: [0, 0, 0],
-    //   rotation: [0, 0, 0, 1],
-    //   scale: [5, 5, 5],
-    // });
-
-    // await this.splatViewer.addSplatScene('/assets/splats/wooden_chair.ply', {
-    //   splatAlphaRemovalThreshold: 1,
-    //   showLoadingUI: false,
-    //   position: [0, -1, 1],
-    //   rotation: [0, 0, 0, 1],
-    //   scale: [20, 20, 20],
-    // });
-
-    // this.splatViewer = new GaussianSplats3D.DropInViewer({
-    //   gpuAcceleratedSort: false,
-    //   sharedMemoryForWorkers: false,
-    // });
-
-    // this.scene.add(this.splatViewer);
-
-    // await this.splatViewer.addSplatScene('/assets/splats/wooden_chair.ply', {
-    //   splatAlphaRemovalThreshold: 1,
-    //   showLoadingUI: false,
-    //   position: [0, 0, 0],
-    //   rotation: [0, 0, 0, 1],
-    //   scale: [20, 20, 20],
-    // });
-
-    // console.log("Splat loaded");
-
-    // console.log("Splat loaded");
-    // // TEMP: focus camera on splat
-    // this.camera.position.set(0, 0, 3);
-    // this.controls.target.set(0, 0, 0);
-    // this.controls.update();
-
-    // this.splatViewer = new GaussianSplats3D.DropInViewer({
-    //   gpuAcceleratedSort: false,
-    //   sharedMemoryForWorkers: false,
-    // });
-
-    // this.scene.add(this.splatViewer);
-
-    // await this.splatViewer.addSplatScene('/assets/splats/wooden_chair.splat', {
-    //   splatAlphaRemovalThreshold: 1,
-    //   showLoadingUI: false,
-
-    //   // Try in front of/above the robot first
-    //   position: [0, 0, -5],
-
-    //   // Identity rotation
-    //   rotation: [0, 0, 0, 1],
-
-    //   // Big for testing
-    //   scale: [0.00001, 0.00001, 0.00001],
-    // });
-
-    // await this.splatViewer.addSplatScene('/assets/splats/wooden_chair.splat', {
-    //   splatAlphaRemovalThreshold: 1,
-    //   showLoadingUI: false,
-
-    //   position: [0, -2, 0],
-
-    //   // rotate 90 deg around X
-    //   rotation: [0,0,0,1],
-
-    //   scale: [0.000001, 0.000001, 0.000001],
-    // });
-
-    // await this.splatViewer.addSplatScene('/assets/splats/garden.ksplat', {
-    //   splatAlphaRemovalThreshold: 1,
-    //   showLoadingUI: false,
-    //   position: [0, -10, 0.0],
-    //   rotation: eulerDegToQuat(180, 0, 0),
-    //   scale: [1, 1, 1],
-    // });
-
-    // console.log("Splat loaded");
-    // TEMP: inspect and focus splat
-    // this.splatViewer.updateMatrixWorld(true);
-
-    // const box = new THREE.Box3().setFromObject(this.splatViewer);
-    // const center = box.getCenter(new THREE.Vector3());
-    // const size = box.getSize(new THREE.Vector3());
-
-    // console.log("Splat box min:", box.min);
-    // console.log("Splat box max:", box.max);
-    // console.log("Splat center:", center);
-    // console.log("Splat size:", size);
-
-    // // Focus camera on splat
-    // this.controls.target.copy(center);
-    // this.camera.position.set(
-    //   center.x,
-    //   center.y - Math.max(size.x, size.y, size.z) * 2.5,
-    //   center.z + Math.max(size.x, size.y, size.z) * 0.5
-    // );
-    // this.controls.update();
   }
+
+  async loadMujocoScene(xmlName) {
+    console.log("Loading MuJoCo XML:", xmlName);
+
+    const xmlText = await (await fetch("./assets/scenes/" + xmlName)).text();
+
+    mujoco.FS.writeFile("/working/" + xmlName, xmlText);
+
+    const fileMatches = [...xmlText.matchAll(/file="([^"]+)"/g)];
+    const assetFiles = [...new Set(fileMatches.map(m => m[1]))];
+
+    for (const file of assetFiles) {
+      const url = "./assets/scenes/" + file;
+      const path = "/working/" + file;
+
+      const dir = path.substring(0, path.lastIndexOf("/"));
+      if (dir && dir !== "/working") {
+        try {
+          mujoco.FS.mkdirTree(dir);
+        } catch (e) {}
+      }
+
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("Could not load asset: " + url);
+      }
+
+      const buffer = await response.arrayBuffer();
+      mujoco.FS.writeFile(path, new Uint8Array(buffer));
+    }
+
+    // Remove old MuJoCo visual tree before loading new one
+    if (this.mujocoRoot) {
+      this.scene.remove(this.mujocoRoot);
+      this.mujocoRoot.traverse(obj => {
+        if (obj.geometry) obj.geometry.dispose();
+        if (obj.material) {
+          if (Array.isArray(obj.material)) {
+            obj.material.forEach(m => m.dispose());
+          } else {
+            obj.material.dispose();
+          }
+        }
+      });
+      this.mujocoRoot = null;
+    }
+
+    [this.model, this.data, this.bodies, this.lights] =
+      await loadSceneFromURL(mujoco, xmlName, this);
+
+    this.resetRobotControlState();
+    mujoco.mj_forward(this.model, this.data);
+
+    this.groundVisuals = [];
+
+    this.scene.traverse(obj => {
+      if (obj.type === "Reflector") {
+        this.groundVisuals.push(obj);
+      }
+    });
+
+    this.params.scene = xmlName;
+    this.mujoco_time = 0.0;
+  }
+
+  hideGroundVisuals() {
+    this.groundVisuals?.forEach(obj => {
+      obj.visible = false;
+    });
+
+    this.scene.traverse(obj => {
+      const n = (obj.name || "").toLowerCase();
+      if (
+        obj.type === "Reflector" ||
+        n.includes("ground") ||
+        n.includes("plane")
+      ) {
+        obj.visible = false;
+      }
+    });
+  }
+
+  hideTruckMujocoVisuals() {
+    this.scene.traverse(obj => {
+      const n = (obj.name || "").toLowerCase();
+
+      if (
+        n.includes("truck_visual") ||
+        n.includes("truck_collision") ||
+        n.includes("truck_col")
+      ) {
+        obj.visible = false;
+      }
+    });
+  }
+
+  resetRobotControlState() {
+    this.scutlLastLegRaw = null;
+    this.scutlUnwrappedLegRaw = null;
+    this.scutlHoldCtrl = null;
+    this.scutlLastPublishedLeg = null;
+    this.scutlSmoothParams = null;
+
+    if (this.data?.ctrl) {
+      for (let i = 0; i < this.data.ctrl.length; i++) {
+        this.data.ctrl[i] = 0.0;
+      }
+    }
+  }
+
   async setEnvironment(name) {
     this.currentEnvironment = name;
 
@@ -389,68 +407,20 @@ export class MuJoCoDemo {
       this.splatViewer = null;
     }
 
+
     if (name === "none") {
+      await this.loadMujocoScene(initialScene);
+
       this.groundVisuals?.forEach(obj => {
         obj.visible = true;
       });
-      if (this.groundVisual) {
-        // this.groundVisual.visible = true;
-      }
+
       console.log("Environment: none");
       return;
     }
 
-    if (name === "garden") {
-      this.splatViewer = new GaussianSplats3D.DropInViewer({
-        gpuAcceleratedSort: false,
-        sharedMemoryForWorkers: false,
-      });
-
-      this.scene.add(this.splatViewer);
-
-      await this.splatViewer.addSplatScene("/assets/splats/garden.ksplat", {
-        splatAlphaRemovalThreshold: 1,
-        showLoadingUI: false,
-        position: [1, 1.05, 0],
-        rotation: eulerDegToQuat(150, 0, 0),
-        scale: [1, 1, 1],
-      });
-
-      console.log("Environment: garden loaded");
-      this.groundVisuals?.forEach(obj => {
-        obj.visible = false;
-      });
-      if (this.groundVisual) {
-        // this.groundVisual.visible = false;
-      }
-    }
-
-    if (name === "forest") {
-      this.splatViewer = new GaussianSplats3D.DropInViewer({
-        gpuAcceleratedSort: false,
-        sharedMemoryForWorkers: false,
-      });
-
-      this.scene.add(this.splatViewer);
-
-      await this.splatViewer.addSplatScene("/assets/splats/output.ksplat", {
-        splatAlphaRemovalThreshold: 1,
-        showLoadingUI: false,
-        position: [2, -0.7, 0],
-        rotation: eulerDegToQuat(180, 0, 0),
-        scale: [1, 1, 1],
-      });
-
-      console.log("Environment: garden loaded");
-      this.groundVisuals?.forEach(obj => {
-        obj.visible = false;
-      });
-      if (this.groundVisual) {
-        // this.groundVisual.visible = false;
-      }
-    }
-
-    // if (name === "bonsai") {
+    // if (name === "garden") {
+    //   await this.loadMujocoScene(initialScene);
     //   this.splatViewer = new GaussianSplats3D.DropInViewer({
     //     gpuAcceleratedSort: false,
     //     sharedMemoryForWorkers: false,
@@ -458,28 +428,46 @@ export class MuJoCoDemo {
 
     //   this.scene.add(this.splatViewer);
 
-    //   await this.splatViewer.addSplatScene(
-    //     "/assets/splats/bonsai_high.ksplat",
-    //     {
-    //       splatAlphaRemovalThreshold: 1,
-    //       showLoadingUI: false,
-
-    //       position: [0, 0, 0],
-    //       rotation: eulerDegToQuat(180, 0, 0),
-    //       scale: [1, 1, 1],
-    //     }
-
-        
-    //   );
-
-    //   this.groundVisuals?.forEach(obj => {
-    //     obj.visible = false;
+    //   await this.splatViewer.addSplatScene("/assets/splats/garden.ksplat", {
+    //     splatAlphaRemovalThreshold: 1,
+    //     showLoadingUI: false,
+    //     position: [1, 1.05, 0],
+    //     rotation: eulerDegToQuat(150, 0, 0),
+    //     scale: [1, 1, 1],
     //   });
 
-    //   console.log("Environment: bonsai loaded");
+    //   console.log("Environment: garden loaded");
+
+    //   this.hideGroundVisuals();
+    //   if (this.groundVisual) {
+    //   }
+    // }
+
+    // if (name === "forest") {
+    //   await this.loadMujocoScene(initialScene);
+    //   this.splatViewer = new GaussianSplats3D.DropInViewer({
+    //     gpuAcceleratedSort: false,
+    //     sharedMemoryForWorkers: false,
+    //   });
+
+    //   this.scene.add(this.splatViewer);
+
+    //   await this.splatViewer.addSplatScene("/assets/splats/output.ksplat", {
+    //     splatAlphaRemovalThreshold: 1,
+    //     showLoadingUI: false,
+    //     position: [2, -0.7, 0],
+    //     rotation: eulerDegToQuat(180, 0, 0),
+    //     scale: [1, 1, 1],
+    //   });
+
+    //   console.log("Environment: garden loaded");
+    //   this.hideGroundVisuals();
+    //   if (this.groundVisual) {
+    //   }
     // }
 
     if (name === "truck") {
+      await this.loadMujocoScene(truckScene);
       this.splatViewer = new GaussianSplats3D.DropInViewer({
         gpuAcceleratedSort: false,
         sharedMemoryForWorkers: false,
@@ -504,9 +492,11 @@ export class MuJoCoDemo {
       }
 
       console.log("Environment: truck loaded");
-      this.groundVisuals?.forEach(obj => {
-        obj.visible = false;
-      });
+      // this.groundVisuals?.forEach(obj => {
+      //   obj.visible = false;
+      // });
+      this.hideGroundVisuals();
+      this.hideTruckMujocoVisuals();
     }
   }
   onWindowResize() {
@@ -732,67 +722,71 @@ export class MuJoCoDemo {
           this.data.qfrc_applied[i] = 0.0;
         }
 
-        const dragged = this.dragStateManager.physicsObject;
-        if (dragged && dragged.bodyID) {
-          for (let b = 0; b < this.model.nbody; b++) {
-            if (this.bodies[b]) {
-              getPosition(this.data.xpos,   b, this.bodies[b].position);
-              getQuaternion(this.data.xquat, b, this.bodies[b].quaternion);
-              this.bodies[b].updateWorldMatrix();
-            }
-          }
-          const bodyID = dragged.bodyID;
-          this.dragStateManager.update();
-          const force = toMujocoPos(
-            this.dragStateManager.currentWorld.clone()
-              .sub(this.dragStateManager.worldHit)
-              .multiplyScalar(this.model.body_mass[bodyID] * 250)
-          );
-          const point = toMujocoPos(this.dragStateManager.worldHit.clone());
-          mujoco.mj_applyFT(
-            this.model, this.data,
-            [force.x, force.y, force.z],
-            [0, 0, 0],
-            [point.x, point.y, point.z],
-            bodyID,
-            this.data.qfrc_applied
-          );
-        }
+        // const dragged = this.dragStateManager.physicsObject;
+        // if (dragged && dragged.bodyID) {
+        //   for (let b = 0; b < this.model.nbody; b++) {
+        //     if (this.bodies[b]) {
+        //       getPosition(this.data.xpos,   b, this.bodies[b].position);
+        //       getQuaternion(this.data.xquat, b, this.bodies[b].quaternion);
+        //       this.bodies[b].updateWorldMatrix();
+        //     }
+        //   }
+        //   const bodyID = dragged.bodyID;
+        //   this.dragStateManager.update();
+        //   const force = toMujocoPos(
+        //     this.dragStateManager.currentWorld.clone()
+        //       .sub(this.dragStateManager.worldHit)
+        //       .multiplyScalar(this.model.body_mass[bodyID] * 250)
+        //   );
+        //   const point = toMujocoPos(this.dragStateManager.worldHit.clone());
+        //   mujoco.mj_applyFT(
+        //     this.model, this.data,
+        //     [force.x, force.y, force.z],
+        //     [0, 0, 0],
+        //     [point.x, point.y, point.z],
+        //     bodyID,
+        //     this.data.qfrc_applied
+        //   );
+        // }
 
         this.applySCUTLControl(timeMS);
         mujoco.mj_step(this.model, this.data);
         this.mujoco_time += timestep * 1000.0;
       }
 
-    } else if (this.params["paused"]) {
-      this.dragStateManager.update();
-      const dragged = this.dragStateManager.physicsObject;
-      if (dragged && dragged.bodyID) {
-        const b = dragged.bodyID;
-        getPosition(this.data.xpos,   b, this.tmpVec,  false);
-        getQuaternion(this.data.xquat, b, this.tmpQuat, false);
-        const offset = toMujocoPos(
-          this.dragStateManager.currentWorld.clone()
-            .sub(this.dragStateManager.worldHit)
-            .multiplyScalar(0.3)
-        );
-        if (this.model.body_mocapid[b] >= 0) {
-          const addr = this.model.body_mocapid[b] * 3;
-          const pos  = this.data.mocap_pos;
-          pos[addr + 0] += offset.x;
-          pos[addr + 1] += offset.y;
-          pos[addr + 2] += offset.z;
-        } else {
-          const root = this.model.body_rootid[b];
-          const addr = this.model.jnt_qposadr[this.model.body_jntadr[root]];
-          const pos  = this.data.qpos;
-          pos[addr + 0] += offset.x;
-          pos[addr + 1] += offset.y;
-          pos[addr + 2] += offset.z;
-        }
+      } else if (this.params["paused"]) {
+        mujoco.mj_forward(this.model, this.data);
       }
-      mujoco.mj_forward(this.model, this.data);
-    }
+
+    // } else if (this.params["paused"]) {
+    //   this.dragStateManager.update();
+    //   // const dragged = this.dragStateManager.physicsObject;
+    //   if (dragged && dragged.bodyID) {
+    //     const b = dragged.bodyID;
+    //     getPosition(this.data.xpos,   b, this.tmpVec,  false);
+    //     getQuaternion(this.data.xquat, b, this.tmpQuat, false);
+    //     const offset = toMujocoPos(
+    //       this.dragStateManager.currentWorld.clone()
+    //         .sub(this.dragStateManager.worldHit)
+    //         .multiplyScalar(0.3)
+    //     );
+    //     if (this.model.body_mocapid[b] >= 0) {
+    //       const addr = this.model.body_mocapid[b] * 3;
+    //       const pos  = this.data.mocap_pos;
+    //       pos[addr + 0] += offset.x;
+    //       pos[addr + 1] += offset.y;
+    //       pos[addr + 2] += offset.z;
+    //     } else {
+    //       const root = this.model.body_rootid[b];
+    //       const addr = this.model.jnt_qposadr[this.model.body_jntadr[root]];
+    //       const pos  = this.data.qpos;
+    //       pos[addr + 0] += offset.x;
+    //       pos[addr + 1] += offset.y;
+    //       pos[addr + 2] += offset.z;
+    //     }
+    //   }
+    //   mujoco.mj_forward(this.model, this.data);
+    // }
 
     for (let b = 0; b < this.model.nbody; b++) {
       if (this.bodies[b]) {
