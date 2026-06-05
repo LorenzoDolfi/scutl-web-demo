@@ -60,4 +60,4 @@ test/test_runner
 # Dependency directories
 node_modules/**/*
 jspm_packages/
-package-lock.json
+package-lock.jsonassets/splats/output.ksplat
