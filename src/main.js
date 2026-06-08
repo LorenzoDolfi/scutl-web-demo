@@ -524,7 +524,7 @@ export class MuJoCoDemo {
     // }
 
     if (name === "garden") {
-      await this.loadMujocoScene(initialScene);
+      await this.loadMujocoScene(gardenScene);
 
       this.splatViewer = new GaussianSplats3D.DropInViewer({
         gpuAcceleratedSort: false,
@@ -541,8 +541,8 @@ export class MuJoCoDemo {
           splatAlphaRemovalThreshold: 1,
           showLoadingUI: false,
 
-          position: [0, -0.8, 2],
-          rotation: eulerDegToQuat(170, 0, 0),
+          position: [1, 1.05, 0],
+          rotation: eulerDegToQuat(150, 0, 0),
           scale: [1, 1, 1],
         }
       );
@@ -552,6 +552,7 @@ export class MuJoCoDemo {
       console.log("Environment: garden loaded using truck splat test");
 
       this.hideGroundVisuals();
+      this.hideGardenMujocoVisuals();
     }
 
     // if (name === "forest") {
