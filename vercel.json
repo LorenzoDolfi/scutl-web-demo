@@ -1,0 +1,11 @@
+{
+  "headers": [
+    {
+      "source": "/assets/splats/(.*)\\.ksplat",
+      "headers": [
+        { "key": "Content-Type", "value": "application/octet-stream" },
+        { "key": "Content-Encoding", "value": "br" }
+      ]
+    }
+  ]
+}
