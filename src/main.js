@@ -497,30 +497,61 @@ export class MuJoCoDemo {
       return;
     }
 
+    // if (name === "garden") {
+    //   await this.loadMujocoScene(initialScene);
+    //   this.splatViewer = new GaussianSplats3D.DropInViewer({
+    //     gpuAcceleratedSort: false,
+    //     sharedMemoryForWorkers: false,
+    //   });
+    //   this.setLoadingProgress(60, "Loading garden splat...");
+
+    //   this.scene.add(this.splatViewer);
+
+    //   await this.splatViewer.addSplatScene("/assets/splats/test.ksplat", {
+    //     splatAlphaRemovalThreshold: 1,
+    //     showLoadingUI: false,
+    //     position: [1, 1.05, 0],
+    //     rotation: eulerDegToQuat(150, 0, 0),
+    //     scale: [1, 1, 1],
+    //   });
+    //   this.setLoadingProgress(95, "Finalizing garden scene...");
+    //   console.log("Environment: garden loaded");
+
+    //   this.hideGroundVisuals();
+    //   this.hideGardenMujocoVisuals();
+    //   if (this.groundVisual) {
+    //   }
+    // }
+
     if (name === "garden") {
       await this.loadMujocoScene(initialScene);
+
       this.splatViewer = new GaussianSplats3D.DropInViewer({
         gpuAcceleratedSort: false,
         sharedMemoryForWorkers: false,
       });
-      this.setLoadingProgress(60, "Loading garden splat...");
 
       this.scene.add(this.splatViewer);
 
-      await this.splatViewer.addSplatScene("/assets/splats/test.ksplat", {
-        splatAlphaRemovalThreshold: 1,
-        showLoadingUI: false,
-        position: [1, 1.05, 0],
-        rotation: eulerDegToQuat(150, 0, 0),
-        scale: [1, 1, 1],
-      });
+      this.setLoadingProgress(60, "Loading test splat...");
+
+      await this.splatViewer.addSplatScene(
+        "/assets/splats/truck.ksplat",
+        {
+          splatAlphaRemovalThreshold: 1,
+          showLoadingUI: false,
+
+          position: [0, -0.8, 2],
+          rotation: eulerDegToQuat(170, 0, 0),
+          scale: [1, 1, 1],
+        }
+      );
+
       this.setLoadingProgress(95, "Finalizing garden scene...");
-      console.log("Environment: garden loaded");
+
+      console.log("Environment: garden loaded using truck splat test");
 
       this.hideGroundVisuals();
-      this.hideGardenMujocoVisuals();
-      if (this.groundVisual) {
-      }
     }
 
     // if (name === "forest") {
