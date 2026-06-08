@@ -158,7 +158,12 @@ export class MuJoCoDemo {
       zIndex: "99999"
     });
 
-    this.loadingOverlay.textContent = "Loading scene...";
+    this.loadingOverlay.innerHTML = `
+      <div>
+        <div id="loading-text">Loading scene...</div>
+        <div id="loading-percent" style="font-size:20px; margin-top:10px;">0%</div>
+      </div>
+    `;
     document.body.appendChild(this.loadingOverlay);
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -317,7 +322,9 @@ export class MuJoCoDemo {
     const fileMatches = [...xmlText.matchAll(/file="([^"]+)"/g)];
     const assetFiles = [...new Set(fileMatches.map(m => m[1]))];
 
-    for (const file of assetFiles) {
+    for (let i = 0; i < assetFiles.length; i++) {
+      const file = assetFiles[i];
+
       const url = "./assets/scenes/" + file;
       const path = "/working/" + file;
 
@@ -335,7 +342,11 @@ export class MuJoCoDemo {
 
       const buffer = await response.arrayBuffer();
       mujoco.FS.writeFile(path, new Uint8Array(buffer));
-    }
+      this.setLoadingProgress(
+        10 + (i + 1) / assetFiles.length * 45,
+        `Loading MuJoCo assets... ${i + 1}/${assetFiles.length}`
+      );
+          }
 
     // Remove old MuJoCo visual tree before loading new one
     if (this.mujocoRoot) {
@@ -432,7 +443,19 @@ export class MuJoCoDemo {
 
   showLoadingScene() {
     this.loadingOverlay.style.display = "flex";
+    this.setLoadingProgress(0);
   }
+
+  setLoadingProgress(percent, text = "Loading scene...") {
+    const p = Math.max(0, Math.min(100, Math.round(percent)));
+
+    const textEl = document.getElementById("loading-text");
+    const percentEl = document.getElementById("loading-percent");
+
+    if (textEl) textEl.textContent = text;
+    if (percentEl) percentEl.textContent = `${p}%`;
+  }
+
 
   hideLoadingScene() {
     this.loadingOverlay.style.display = "none";
@@ -480,17 +503,18 @@ export class MuJoCoDemo {
         gpuAcceleratedSort: false,
         sharedMemoryForWorkers: false,
       });
+      this.setLoadingProgress(60, "Loading garden splat...");
 
       this.scene.add(this.splatViewer);
 
-      await this.splatViewer.addSplatScene("/assets/splats/garden.ksplat.br", {
+      await this.splatViewer.addSplatScene("/assets/splats/garden.ksplat", {
         splatAlphaRemovalThreshold: 1,
         showLoadingUI: false,
         position: [1, 1.05, 0],
         rotation: eulerDegToQuat(150, 0, 0),
         scale: [1, 1, 1],
       });
-
+      this.setLoadingProgress(95, "Finalizing garden scene...");
       console.log("Environment: garden loaded");
 
       this.hideGroundVisuals();
@@ -530,7 +554,7 @@ export class MuJoCoDemo {
       });
 
       this.scene.add(this.splatViewer);
-
+      this.setLoadingProgress(60, "Loading truck splat...");
       await this.splatViewer.addSplatScene(
         "/assets/splats/truck.ksplat",
         {
@@ -542,7 +566,7 @@ export class MuJoCoDemo {
           scale: [1, 1, 1],
         }
       );
-
+      this.setLoadingProgress(95, "Finalizing truck scene...");
       if (this.groundMesh) {
         this.groundMesh.visible = false;
       }
