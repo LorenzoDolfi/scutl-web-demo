@@ -139,6 +139,27 @@ export class MuJoCoDemo {
     this.currentEnvironment = "none";
     this.environmentSelect = null;
 
+    this.loadingOverlay = document.createElement("div");
+
+    Object.assign(this.loadingOverlay.style, {
+      position: "fixed",
+      top: "0",
+      left: "0",
+      width: "100vw",
+      height: "100vh",
+      display: "none",
+      alignItems: "center",
+      justifyContent: "center",
+      background: "rgba(0,0,0,0.5)",
+      color: "white",
+      fontSize: "32px",
+      fontWeight: "bold",
+      zIndex: "99999"
+    });
+
+    this.loadingOverlay.textContent = "Loading scene...";
+    document.body.appendChild(this.loadingOverlay);
+
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     // this.controls.target.set(0, 0.7, 0);
     this.controls.target.set(
@@ -278,6 +299,7 @@ export class MuJoCoDemo {
     this.environmentSelect = envBox.querySelector("#env-select");
 
     this.environmentSelect.addEventListener("change", async e => {
+      this.showLoadingScene();
       await this.setEnvironment(e.target.value);
     });
 
@@ -392,8 +414,25 @@ export class MuJoCoDemo {
     }
   }
 
+  showLoadingScene() {
+    this.loadingOverlay.style.display = "flex";
+  }
+
+  hideLoadingScene() {
+    this.loadingOverlay.style.display = "none";
+  }
+
+  // async setEnvironment(name) {
+  //   this.currentEnvironment = name;
+
   async setEnvironment(name) {
-    this.currentEnvironment = name;
+    this.showLoadingScene();
+
+    try {
+
+      this.currentEnvironment = name;
+
+  
 
     if (this.splatViewer) {
       this.scene.remove(this.splatViewer);
@@ -497,6 +536,9 @@ export class MuJoCoDemo {
       // });
       this.hideGroundVisuals();
       this.hideTruckMujocoVisuals();
+      }
+    } finally {
+        this.hideLoadingScene();
     }
   }
   onWindowResize() {
