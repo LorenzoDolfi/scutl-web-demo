@@ -37,6 +37,7 @@ const mujoco = await load_mujoco();
 
 var initialScene = "scutl.xml";
 var truckScene = "scutl_coacd.xml";
+var gardenScene = "scutl_garden_coacd.xml";
 mujoco.FS.mkdir('/working');
 mujoco.FS.mount(mujoco.MEMFS, { root: '.' }, '/working');
 mujoco.FS.writeFile(
@@ -291,6 +292,7 @@ export class MuJoCoDemo {
                 padding:4px;">
         <option value="none">None</option>
         <option value="truck">Truck</option>
+        <option value="garden">Garden</option>
       </select>
     `;
 
@@ -400,6 +402,20 @@ export class MuJoCoDemo {
     });
   }
 
+  hideGardenMujocoVisuals() {
+    this.scene.traverse(obj => {
+      const n = (obj.name || "").toLowerCase();
+
+      if (
+        n.includes("garden_visual") ||
+        n.includes("garden_collision") ||
+        n.includes("garden_col")
+      ) {
+        obj.visible = false;
+      }
+    });
+  }
+
   resetRobotControlState() {
     this.scutlLastLegRaw = null;
     this.scutlUnwrappedLegRaw = null;
@@ -458,29 +474,30 @@ export class MuJoCoDemo {
       return;
     }
 
-    // if (name === "garden") {
-    //   await this.loadMujocoScene(initialScene);
-    //   this.splatViewer = new GaussianSplats3D.DropInViewer({
-    //     gpuAcceleratedSort: false,
-    //     sharedMemoryForWorkers: false,
-    //   });
+    if (name === "garden") {
+      await this.loadMujocoScene(gardenScene);
+      this.splatViewer = new GaussianSplats3D.DropInViewer({
+        gpuAcceleratedSort: false,
+        sharedMemoryForWorkers: false,
+      });
 
-    //   this.scene.add(this.splatViewer);
+      this.scene.add(this.splatViewer);
 
-    //   await this.splatViewer.addSplatScene("/assets/splats/garden.ksplat", {
-    //     splatAlphaRemovalThreshold: 1,
-    //     showLoadingUI: false,
-    //     position: [1, 1.05, 0],
-    //     rotation: eulerDegToQuat(150, 0, 0),
-    //     scale: [1, 1, 1],
-    //   });
+      await this.splatViewer.addSplatScene("/assets/splats/garden.ksplat", {
+        splatAlphaRemovalThreshold: 1,
+        showLoadingUI: false,
+        position: [1, 1.05, 0],
+        rotation: eulerDegToQuat(150, 0, 0),
+        scale: [1, 1, 1],
+      });
 
-    //   console.log("Environment: garden loaded");
+      console.log("Environment: garden loaded");
 
-    //   this.hideGroundVisuals();
-    //   if (this.groundVisual) {
-    //   }
-    // }
+      this.hideGroundVisuals();
+      this.hideGardenMujocoVisuals();
+      if (this.groundVisual) {
+      }
+    }
 
     // if (name === "forest") {
     //   await this.loadMujocoScene(initialScene);
