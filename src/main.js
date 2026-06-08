@@ -536,7 +536,7 @@ export class MuJoCoDemo {
       this.setLoadingProgress(60, "Loading test splat...");
 
       await this.splatViewer.addSplatScene(
-        "/assets/splats/test.ksplat",
+        "/assets/splats/garden.ksplat",
         {
           splatAlphaRemovalThreshold: 1,
           showLoadingUI: false,
