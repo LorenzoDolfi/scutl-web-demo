@@ -483,7 +483,7 @@ export class MuJoCoDemo {
 
       this.scene.add(this.splatViewer);
 
-      await this.splatViewer.addSplatScene("/assets/splats/garden.ksplat", {
+      await this.splatViewer.addSplatScene("/assets/splats/garden.ksplat.br", {
         splatAlphaRemovalThreshold: 1,
         showLoadingUI: false,
         position: [1, 1.05, 0],
