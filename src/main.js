@@ -498,7 +498,7 @@ export class MuJoCoDemo {
     }
 
     if (name === "garden") {
-      await this.loadMujocoScene(gardenScene);
+      await this.loadMujocoScene(initialScene);
       this.splatViewer = new GaussianSplats3D.DropInViewer({
         gpuAcceleratedSort: false,
         sharedMemoryForWorkers: false,
