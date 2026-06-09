@@ -65,3 +65,14 @@ assets/scenes/truck.collision.glb
 assets/splats/truck.collision.glb
 assets/splats/truck.ply
 assets/splats/Mesh[truck - Cloud.stl
+
+# Huge source splats
+assets/splats/*.ply
+
+# Old construction splats
+assets/splats/construction.ksplat
+assets/splats/construction.ksplat.br
+assets/splats/construction_c2.ksplat
+
+# Original garden source
+assets/splats/garden.ply

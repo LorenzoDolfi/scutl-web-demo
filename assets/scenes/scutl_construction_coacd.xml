@@ -1,0 +1,585 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="o_leg_3sections">
+  <option timestep="0.004" gravity="0 0 -9.81"/>
+  <visual>
+    <global offwidth="1920" offheight="1080"/>
+  </visual>
+  <asset>
+    <texture name="grid" type="2d" builtin="checker" rgb1=".1 .2 .3" rgb2=".2 .3 .4" width="300" height="300"/>
+    <material name="grid" texture="grid" texrepeat="30 30" reflectance="0"/>
+    <mesh name="construction_col_0" file="construction_collision_parts/construction_col_0.stl" scale="1 1 1"/>
+    <mesh name="construction_col_1" file="construction_collision_parts/construction_col_1.stl" scale="1 1 1"/>
+    <mesh name="construction_col_2" file="construction_collision_parts/construction_col_2.stl" scale="1 1 1"/>
+    <mesh name="construction_col_3" file="construction_collision_parts/construction_col_3.stl" scale="1 1 1"/>
+    <mesh name="construction_col_4" file="construction_collision_parts/construction_col_4.stl" scale="1 1 1"/>
+    <mesh name="construction_col_5" file="construction_collision_parts/construction_col_5.stl" scale="1 1 1"/>
+    <mesh name="construction_col_6" file="construction_collision_parts/construction_col_6.stl" scale="1 1 1"/>
+    <mesh name="construction_col_7" file="construction_collision_parts/construction_col_7.stl" scale="1 1 1"/>
+    <mesh name="construction_col_8" file="construction_collision_parts/construction_col_8.stl" scale="1 1 1"/>
+    <mesh name="construction_col_9" file="construction_collision_parts/construction_col_9.stl" scale="1 1 1"/>
+    <mesh name="construction_col_10" file="construction_collision_parts/construction_col_10.stl" scale="1 1 1"/>
+    <mesh name="construction_col_11" file="construction_collision_parts/construction_col_11.stl" scale="1 1 1"/>
+    <mesh name="construction_col_12" file="construction_collision_parts/construction_col_12.stl" scale="1 1 1"/>
+    <mesh name="construction_col_13" file="construction_collision_parts/construction_col_13.stl" scale="1 1 1"/>
+    <mesh name="construction_col_14" file="construction_collision_parts/construction_col_14.stl" scale="1 1 1"/>
+    <mesh name="construction_col_15" file="construction_collision_parts/construction_col_15.stl" scale="1 1 1"/>
+    <mesh name="construction_col_16" file="construction_collision_parts/construction_col_16.stl" scale="1 1 1"/>
+    <mesh name="construction_col_17" file="construction_collision_parts/construction_col_17.stl" scale="1 1 1"/>
+    <mesh name="construction_col_18" file="construction_collision_parts/construction_col_18.stl" scale="1 1 1"/>
+    <mesh name="construction_col_19" file="construction_collision_parts/construction_col_19.stl" scale="1 1 1"/>
+    <mesh name="construction_col_20" file="construction_collision_parts/construction_col_20.stl" scale="1 1 1"/>
+    <mesh name="construction_col_21" file="construction_collision_parts/construction_col_21.stl" scale="1 1 1"/>
+    <mesh name="construction_col_22" file="construction_collision_parts/construction_col_22.stl" scale="1 1 1"/>
+    <mesh name="construction_col_23" file="construction_collision_parts/construction_col_23.stl" scale="1 1 1"/>
+    <mesh name="construction_col_24" file="construction_collision_parts/construction_col_24.stl" scale="1 1 1"/>
+    <mesh name="construction_col_25" file="construction_collision_parts/construction_col_25.stl" scale="1 1 1"/>
+    <mesh name="construction_col_26" file="construction_collision_parts/construction_col_26.stl" scale="1 1 1"/>
+    <mesh name="construction_col_27" file="construction_collision_parts/construction_col_27.stl" scale="1 1 1"/>
+    <mesh name="construction_col_28" file="construction_collision_parts/construction_col_28.stl" scale="1 1 1"/>
+    <mesh name="construction_col_29" file="construction_collision_parts/construction_col_29.stl" scale="1 1 1"/>
+    <mesh name="construction_col_30" file="construction_collision_parts/construction_col_30.stl" scale="1 1 1"/>
+    <mesh name="construction_col_31" file="construction_collision_parts/construction_col_31.stl" scale="1 1 1"/>
+    <mesh name="construction_col_32" file="construction_collision_parts/construction_col_32.stl" scale="1 1 1"/>
+    <mesh name="construction_col_33" file="construction_collision_parts/construction_col_33.stl" scale="1 1 1"/>
+    <mesh name="construction_col_34" file="construction_collision_parts/construction_col_34.stl" scale="1 1 1"/>
+    <mesh name="construction_col_35" file="construction_collision_parts/construction_col_35.stl" scale="1 1 1"/>
+    <mesh name="construction_col_36" file="construction_collision_parts/construction_col_36.stl" scale="1 1 1"/>
+    <mesh name="construction_col_37" file="construction_collision_parts/construction_col_37.stl" scale="1 1 1"/>
+    <mesh name="construction_col_38" file="construction_collision_parts/construction_col_38.stl" scale="1 1 1"/>
+    <mesh name="construction_col_39" file="construction_collision_parts/construction_col_39.stl" scale="1 1 1"/>
+    <mesh name="construction_col_40" file="construction_collision_parts/construction_col_40.stl" scale="1 1 1"/>
+    <mesh name="construction_col_41" file="construction_collision_parts/construction_col_41.stl" scale="1 1 1"/>
+    <mesh name="construction_col_42" file="construction_collision_parts/construction_col_42.stl" scale="1 1 1"/>
+    <mesh name="construction_col_43" file="construction_collision_parts/construction_col_43.stl" scale="1 1 1"/>
+    <mesh name="construction_col_44" file="construction_collision_parts/construction_col_44.stl" scale="1 1 1"/>
+    <mesh name="construction_col_45" file="construction_collision_parts/construction_col_45.stl" scale="1 1 1"/>
+    <mesh name="construction_col_46" file="construction_collision_parts/construction_col_46.stl" scale="1 1 1"/>
+    <mesh name="construction_col_47" file="construction_collision_parts/construction_col_47.stl" scale="1 1 1"/>
+    <mesh name="construction_col_48" file="construction_collision_parts/construction_col_48.stl" scale="1 1 1"/>
+    <mesh name="construction_col_49" file="construction_collision_parts/construction_col_49.stl" scale="1 1 1"/>
+    <mesh name="construction_col_50" file="construction_collision_parts/construction_col_50.stl" scale="1 1 1"/>
+    <mesh name="construction_col_51" file="construction_collision_parts/construction_col_51.stl" scale="1 1 1"/>
+    <mesh name="construction_col_52" file="construction_collision_parts/construction_col_52.stl" scale="1 1 1"/>
+    <mesh name="construction_col_53" file="construction_collision_parts/construction_col_53.stl" scale="1 1 1"/>
+    <mesh name="construction_col_54" file="construction_collision_parts/construction_col_54.stl" scale="1 1 1"/>
+    <mesh name="construction_col_55" file="construction_collision_parts/construction_col_55.stl" scale="1 1 1"/>
+    <mesh name="construction_col_56" file="construction_collision_parts/construction_col_56.stl" scale="1 1 1"/>
+    <mesh name="construction_col_57" file="construction_collision_parts/construction_col_57.stl" scale="1 1 1"/>
+    <mesh name="construction_col_58" file="construction_collision_parts/construction_col_58.stl" scale="1 1 1"/>
+    <mesh name="construction_col_59" file="construction_collision_parts/construction_col_59.stl" scale="1 1 1"/>
+    <mesh name="construction_col_60" file="construction_collision_parts/construction_col_60.stl" scale="1 1 1"/>
+    <mesh name="construction_col_61" file="construction_collision_parts/construction_col_61.stl" scale="1 1 1"/>
+    <mesh name="construction_col_62" file="construction_collision_parts/construction_col_62.stl" scale="1 1 1"/>
+    <mesh name="construction_col_63" file="construction_collision_parts/construction_col_63.stl" scale="1 1 1"/>
+    <mesh name="construction_col_64" file="construction_collision_parts/construction_col_64.stl" scale="1 1 1"/>
+    <mesh name="construction_col_65" file="construction_collision_parts/construction_col_65.stl" scale="1 1 1"/>
+    <mesh name="construction_col_66" file="construction_collision_parts/construction_col_66.stl" scale="1 1 1"/>
+    <mesh name="construction_col_67" file="construction_collision_parts/construction_col_67.stl" scale="1 1 1"/>
+    <mesh name="construction_col_68" file="construction_collision_parts/construction_col_68.stl" scale="1 1 1"/>
+    <mesh name="construction_col_69" file="construction_collision_parts/construction_col_69.stl" scale="1 1 1"/>
+    <mesh name="construction_col_70" file="construction_collision_parts/construction_col_70.stl" scale="1 1 1"/>
+    <mesh name="construction_col_71" file="construction_collision_parts/construction_col_71.stl" scale="1 1 1"/>
+    <mesh name="construction_col_72" file="construction_collision_parts/construction_col_72.stl" scale="1 1 1"/>
+    <mesh name="construction_col_73" file="construction_collision_parts/construction_col_73.stl" scale="1 1 1"/>
+    <mesh name="construction_col_74" file="construction_collision_parts/construction_col_74.stl" scale="1 1 1"/>
+    <mesh name="construction_col_75" file="construction_collision_parts/construction_col_75.stl" scale="1 1 1"/>
+    <mesh name="construction_col_76" file="construction_collision_parts/construction_col_76.stl" scale="1 1 1"/>
+    <mesh name="construction_col_77" file="construction_collision_parts/construction_col_77.stl" scale="1 1 1"/>
+    <mesh name="construction_col_78" file="construction_collision_parts/construction_col_78.stl" scale="1 1 1"/>
+    <mesh name="construction_col_79" file="construction_collision_parts/construction_col_79.stl" scale="1 1 1"/>
+    <mesh name="construction_col_80" file="construction_collision_parts/construction_col_80.stl" scale="1 1 1"/>
+    <mesh name="construction_col_81" file="construction_collision_parts/construction_col_81.stl" scale="1 1 1"/>
+    <mesh name="construction_col_82" file="construction_collision_parts/construction_col_82.stl" scale="1 1 1"/>
+    <mesh name="construction_col_83" file="construction_collision_parts/construction_col_83.stl" scale="1 1 1"/>
+    <mesh name="construction_col_84" file="construction_collision_parts/construction_col_84.stl" scale="1 1 1"/>
+    <mesh name="construction_col_85" file="construction_collision_parts/construction_col_85.stl" scale="1 1 1"/>
+    <mesh name="construction_col_86" file="construction_collision_parts/construction_col_86.stl" scale="1 1 1"/>
+    <mesh name="construction_col_87" file="construction_collision_parts/construction_col_87.stl" scale="1 1 1"/>
+    <mesh name="construction_col_88" file="construction_collision_parts/construction_col_88.stl" scale="1 1 1"/>
+    <mesh name="construction_col_89" file="construction_collision_parts/construction_col_89.stl" scale="1 1 1"/>
+    <mesh name="construction_col_90" file="construction_collision_parts/construction_col_90.stl" scale="1 1 1"/>
+    <mesh name="construction_col_91" file="construction_collision_parts/construction_col_91.stl" scale="1 1 1"/>
+    <mesh name="construction_col_92" file="construction_collision_parts/construction_col_92.stl" scale="1 1 1"/>
+    <mesh name="construction_col_93" file="construction_collision_parts/construction_col_93.stl" scale="1 1 1"/>
+    <mesh name="construction_col_94" file="construction_collision_parts/construction_col_94.stl" scale="1 1 1"/>
+    <mesh name="construction_col_95" file="construction_collision_parts/construction_col_95.stl" scale="1 1 1"/>
+    <mesh name="construction_col_96" file="construction_collision_parts/construction_col_96.stl" scale="1 1 1"/>
+    <mesh name="construction_col_97" file="construction_collision_parts/construction_col_97.stl" scale="1 1 1"/>
+    <mesh name="construction_col_98" file="construction_collision_parts/construction_col_98.stl" scale="1 1 1"/>
+    <mesh name="construction_col_99" file="construction_collision_parts/construction_col_99.stl" scale="1 1 1"/>
+    <mesh name="construction_col_100" file="construction_collision_parts/construction_col_100.stl" scale="1 1 1"/>
+    <mesh name="construction_col_101" file="construction_collision_parts/construction_col_101.stl" scale="1 1 1"/>
+    <mesh name="construction_col_102" file="construction_collision_parts/construction_col_102.stl" scale="1 1 1"/>
+    <mesh name="construction_col_103" file="construction_collision_parts/construction_col_103.stl" scale="1 1 1"/>
+    <mesh name="construction_col_104" file="construction_collision_parts/construction_col_104.stl" scale="1 1 1"/>
+    <mesh name="construction_col_105" file="construction_collision_parts/construction_col_105.stl" scale="1 1 1"/>
+    <mesh name="construction_col_106" file="construction_collision_parts/construction_col_106.stl" scale="1 1 1"/>
+    <mesh name="construction_col_107" file="construction_collision_parts/construction_col_107.stl" scale="1 1 1"/>
+    <mesh name="construction_col_108" file="construction_collision_parts/construction_col_108.stl" scale="1 1 1"/>
+    <mesh name="construction_col_109" file="construction_collision_parts/construction_col_109.stl" scale="1 1 1"/>
+    <mesh name="construction_col_110" file="construction_collision_parts/construction_col_110.stl" scale="1 1 1"/>
+    <mesh name="construction_col_111" file="construction_collision_parts/construction_col_111.stl" scale="1 1 1"/>
+    <mesh name="construction_col_112" file="construction_collision_parts/construction_col_112.stl" scale="1 1 1"/>
+    <mesh name="construction_col_113" file="construction_collision_parts/construction_col_113.stl" scale="1 1 1"/>
+    <mesh name="construction_col_114" file="construction_collision_parts/construction_col_114.stl" scale="1 1 1"/>
+    <mesh name="construction_col_115" file="construction_collision_parts/construction_col_115.stl" scale="1 1 1"/>
+    <mesh name="construction_col_116" file="construction_collision_parts/construction_col_116.stl" scale="1 1 1"/>
+    <mesh name="construction_col_117" file="construction_collision_parts/construction_col_117.stl" scale="1 1 1"/>
+    <mesh name="construction_col_118" file="construction_collision_parts/construction_col_118.stl" scale="1 1 1"/>
+    <mesh name="construction_col_119" file="construction_collision_parts/construction_col_119.stl" scale="1 1 1"/>
+    <mesh name="construction_col_120" file="construction_collision_parts/construction_col_120.stl" scale="1 1 1"/>
+    <mesh name="construction_col_121" file="construction_collision_parts/construction_col_121.stl" scale="1 1 1"/>
+    <mesh name="construction_col_122" file="construction_collision_parts/construction_col_122.stl" scale="1 1 1"/>
+    <mesh name="construction_col_123" file="construction_collision_parts/construction_col_123.stl" scale="1 1 1"/>
+    <mesh name="construction_col_124" file="construction_collision_parts/construction_col_124.stl" scale="1 1 1"/>
+    <mesh name="construction_col_125" file="construction_collision_parts/construction_col_125.stl" scale="1 1 1"/>
+    <mesh name="construction_col_126" file="construction_collision_parts/construction_col_126.stl" scale="1 1 1"/>
+    <mesh name="construction_col_127" file="construction_collision_parts/construction_col_127.stl" scale="1 1 1"/>
+    <mesh name="construction_col_128" file="construction_collision_parts/construction_col_128.stl" scale="1 1 1"/>
+    <mesh name="construction_col_129" file="construction_collision_parts/construction_col_129.stl" scale="1 1 1"/>
+    <mesh name="construction_col_130" file="construction_collision_parts/construction_col_130.stl" scale="1 1 1"/>
+    <mesh name="construction_col_131" file="construction_collision_parts/construction_col_131.stl" scale="1 1 1"/>
+    <mesh name="construction_col_132" file="construction_collision_parts/construction_col_132.stl" scale="1 1 1"/>
+    <mesh name="construction_col_133" file="construction_collision_parts/construction_col_133.stl" scale="1 1 1"/>
+    <mesh name="construction_col_134" file="construction_collision_parts/construction_col_134.stl" scale="1 1 1"/>
+    <mesh name="construction_col_135" file="construction_collision_parts/construction_col_135.stl" scale="1 1 1"/>
+    <mesh name="construction_col_136" file="construction_collision_parts/construction_col_136.stl" scale="1 1 1"/>
+    <mesh name="construction_col_137" file="construction_collision_parts/construction_col_137.stl" scale="1 1 1"/>
+    <mesh name="construction_col_138" file="construction_collision_parts/construction_col_138.stl" scale="1 1 1"/>
+    <mesh name="construction_col_139" file="construction_collision_parts/construction_col_139.stl" scale="1 1 1"/>
+    <mesh name="construction_col_140" file="construction_collision_parts/construction_col_140.stl" scale="1 1 1"/>
+    <mesh name="construction_col_141" file="construction_collision_parts/construction_col_141.stl" scale="1 1 1"/>
+    <mesh name="construction_col_142" file="construction_collision_parts/construction_col_142.stl" scale="1 1 1"/>
+    <mesh name="construction_col_143" file="construction_collision_parts/construction_col_143.stl" scale="1 1 1"/>
+    <mesh name="construction_col_144" file="construction_collision_parts/construction_col_144.stl" scale="1 1 1"/>
+    <mesh name="construction_col_145" file="construction_collision_parts/construction_col_145.stl" scale="1 1 1"/>
+    <mesh name="construction_col_146" file="construction_collision_parts/construction_col_146.stl" scale="1 1 1"/>
+    <mesh name="construction_col_147" file="construction_collision_parts/construction_col_147.stl" scale="1 1 1"/>
+    <mesh name="construction_col_148" file="construction_collision_parts/construction_col_148.stl" scale="1 1 1"/>
+    <mesh name="construction_col_149" file="construction_collision_parts/construction_col_149.stl" scale="1 1 1"/>
+    <mesh name="construction_col_150" file="construction_collision_parts/construction_col_150.stl" scale="1 1 1"/>
+    <mesh name="construction_col_151" file="construction_collision_parts/construction_col_151.stl" scale="1 1 1"/>
+    <mesh name="construction_col_152" file="construction_collision_parts/construction_col_152.stl" scale="1 1 1"/>
+    <mesh name="construction_col_153" file="construction_collision_parts/construction_col_153.stl" scale="1 1 1"/>
+    <mesh name="construction_col_154" file="construction_collision_parts/construction_col_154.stl" scale="1 1 1"/>
+    <mesh name="construction_col_155" file="construction_collision_parts/construction_col_155.stl" scale="1 1 1"/>
+    <mesh name="construction_col_156" file="construction_collision_parts/construction_col_156.stl" scale="1 1 1"/>
+    <mesh name="construction_col_157" file="construction_collision_parts/construction_col_157.stl" scale="1 1 1"/>
+    <mesh name="construction_col_158" file="construction_collision_parts/construction_col_158.stl" scale="1 1 1"/>
+    <mesh name="construction_col_159" file="construction_collision_parts/construction_col_159.stl" scale="1 1 1"/>
+    <mesh name="construction_col_160" file="construction_collision_parts/construction_col_160.stl" scale="1 1 1"/>
+  </asset>
+  <worldbody>
+    <geom name="ground" type="plane" pos="0 0 -2.12" size="10 10 0.4" material="grid" friction="0.5 0 0"/>
+    <light name="strong_light" pos="0 0 5" dir="0 0 -4" directional="true" diffuse="1 1 4" specular="0.3 0.3 0.6" active="true" castshadow="false" cutoff="100" exponent="10"/>
+    <camera name="side_cam1" pos="4.787 -0.909 -1.537" xyaxes="-0.011 1.000 -0.000 -0.068 -0.001 0.998"/>
+    <camera name="side_cam2" pos="0.783 -0.953 3.350" xyaxes="-0.008 1.000 0.000 -0.989 -0.008 0.148"/>
+
+    <!-- ===== SECTION 3 (root) ===== -->
+    <body name="body_middle6" pos="-22.00714 4.36184 0.008">
+      <joint name="root_free" type="free"/>
+      <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.4 0.6 0.8 1"/>
+      <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
+
+      <body name="motor_L6" pos="0 0 0">
+        <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+        <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.3 0.3 0.3 1"/>
+        <body name="o_leg_L6" pos="0 0 0">
+          <joint name="knee_joint_L6" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+          <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+          <geom name="o_leg_L6" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+        </body>
+      </body>
+
+      <body name="motor_R6" pos="0 0 0">
+        <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+        <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.3 0.3 0.3 1"/>
+        <body name="o_leg_R6" pos="0 0 0">
+          <joint name="knee_joint_R6" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+          <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+          <geom name="o_leg_R6" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+        </body>
+      </body>
+
+      <body name="vertjoint6" pos="0 0 0">
+        <joint name="vertjoint_hinge6" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
+        <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
+        <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.5 0.5 0.5 1"/>
+
+        <body name="horzjoint6_body" pos="0 0 0">
+          <joint name="horzjoint6" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
+          <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
+
+          <!-- ===== SECTION 2 ===== -->
+          <body name="body_middle5" pos="0.00357 -0.18092 0.003">
+            <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.4 0.6 0.8 1"/>
+            <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
+
+            <body name="motor_L5" pos="0 0 0">
+              <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+              <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.3 0.3 0.3 1"/>
+              <body name="o_leg_L5" pos="0 0 0">
+                <joint name="knee_joint_L5" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                <geom name="o_leg_L5" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+              </body>
+            </body>
+
+            <body name="motor_R5" pos="0 0 0">
+              <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+              <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.3 0.3 0.3 1"/>
+              <body name="o_leg_R5" pos="0 0 0">
+                <joint name="knee_joint_R5" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                <geom name="o_leg_R5" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+              </body>
+            </body>
+
+            <body name="vertjoint5" pos="0 0 0">
+              <joint name="vertjoint_hinge5" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
+              <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
+              <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.5 0.5 0.5 1"/>
+
+              <body name="horzjoint5_body" pos="0 0 0">
+                <joint name="horzjoint5" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
+                <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
+
+                <!-- ===== SECTION 1 ===== -->
+                <body name="body_middle4" pos="0.00357 -0.18092 0.003">
+                  <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.4 0.6 0.8 1"/>
+                  <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
+
+                  <body name="motor_L4" pos="0 0 0">
+                    <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                    <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.3 0.3 0.3 1"/>
+                    <body name="o_leg_L4" pos="0 0 0">
+                      <joint name="knee_joint_L4" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                      <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                      <geom name="o_leg_L4" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                    </body>
+                  </body>
+
+                  <body name="motor_R4" pos="0 0 0">
+                    <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                    <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.3 0.3 0.3 1"/>
+                    <body name="o_leg_R4" pos="0 0 0">
+                      <joint name="knee_joint_R4" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                      <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                      <geom name="o_leg_R4" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                    </body>
+                  </body>
+
+                  <body name="vertjoint4" pos="0 0 0">
+                    <joint name="vertjoint_hinge4" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
+                    <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
+                    <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.5 0.5 0.5 1"/>
+
+                    <body name="horzjoint4_body" pos="0 0 0">
+                      <joint name="horzjoint4" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
+                      <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
+
+                      <!-- ===== SECTION 4 ===== -->
+                      <body name="body_middle3" pos="0.00357 -0.18092 0.003">
+                        <camera name="robot_center_scene_camera" pos="0.074 0.064 0.120" xyaxes="-1 0 0 0 0 1" fovy="90"/>
+                        <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.4 0.7 0.4 1"/>
+                        <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
+
+                        <body name="motor_L3" pos="0 0 0">
+                          <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                          <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.3 0.3 0.3 1"/>
+                          <body name="o_leg_L3" pos="0 0 0">
+                            <joint name="knee_joint_L3" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                            <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                            <geom name="o_leg_L3" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                          </body>
+                        </body>
+
+                        <body name="motor_R3" pos="0 0 0">
+                          <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                          <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.3 0.3 0.3 1"/>
+                          <body name="o_leg_R3" pos="0 0 0">
+                            <joint name="knee_joint_R3" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                            <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                            <geom name="o_leg_R3" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                          </body>
+                        </body>
+
+                        <body name="vertjoint3" pos="0 0 0">
+                          <joint name="vertjoint_hinge3" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
+                          <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
+                          <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.5 0.5 0.5 1"/>
+
+                          <body name="horzjoint3_body" pos="0 0 0">
+                            <joint name="horzjoint3" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
+                            <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
+
+                            <!-- ===== SECTION 5 ===== -->
+                            <body name="body_middle2" pos="0.00357 -0.18092 0.003">
+                              <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.4 0.6 0.8 1"/>
+                              <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
+
+                              <body name="motor_L2" pos="0 0 0">
+                                <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                                <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.3 0.3 0.3 1"/>
+                                <body name="o_leg_L2" pos="0 0 0">
+                                  <joint name="knee_joint_L2" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                                  <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                                  <geom name="o_leg_L2" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                                </body>
+                              </body>
+
+                              <body name="motor_R2" pos="0 0 0">
+                                <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                                <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.3 0.3 0.3 1"/>
+                                <body name="o_leg_R2" pos="0 0 0">
+                                  <joint name="knee_joint_R2" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                                  <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                                  <geom name="o_leg_R2" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                                </body>
+                              </body>
+
+                              <body name="vertjoint2" pos="0 0 0">
+                                <joint name="vertjoint_hinge2" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
+                                <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
+                                <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.5 0.5 0.5 1"/>
+
+                                <body name="horzjoint2_body" pos="0 0 0">
+                                  <joint name="horzjoint2" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
+                                  <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
+
+                                  <!-- ===== SECTION 6 (tail) ===== -->
+                                  <body name="body_middle1" pos="0.00357 -0.18092 0.003">
+                                    <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.4 0.6 0.8 1"/>
+                                    <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
+
+                                    <body name="motor_L1" pos="0 0 0">
+                                      <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                                      <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.3 0.3 0.3 1"/>
+                                      <body name="o_leg_L1" pos="0 0 0">
+                                        <joint name="knee_joint_L1" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                                        <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                                        <geom name="o_leg_L1" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                                      </body>
+                                    </body>
+
+                                    <body name="motor_R1" pos="0 0 0">
+                                      <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                                      <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.3 0.3 0.3 1"/>
+                                      <body name="o_leg_R1" pos="0 0 0">
+                                        <joint name="knee_joint_R1" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                                        <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                                        <geom name="o_leg_R1" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                                      </body>
+                                    </body>
+
+                                  </body>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    <body name="construction_collision_body" pos="2.8 0 -2.2">
+      <geom name="construction_col_geom_0" type="mesh" mesh="construction_col_0" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_1" type="mesh" mesh="construction_col_1" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_2" type="mesh" mesh="construction_col_2" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_3" type="mesh" mesh="construction_col_3" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_4" type="mesh" mesh="construction_col_4" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_5" type="mesh" mesh="construction_col_5" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_6" type="mesh" mesh="construction_col_6" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_7" type="mesh" mesh="construction_col_7" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_8" type="mesh" mesh="construction_col_8" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_9" type="mesh" mesh="construction_col_9" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_10" type="mesh" mesh="construction_col_10" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_11" type="mesh" mesh="construction_col_11" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_12" type="mesh" mesh="construction_col_12" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_13" type="mesh" mesh="construction_col_13" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_14" type="mesh" mesh="construction_col_14" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_15" type="mesh" mesh="construction_col_15" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_16" type="mesh" mesh="construction_col_16" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_17" type="mesh" mesh="construction_col_17" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_18" type="mesh" mesh="construction_col_18" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_19" type="mesh" mesh="construction_col_19" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_20" type="mesh" mesh="construction_col_20" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_21" type="mesh" mesh="construction_col_21" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_22" type="mesh" mesh="construction_col_22" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_23" type="mesh" mesh="construction_col_23" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_24" type="mesh" mesh="construction_col_24" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_25" type="mesh" mesh="construction_col_25" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_26" type="mesh" mesh="construction_col_26" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_27" type="mesh" mesh="construction_col_27" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_28" type="mesh" mesh="construction_col_28" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_29" type="mesh" mesh="construction_col_29" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_30" type="mesh" mesh="construction_col_30" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_31" type="mesh" mesh="construction_col_31" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_32" type="mesh" mesh="construction_col_32" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_33" type="mesh" mesh="construction_col_33" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_34" type="mesh" mesh="construction_col_34" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_35" type="mesh" mesh="construction_col_35" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_36" type="mesh" mesh="construction_col_36" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_37" type="mesh" mesh="construction_col_37" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_38" type="mesh" mesh="construction_col_38" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_39" type="mesh" mesh="construction_col_39" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_40" type="mesh" mesh="construction_col_40" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_41" type="mesh" mesh="construction_col_41" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_42" type="mesh" mesh="construction_col_42" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_43" type="mesh" mesh="construction_col_43" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_44" type="mesh" mesh="construction_col_44" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_45" type="mesh" mesh="construction_col_45" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_46" type="mesh" mesh="construction_col_46" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_47" type="mesh" mesh="construction_col_47" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_48" type="mesh" mesh="construction_col_48" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_49" type="mesh" mesh="construction_col_49" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_50" type="mesh" mesh="construction_col_50" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_51" type="mesh" mesh="construction_col_51" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_52" type="mesh" mesh="construction_col_52" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_53" type="mesh" mesh="construction_col_53" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_54" type="mesh" mesh="construction_col_54" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_55" type="mesh" mesh="construction_col_55" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_56" type="mesh" mesh="construction_col_56" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_57" type="mesh" mesh="construction_col_57" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_58" type="mesh" mesh="construction_col_58" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_59" type="mesh" mesh="construction_col_59" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_60" type="mesh" mesh="construction_col_60" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_61" type="mesh" mesh="construction_col_61" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_62" type="mesh" mesh="construction_col_62" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_63" type="mesh" mesh="construction_col_63" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_64" type="mesh" mesh="construction_col_64" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_65" type="mesh" mesh="construction_col_65" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_66" type="mesh" mesh="construction_col_66" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_67" type="mesh" mesh="construction_col_67" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_68" type="mesh" mesh="construction_col_68" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_69" type="mesh" mesh="construction_col_69" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_70" type="mesh" mesh="construction_col_70" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_71" type="mesh" mesh="construction_col_71" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_72" type="mesh" mesh="construction_col_72" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_73" type="mesh" mesh="construction_col_73" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_74" type="mesh" mesh="construction_col_74" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_75" type="mesh" mesh="construction_col_75" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_76" type="mesh" mesh="construction_col_76" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_77" type="mesh" mesh="construction_col_77" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_78" type="mesh" mesh="construction_col_78" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_79" type="mesh" mesh="construction_col_79" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_80" type="mesh" mesh="construction_col_80" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_81" type="mesh" mesh="construction_col_81" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_82" type="mesh" mesh="construction_col_82" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_83" type="mesh" mesh="construction_col_83" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_84" type="mesh" mesh="construction_col_84" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_85" type="mesh" mesh="construction_col_85" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_86" type="mesh" mesh="construction_col_86" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_87" type="mesh" mesh="construction_col_87" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_88" type="mesh" mesh="construction_col_88" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_89" type="mesh" mesh="construction_col_89" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_90" type="mesh" mesh="construction_col_90" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_91" type="mesh" mesh="construction_col_91" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_92" type="mesh" mesh="construction_col_92" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_93" type="mesh" mesh="construction_col_93" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_94" type="mesh" mesh="construction_col_94" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_95" type="mesh" mesh="construction_col_95" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_96" type="mesh" mesh="construction_col_96" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_97" type="mesh" mesh="construction_col_97" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_98" type="mesh" mesh="construction_col_98" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_99" type="mesh" mesh="construction_col_99" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_100" type="mesh" mesh="construction_col_100" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_101" type="mesh" mesh="construction_col_101" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_102" type="mesh" mesh="construction_col_102" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_103" type="mesh" mesh="construction_col_103" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_104" type="mesh" mesh="construction_col_104" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_105" type="mesh" mesh="construction_col_105" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_106" type="mesh" mesh="construction_col_106" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_107" type="mesh" mesh="construction_col_107" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_108" type="mesh" mesh="construction_col_108" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_109" type="mesh" mesh="construction_col_109" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_110" type="mesh" mesh="construction_col_110" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_111" type="mesh" mesh="construction_col_111" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_112" type="mesh" mesh="construction_col_112" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_113" type="mesh" mesh="construction_col_113" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_114" type="mesh" mesh="construction_col_114" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_115" type="mesh" mesh="construction_col_115" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_116" type="mesh" mesh="construction_col_116" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_117" type="mesh" mesh="construction_col_117" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_118" type="mesh" mesh="construction_col_118" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_119" type="mesh" mesh="construction_col_119" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_120" type="mesh" mesh="construction_col_120" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_121" type="mesh" mesh="construction_col_121" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_122" type="mesh" mesh="construction_col_122" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_123" type="mesh" mesh="construction_col_123" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_124" type="mesh" mesh="construction_col_124" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_125" type="mesh" mesh="construction_col_125" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_126" type="mesh" mesh="construction_col_126" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_127" type="mesh" mesh="construction_col_127" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_128" type="mesh" mesh="construction_col_128" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_129" type="mesh" mesh="construction_col_129" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_130" type="mesh" mesh="construction_col_130" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_131" type="mesh" mesh="construction_col_131" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_132" type="mesh" mesh="construction_col_132" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_133" type="mesh" mesh="construction_col_133" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_134" type="mesh" mesh="construction_col_134" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_135" type="mesh" mesh="construction_col_135" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_136" type="mesh" mesh="construction_col_136" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_137" type="mesh" mesh="construction_col_137" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_138" type="mesh" mesh="construction_col_138" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_139" type="mesh" mesh="construction_col_139" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_140" type="mesh" mesh="construction_col_140" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_141" type="mesh" mesh="construction_col_141" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_142" type="mesh" mesh="construction_col_142" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_143" type="mesh" mesh="construction_col_143" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_144" type="mesh" mesh="construction_col_144" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_145" type="mesh" mesh="construction_col_145" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_146" type="mesh" mesh="construction_col_146" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_147" type="mesh" mesh="construction_col_147" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_148" type="mesh" mesh="construction_col_148" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_149" type="mesh" mesh="construction_col_149" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_150" type="mesh" mesh="construction_col_150" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_151" type="mesh" mesh="construction_col_151" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_152" type="mesh" mesh="construction_col_152" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_153" type="mesh" mesh="construction_col_153" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_154" type="mesh" mesh="construction_col_154" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_155" type="mesh" mesh="construction_col_155" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_156" type="mesh" mesh="construction_col_156" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_157" type="mesh" mesh="construction_col_157" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_158" type="mesh" mesh="construction_col_158" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_159" type="mesh" mesh="construction_col_159" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+      <geom name="construction_col_geom_160" type="mesh" mesh="construction_col_160" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <position name="knee_L6" joint="knee_joint_L6" kp="10" forcerange="-4 4"/>
+    <position name="knee_R6" joint="knee_joint_R6" kp="10" forcerange="-4 4"/>
+    <position name="vertjoint6" joint="vertjoint_hinge6" ctrlrange="-100 100" kp="10" forcerange="-5 5"/>
+    <position name="horzjoint6" joint="horzjoint6" ctrlrange="-100 100" kp="10"/>
+
+    <position name="knee_L5" joint="knee_joint_L5" kp="10" forcerange="-4 4"/>
+    <position name="knee_R5" joint="knee_joint_R5" kp="10" forcerange="-4 4"/>
+    <position name="vertjoint5" joint="vertjoint_hinge5" ctrlrange="-100 100" kp="10" forcerange="-5 5"/>
+    <position name="horzjoint5" joint="horzjoint5" ctrlrange="-100 100" kp="10"/>
+
+    <position name="knee_L4" joint="knee_joint_L4" kp="10" forcerange="-4 4"/>
+    <position name="knee_R4" joint="knee_joint_R4" kp="10" forcerange="-4 4"/>
+    <position name="vertjoint4" joint="vertjoint_hinge4" ctrlrange="-100 100" kp="10" forcerange="-5 5"/>
+    <position name="horzjoint4" joint="horzjoint4" ctrlrange="-100 100" kp="10"/>
+
+    <position name="knee_L3" joint="knee_joint_L3" kp="10" forcerange="-4 4"/>
+    <position name="knee_R3" joint="knee_joint_R3" kp="10" forcerange="-4 4"/>
+    <position name="vertjoint3" joint="vertjoint_hinge3" ctrlrange="-100 100" kp="10" forcerange="-5 5"/>
+    <position name="horzjoint3" joint="horzjoint3" ctrlrange="-100 100" kp="10"/>
+
+    <position name="knee_L2" joint="knee_joint_L2" kp="10" forcerange="-4 4"/>
+    <position name="knee_R2" joint="knee_joint_R2" kp="10" forcerange="-4 4"/>
+    <position name="vertjoint2" joint="vertjoint_hinge2" ctrlrange="-100 100" kp="10" forcerange="-5 5"/>
+    <position name="horzjoint2" joint="horzjoint2" ctrlrange="-100 100" kp="10"/>
+
+    <position name="knee_L1" joint="knee_joint_L1" kp="10" forcerange="-4 4"/>
+    <position name="knee_R1" joint="knee_joint_R1" kp="10" forcerange="-4 4"/>
+  </actuator>
+</mujoco>

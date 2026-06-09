@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 window.THREE = THREE;
 import { GUI } from '../node_modules/three/examples/jsm/libs/lil-gui.module.min.js';
+import { PLYLoader } from '../node_modules/three/examples/jsm/loaders/PLYLoader.js';
+import { GLTFLoader } from '../node_modules/three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from '../node_modules/three/examples/jsm/controls/OrbitControls.js';
 import { generateSimpleSteerTargets } from './scutlGait.js';
 import { ScutlGUI } from './scutlGUI.js';          // ← new
@@ -38,6 +40,8 @@ const mujoco = await load_mujoco();
 var initialScene = "scutl.xml";
 var truckScene = "scutl_coacd.xml";
 var gardenScene = "scutl_garden_coacd.xml";
+var constructionScene = "scutl_construction_coacd.xml";
+var gcrRoomScene = "scutl_gcr_room.xml";
 mujoco.FS.mkdir('/working');
 mujoco.FS.mount(mujoco.MEMFS, { root: '.' }, '/working');
 mujoco.FS.writeFile(
@@ -298,6 +302,7 @@ export class MuJoCoDemo {
         <option value="none">None</option>
         <option value="truck">Truck</option>
         <option value="garden">Garden</option>
+        <option value="gcr_room">GCR Room</option>
       </select>
     `;
 
@@ -427,6 +432,20 @@ export class MuJoCoDemo {
     });
   }
 
+  hideConstructionMujocoVisuals() {
+    this.scene.traverse(obj => {
+      const n = (obj.name || "").toLowerCase();
+
+      if (
+        n.includes("construction_visual") ||
+        n.includes("construction_collision") ||
+        n.includes("construction_col")
+      ) {
+        obj.visible = false;
+      }
+    });
+  }
+
   resetRobotControlState() {
     this.scutlLastLegRaw = null;
     this.scutlUnwrappedLegRaw = null;
@@ -464,6 +483,83 @@ export class MuJoCoDemo {
   // async setEnvironment(name) {
   //   this.currentEnvironment = name;
 
+  async loadGCRRoomVisual() {
+    if (this.gcrRoomVisual) {
+      this.scene.remove(this.gcrRoomVisual);
+      this.gcrRoomVisual = null;
+    }
+
+    const loader = new PLYLoader();
+
+    const geometry = await loader.loadAsync("/assets/scenes/gcr_room_visual.ply");
+    geometry.computeVertexNormals();
+
+    const material = new THREE.MeshStandardMaterial({
+      color: 0xffffff,
+      side: THREE.DoubleSide,
+    });
+
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.name = "gcr_room_visual";
+
+    mesh.position.set(0, 0, 0);
+    mesh.rotation.set(0, 0, 0);
+    mesh.scale.set(0.2, 0.2, 0.2);
+
+    this.scene.add(mesh);
+    this.gcrRoomVisual = mesh;
+  }
+
+  async loadGCRRoomVisual() {
+    if (this.gcrRoomVisual) {
+      this.scene.remove(this.gcrRoomVisual);
+      this.gcrRoomVisual.traverse(obj => {
+        if (obj.geometry) obj.geometry.dispose();
+        if (obj.material) {
+          const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+          mats.forEach(m => m.dispose());
+        }
+      });
+      this.gcrRoomVisual = null;
+    }
+
+    const loader = new GLTFLoader();
+    const gltf = await loader.loadAsync("/assets/scenes/gcr_room.glb");
+
+    const room = gltf.scene;
+    room.name = "gcr_room_visual";
+
+    room.position.set(-5.2, -2.5, 0);
+    room.rotation.set(0, 0, 0);
+    room.scale.set(3,3,3);
+
+    this.scene.add(room);
+    this.gcrRoomVisual = room;
+  }
+
+  resetCameraToRobotStart() {
+    this.camera.position.set(
+      0.23546240317712652,
+      -0.31107733023432327,
+      -2.9085427420402246
+    );
+
+    this.controls.target.set(
+      0.3113039252833211,
+      -1.7759607844025347,
+      0.1813860823267129
+    );
+
+    this.controls.update();
+  }
+
+
+  resetCameraToGCRRoomStart() {
+    this.camera.position.set(-5.265242698884813, 1.948546018115253, 9.437849386290221);
+    this.controls.target.set(-5.731220068999387, 0.3122420747918781, 6.428204714677335);
+    this.controls.update();
+  }
+
   async setEnvironment(name) {
     this.showLoadingScene();
 
@@ -484,6 +580,20 @@ export class MuJoCoDemo {
 
       this.splatViewer = null;
     }
+    if (this.gcrRoomVisual) {
+      this.scene.remove(this.gcrRoomVisual);
+
+      this.gcrRoomVisual.traverse(obj => {
+        if (obj.geometry) obj.geometry.dispose();
+
+        if (obj.material) {
+          const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+          mats.forEach(m => m.dispose());
+        }
+      });
+
+      this.gcrRoomVisual = null;
+    }
 
 
     if (name === "none") {
@@ -494,6 +604,7 @@ export class MuJoCoDemo {
       });
 
       console.log("Environment: none");
+      this.resetCameraToRobotStart();
       return;
     }
 
@@ -536,7 +647,7 @@ export class MuJoCoDemo {
       this.setLoadingProgress(60, "Loading test splat...");
 
       await this.splatViewer.addSplatScene(
-        "/assets/splats/garden.ksplat",
+        "/assets/splats/garden_c2_a150.ksplat",
         {
           splatAlphaRemovalThreshold: 1,
           showLoadingUI: false,
@@ -553,10 +664,33 @@ export class MuJoCoDemo {
 
       this.hideGroundVisuals();
       this.hideGardenMujocoVisuals();
+      this.resetCameraToRobotStart();
     }
 
-    // if (name === "forest") {
-    //   await this.loadMujocoScene(initialScene);
+
+
+    // if (name === "construction_site") {
+    //   await this.loadMujocoScene(constructionScene);
+    //   this.scene.traverse(obj => {
+    //     const n = (obj.name || "").toLowerCase();
+
+    //     if (n.includes("construction_col")) {
+    //       obj.visible = true;
+
+    //       if (obj.material) {
+    //         const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+
+    //         for (const mat of mats) {
+    //           mat.color?.set?.(0xff0000);
+    //           mat.transparent = true;
+    //           mat.opacity = 0.8;
+    //           mat.depthWrite = false;
+    //           mat.needsUpdate = true;
+    //         }
+    //       }
+    //     }
+    //   });
+
     //   this.splatViewer = new GaussianSplats3D.DropInViewer({
     //     gpuAcceleratedSort: false,
     //     sharedMemoryForWorkers: false,
@@ -564,19 +698,38 @@ export class MuJoCoDemo {
 
     //   this.scene.add(this.splatViewer);
 
-    //   await this.splatViewer.addSplatScene("/assets/splats/output.ksplat", {
-    //     splatAlphaRemovalThreshold: 1,
-    //     showLoadingUI: false,
-    //     position: [2, -0.7, 0],
-    //     rotation: eulerDegToQuat(180, 0, 0),
-    //     scale: [1, 1, 1],
-    //   });
+    //   this.setLoadingProgress(60, "Loading construction splat...");
 
-    //   console.log("Environment: garden loaded");
+    //   await this.splatViewer.addSplatScene(
+    //     "/assets/splats/construction_c2_a150.ksplat",
+    //     {
+    //       splatAlphaRemovalThreshold: 1,
+    //       showLoadingUI: false,
+    //       position: [3, -2.15, 0],
+    //       rotation: eulerDegToQuat(180, 0, 0),
+    //       scale: [1, 1, 1],
+    //     }
+    //   );
+
+    //   this.setLoadingProgress(95, "Finalizing construction scene...");
+
+    //   console.log("Environment: construction loaded");
+
     //   this.hideGroundVisuals();
-    //   if (this.groundVisual) {
-    //   }
+    //   // this.hideConstructionMujocoVisuals();
     // }
+
+
+    if (name === "gcr_room") {
+      await this.loadMujocoScene(gcrRoomScene);
+      await this.loadGCRRoomVisual();
+
+      console.log("Environment: GCR room loaded");
+
+      // this.hideGroundVisuals();
+      this.resetCameraToGCRRoomStart();
+    }
+
 
     if (name === "truck") {
       await this.loadMujocoScene(truckScene);
@@ -609,6 +762,7 @@ export class MuJoCoDemo {
       // });
       this.hideGroundVisuals();
       this.hideTruckMujocoVisuals();
+      this.resetCameraToRobotStart();
       }
     } finally {
         this.hideLoadingScene();
