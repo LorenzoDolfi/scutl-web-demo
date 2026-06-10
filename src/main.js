@@ -42,6 +42,7 @@ var truckScene = "scutl_coacd.xml";
 var gardenScene = "scutl_garden_coacd.xml";
 var constructionScene = "scutl_construction_coacd.xml";
 var gcrRoomScene = "scutl_gcr_room.xml";
+var stairsScene = "scutl_stairs_wide.xml";
 mujoco.FS.mkdir('/working');
 mujoco.FS.mount(mujoco.MEMFS, { root: '.' }, '/working');
 
@@ -312,6 +313,7 @@ export class MuJoCoDemo {
                 border-radius:4px;
                 padding:4px;">
         <option value="none">None</option>
+        <option value="playground">Playground</option>
         <option value="truck">Truck</option>
         <option value="garden">Garden</option>
       </select>
@@ -635,9 +637,23 @@ export class MuJoCoDemo {
   }
 
 
-  resetCameraToGCRRoomStart() {
-    this.camera.position.set(-5.265242698884813, 1.948546018115253, 9.437849386290221);
-    this.controls.target.set(-5.731220068999387, 0.3122420747918781, 6.428204714677335);
+  // resetCameraToGCRRoomStart() {
+  //   this.camera.position.set(-5.265242698884813, 1.948546018115253, 9.437849386290221);
+  //   this.controls.target.set(-5.731220068999387, 0.3122420747918781, 6.428204714677335);
+  //   this.controls.update();
+  // }
+
+  resetCameraToPlaygroundStart() {
+    this.camera.position.set(
+      -7.052617680510261,
+      -0.3117005206615284,
+      -0.322040778961267
+    );
+    this.controls.target.set(
+      -3.9750285046797176,
+      -1.8039366577520257,
+      -0.3532142676463947
+    );
     this.controls.update();
   }
 
@@ -811,6 +827,13 @@ export class MuJoCoDemo {
     //   this.resetCameraToGCRRoomStart();
     // }
 
+
+    if (name === "playground") {
+      await this.loadMujocoScene(stairsScene);
+      // this.hideGroundVisuals();
+      this.resetCameraToPlaygroundStart();
+      console.log("Environment: playground loaded");
+    }
 
     if (name === "truck") {
       await this.loadMujocoScene(truckScene);
