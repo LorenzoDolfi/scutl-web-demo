@@ -37,7 +37,7 @@ function eulerDegToQuat(xDeg, yDeg, zDeg) {
 
 const mujoco = await load_mujoco();
 
-var initialScene = "final_center_fp_camera.xml";
+var initialScene = "scutl.xml";
 var truckScene = "scutl_coacd.xml";
 var gardenScene = "scutl_garden_coacd.xml";
 var constructionScene = "scutl_construction_coacd.xml";

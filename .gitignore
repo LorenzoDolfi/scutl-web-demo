@@ -77,3 +77,11 @@ assets/splats/construction_c2.ksplat
 # Original garden source
 assets/splats/garden.ply
 assets/splats/garden.collision.glb
+assets/scenes/body_middle.stl
+assets/scenes/body_middle_roof.stl
+assets/scenes/body_middle_head.stl
+assets/scenes/motor_L.stl
+assets/scenes/motor_R.stl
+assets/scenes/o_leg_L.stl
+assets/scenes/o_leg_R.stl
+assets/scenes/body_joint.stl

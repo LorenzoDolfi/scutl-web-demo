@@ -1,5 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="o_leg_3sections">
+  <default>
+    <geom material="robot_green"/>
+  </default>
   <option timestep="0.004" gravity="0 0 -9.81"/>
   <visual>
     <global offwidth="1920" offheight="1080"/>
@@ -7,6 +10,7 @@
   <asset>
     <texture name="grid" type="2d" builtin="checker" rgb1=".1 .2 .3" rgb2=".2 .3 .4" width="300" height="300"/>
     <material name="grid" texture="grid" texrepeat="30 30" reflectance="0"/>
+    <material name="robot_green" rgba="0.1 0.35 0.1 1"/>
   </asset>
   <worldbody>
     <geom name="ground" type="plane" pos="0 0 -2.12" size="10 10 0.4" material="grid" friction="0.5 0 0"/>
