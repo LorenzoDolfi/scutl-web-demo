@@ -313,14 +313,6 @@
 
     <texture name="grid" type="2d" builtin="checker" rgb1=".1 .2 .3" rgb2=".2 .3 .4" width="300" height="300"/>
     <material name="grid" texture="grid" texrepeat="30 30" reflectance="0"/>
-      <mesh name="body_middle_mesh" file="body_middle.stl"/>
-    <mesh name="body_middle_roof_mesh" file="body_middle_roof.stl"/>
-    <mesh name="body_middle_head_mesh" file="body_middle_head.stl"/>
-    <mesh name="motor_L_mesh" file="motor_L.stl"/>
-    <mesh name="motor_R_mesh" file="motor_R.stl"/>
-    <mesh name="o_leg_L_mesh" file="o_leg_L.stl"/>
-    <mesh name="o_leg_R_mesh" file="o_leg_R.stl"/>
-    <mesh name="body_joint_mesh" file="body_joint.stl"/>
   </asset>
   <worldbody>
     <geom name="ground" type="plane" pos="0 0 -2.12" size="10 10 0.4" material="grid" friction="0.5 0 0"/>
