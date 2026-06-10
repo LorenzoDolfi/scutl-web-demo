@@ -168,6 +168,14 @@
     <mesh name="construction_col_158" file="construction_collision_parts/construction_col_158.stl" scale="1 1 1"/>
     <mesh name="construction_col_159" file="construction_collision_parts/construction_col_159.stl" scale="1 1 1"/>
     <mesh name="construction_col_160" file="construction_collision_parts/construction_col_160.stl" scale="1 1 1"/>
+      <mesh name="body_middle_mesh" file="body_middle.stl"/>
+    <mesh name="body_middle_roof_mesh" file="body_middle_roof.stl"/>
+    <mesh name="body_middle_head_mesh" file="body_middle_head.stl"/>
+    <mesh name="motor_L_mesh" file="motor_L.stl"/>
+    <mesh name="motor_R_mesh" file="motor_R.stl"/>
+    <mesh name="o_leg_L_mesh" file="o_leg_L.stl"/>
+    <mesh name="o_leg_R_mesh" file="o_leg_R.stl"/>
+    <mesh name="body_joint_mesh" file="body_joint.stl"/>
   </asset>
   <worldbody>
     <geom name="ground" type="plane" pos="0 0 -2.12" size="10 10 0.4" material="grid" friction="0.5 0 0"/>
@@ -176,201 +184,215 @@
     <camera name="side_cam2" pos="0.783 -0.953 3.350" xyaxes="-0.008 1.000 0.000 -0.989 -0.008 0.148"/>
 
     <!-- ===== SECTION 3 (root) ===== -->
-    <body name="body_middle6" pos="-22.00714 4.36184 0.008">
+    <body name="body_middle6" pos="-0.00714 0.36184 -0.008">
       <joint name="root_free" type="free"/>
-      <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.4 0.6 0.8 1"/>
+      <geom type="mesh" mesh="body_middle_mesh"/>
       <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
 
       <body name="motor_L6" pos="0 0 0">
         <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-        <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.3 0.3 0.3 1"/>
+        <geom type="mesh" mesh="motor_L_mesh"/>
         <body name="o_leg_L6" pos="0 0 0">
           <joint name="knee_joint_L6" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
           <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-          <geom name="o_leg_L6" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+          <geom name="o_leg_L6" type="mesh" mesh="o_leg_L_mesh"/>
         </body>
       </body>
 
       <body name="motor_R6" pos="0 0 0">
         <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-        <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.3 0.3 0.3 1"/>
+        <geom type="mesh" mesh="motor_R_mesh"/>
         <body name="o_leg_R6" pos="0 0 0">
           <joint name="knee_joint_R6" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
           <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-          <geom name="o_leg_R6" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+          <geom name="o_leg_R6" type="mesh" mesh="o_leg_R_mesh"/>
         </body>
       </body>
 
+      <!-- vertjoint3: vertical hinge + mesh -->
       <body name="vertjoint6" pos="0 0 0">
         <joint name="vertjoint_hinge6" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
         <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
-        <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.5 0.5 0.5 1"/>
+        <geom type="mesh" mesh="body_joint_mesh"/>
 
+        <!-- horzjoint3_body: horizontal hinge only, massless, carries section 2 -->
         <body name="horzjoint6_body" pos="0 0 0">
           <joint name="horzjoint6" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
           <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
 
-          <!-- ===== SECTION 2 ===== -->
+          <!-- ===== SECTION 2 (child of horzjoint3_body) ===== -->
           <body name="body_middle5" pos="0.00357 -0.18092 0.003">
-            <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.4 0.6 0.8 1"/>
+            <geom type="mesh" mesh="body_middle_mesh"/>
             <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
 
             <body name="motor_L5" pos="0 0 0">
               <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-              <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.3 0.3 0.3 1"/>
+              <geom type="mesh" mesh="motor_L_mesh"/>
               <body name="o_leg_L5" pos="0 0 0">
                 <joint name="knee_joint_L5" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
                 <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                <geom name="o_leg_L5" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                <geom name="o_leg_L5" type="mesh" mesh="o_leg_L_mesh"/>
               </body>
             </body>
 
             <body name="motor_R5" pos="0 0 0">
               <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-              <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.3 0.3 0.3 1"/>
+              <geom type="mesh" mesh="motor_R_mesh"/>
               <body name="o_leg_R5" pos="0 0 0">
                 <joint name="knee_joint_R5" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
                 <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                <geom name="o_leg_R5" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                <geom name="o_leg_R5" type="mesh" mesh="o_leg_R_mesh"/>
               </body>
             </body>
 
+            <!-- vertjoint2: vertical hinge + mesh -->
             <body name="vertjoint5" pos="0 0 0">
               <joint name="vertjoint_hinge5" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
               <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
-              <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.5 0.5 0.5 1"/>
+              <geom type="mesh" mesh="body_joint_mesh"/>
 
+              <!-- horzjoint2_body: horizontal hinge only, massless, carries section 1 -->
               <body name="horzjoint5_body" pos="0 0 0">
                 <joint name="horzjoint5" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
                 <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
 
-                <!-- ===== SECTION 1 ===== -->
+                <!-- ===== SECTION 1 (child of horzjoint2_body) ===== -->
                 <body name="body_middle4" pos="0.00357 -0.18092 0.003">
-                  <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.4 0.6 0.8 1"/>
+                  <geom type="mesh" mesh="body_middle_mesh"/>
                   <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
 
                   <body name="motor_L4" pos="0 0 0">
                     <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-                    <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.3 0.3 0.3 1"/>
+                    <geom type="mesh" mesh="motor_L_mesh"/>
                     <body name="o_leg_L4" pos="0 0 0">
                       <joint name="knee_joint_L4" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
                       <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                      <geom name="o_leg_L4" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                      <geom name="o_leg_L4" type="mesh" mesh="o_leg_L_mesh"/>
                     </body>
                   </body>
 
                   <body name="motor_R4" pos="0 0 0">
                     <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-                    <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.3 0.3 0.3 1"/>
+                    <geom type="mesh" mesh="motor_R_mesh"/>
                     <body name="o_leg_R4" pos="0 0 0">
                       <joint name="knee_joint_R4" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
                       <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                      <geom name="o_leg_R4" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                      <geom name="o_leg_R4" type="mesh" mesh="o_leg_R_mesh"/>
                     </body>
                   </body>
 
+                  <!-- vertjoint1: vertical hinge + mesh, dead end -->
                   <body name="vertjoint4" pos="0 0 0">
                     <joint name="vertjoint_hinge4" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
                     <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
-                    <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.5 0.5 0.5 1"/>
+                    <geom type="mesh" mesh="body_joint_mesh"/>
 
+                    <!-- horzjoint1_body: horizontal hinge, carries section 4 -->
                     <body name="horzjoint4_body" pos="0 0 0">
                       <joint name="horzjoint4" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
                       <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
 
-                      <!-- ===== SECTION 4 ===== -->
+                      <!-- ===== SECTION 4 (child of horzjoint1_body) ===== -->
                       <body name="body_middle3" pos="0.00357 -0.18092 0.003">
+                        <!-- CENTER FIRST-PERSON / SCENE CAMERA
+                             This is mounted on the middle section of the robot.
+                             It is roughly centered in the body and raised by about
+                             2 inches, 0.0508 m, above the local body reference.
+                             The Python viewer uses this named camera as the XML
+                             reference, then pans and auto-faces it in code. -->
                         <camera name="robot_center_scene_camera" pos="0.074 0.064 0.120" xyaxes="-1 0 0 0 0 1" fovy="90"/>
-                        <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.4 0.7 0.4 1"/>
+                        <geom type="mesh" mesh="body_middle_roof_mesh"/>
                         <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
 
                         <body name="motor_L3" pos="0 0 0">
                           <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-                          <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.3 0.3 0.3 1"/>
+                          <geom type="mesh" mesh="motor_L_mesh"/>
                           <body name="o_leg_L3" pos="0 0 0">
                             <joint name="knee_joint_L3" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
                             <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                            <geom name="o_leg_L3" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                            <geom name="o_leg_L3" type="mesh" mesh="o_leg_L_mesh"/>
                           </body>
                         </body>
 
                         <body name="motor_R3" pos="0 0 0">
                           <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-                          <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.3 0.3 0.3 1"/>
+                          <geom type="mesh" mesh="motor_R_mesh"/>
                           <body name="o_leg_R3" pos="0 0 0">
                             <joint name="knee_joint_R3" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
                             <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                            <geom name="o_leg_R3" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                            <geom name="o_leg_R3" type="mesh" mesh="o_leg_R_mesh"/>
                           </body>
                         </body>
 
                         <body name="vertjoint3" pos="0 0 0">
                           <joint name="vertjoint_hinge3" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
                           <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
-                          <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.5 0.5 0.5 1"/>
+                          <geom type="mesh" mesh="body_joint_mesh"/>
 
                           <body name="horzjoint3_body" pos="0 0 0">
                             <joint name="horzjoint3" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
                             <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
 
-                            <!-- ===== SECTION 5 ===== -->
+                            <!-- ===== SECTION 5 (child of horzjoint4_body) ===== -->
                             <body name="body_middle2" pos="0.00357 -0.18092 0.003">
-                              <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.4 0.6 0.8 1"/>
+                              <geom type="mesh" mesh="body_middle_mesh"/>
                               <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
 
                               <body name="motor_L2" pos="0 0 0">
                                 <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-                                <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.3 0.3 0.3 1"/>
+                                <geom type="mesh" mesh="motor_L_mesh"/>
                                 <body name="o_leg_L2" pos="0 0 0">
                                   <joint name="knee_joint_L2" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
                                   <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                                  <geom name="o_leg_L2" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                                  <geom name="o_leg_L2" type="mesh" mesh="o_leg_L_mesh"/>
                                 </body>
                               </body>
 
                               <body name="motor_R2" pos="0 0 0">
                                 <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-                                <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.3 0.3 0.3 1"/>
+                                <geom type="mesh" mesh="motor_R_mesh"/>
                                 <body name="o_leg_R2" pos="0 0 0">
                                   <joint name="knee_joint_R2" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
                                   <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                                  <geom name="o_leg_R2" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                                  <geom name="o_leg_R2" type="mesh" mesh="o_leg_R_mesh"/>
                                 </body>
                               </body>
 
                               <body name="vertjoint2" pos="0 0 0">
                                 <joint name="vertjoint_hinge2" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
                                 <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
-                                <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.5 0.5 0.5 1"/>
+                                <geom type="mesh" mesh="body_joint_mesh"/>
 
                                 <body name="horzjoint2_body" pos="0 0 0">
                                   <joint name="horzjoint2" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
                                   <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
 
-                                  <!-- ===== SECTION 6 (tail) ===== -->
+                                  <!-- ===== SECTION 6 (child of horzjoint5_body) ===== -->
                                   <body name="body_middle1" pos="0.00357 -0.18092 0.003">
-                                    <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.4 0.6 0.8 1"/>
+                                    <geom type="mesh" mesh="body_middle_head_mesh"/>
                                     <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
 
                                     <body name="motor_L1" pos="0 0 0">
                                       <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-                                      <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.3 0.3 0.3 1"/>
+                                      <geom type="mesh" mesh="motor_L_mesh"/>
                                       <body name="o_leg_L1" pos="0 0 0">
                                         <joint name="knee_joint_L1" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
                                         <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                                        <geom name="o_leg_L1" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                                        <geom name="o_leg_L1" type="mesh" mesh="o_leg_L_mesh"/>
                                       </body>
                                     </body>
 
                                     <body name="motor_R1" pos="0 0 0">
                                       <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-                                      <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.3 0.3 0.3 1"/>
+                                      <geom type="mesh" mesh="motor_R_mesh"/>
                                       <body name="o_leg_R1" pos="0 0 0">
                                         <joint name="knee_joint_R1" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
                                         <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                                        <geom name="o_leg_R1" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                                        <geom name="o_leg_R1" type="mesh" mesh="o_leg_R_mesh"/>
                                       </body>
                                     </body>
+
+
 
                                   </body>
                                 </body>
@@ -380,176 +402,18 @@
                         </body>
                       </body>
                     </body>
+
                   </body>
+
                 </body>
               </body>
+
             </body>
           </body>
+
         </body>
       </body>
-    </body>
-    <body name="construction_collision_body" pos="2.8 0 -2.2">
-      <geom name="construction_col_geom_0" type="mesh" mesh="construction_col_0" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_1" type="mesh" mesh="construction_col_1" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_2" type="mesh" mesh="construction_col_2" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_3" type="mesh" mesh="construction_col_3" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_4" type="mesh" mesh="construction_col_4" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_5" type="mesh" mesh="construction_col_5" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_6" type="mesh" mesh="construction_col_6" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_7" type="mesh" mesh="construction_col_7" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_8" type="mesh" mesh="construction_col_8" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_9" type="mesh" mesh="construction_col_9" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_10" type="mesh" mesh="construction_col_10" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_11" type="mesh" mesh="construction_col_11" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_12" type="mesh" mesh="construction_col_12" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_13" type="mesh" mesh="construction_col_13" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_14" type="mesh" mesh="construction_col_14" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_15" type="mesh" mesh="construction_col_15" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_16" type="mesh" mesh="construction_col_16" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_17" type="mesh" mesh="construction_col_17" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_18" type="mesh" mesh="construction_col_18" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_19" type="mesh" mesh="construction_col_19" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_20" type="mesh" mesh="construction_col_20" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_21" type="mesh" mesh="construction_col_21" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_22" type="mesh" mesh="construction_col_22" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_23" type="mesh" mesh="construction_col_23" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_24" type="mesh" mesh="construction_col_24" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_25" type="mesh" mesh="construction_col_25" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_26" type="mesh" mesh="construction_col_26" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_27" type="mesh" mesh="construction_col_27" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_28" type="mesh" mesh="construction_col_28" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_29" type="mesh" mesh="construction_col_29" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_30" type="mesh" mesh="construction_col_30" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_31" type="mesh" mesh="construction_col_31" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_32" type="mesh" mesh="construction_col_32" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_33" type="mesh" mesh="construction_col_33" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_34" type="mesh" mesh="construction_col_34" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_35" type="mesh" mesh="construction_col_35" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_36" type="mesh" mesh="construction_col_36" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_37" type="mesh" mesh="construction_col_37" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_38" type="mesh" mesh="construction_col_38" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_39" type="mesh" mesh="construction_col_39" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_40" type="mesh" mesh="construction_col_40" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_41" type="mesh" mesh="construction_col_41" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_42" type="mesh" mesh="construction_col_42" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_43" type="mesh" mesh="construction_col_43" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_44" type="mesh" mesh="construction_col_44" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_45" type="mesh" mesh="construction_col_45" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_46" type="mesh" mesh="construction_col_46" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_47" type="mesh" mesh="construction_col_47" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_48" type="mesh" mesh="construction_col_48" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_49" type="mesh" mesh="construction_col_49" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_50" type="mesh" mesh="construction_col_50" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_51" type="mesh" mesh="construction_col_51" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_52" type="mesh" mesh="construction_col_52" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_53" type="mesh" mesh="construction_col_53" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_54" type="mesh" mesh="construction_col_54" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_55" type="mesh" mesh="construction_col_55" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_56" type="mesh" mesh="construction_col_56" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_57" type="mesh" mesh="construction_col_57" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_58" type="mesh" mesh="construction_col_58" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_59" type="mesh" mesh="construction_col_59" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_60" type="mesh" mesh="construction_col_60" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_61" type="mesh" mesh="construction_col_61" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_62" type="mesh" mesh="construction_col_62" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_63" type="mesh" mesh="construction_col_63" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_64" type="mesh" mesh="construction_col_64" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_65" type="mesh" mesh="construction_col_65" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_66" type="mesh" mesh="construction_col_66" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_67" type="mesh" mesh="construction_col_67" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_68" type="mesh" mesh="construction_col_68" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_69" type="mesh" mesh="construction_col_69" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_70" type="mesh" mesh="construction_col_70" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_71" type="mesh" mesh="construction_col_71" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_72" type="mesh" mesh="construction_col_72" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_73" type="mesh" mesh="construction_col_73" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_74" type="mesh" mesh="construction_col_74" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_75" type="mesh" mesh="construction_col_75" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_76" type="mesh" mesh="construction_col_76" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_77" type="mesh" mesh="construction_col_77" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_78" type="mesh" mesh="construction_col_78" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_79" type="mesh" mesh="construction_col_79" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_80" type="mesh" mesh="construction_col_80" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_81" type="mesh" mesh="construction_col_81" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_82" type="mesh" mesh="construction_col_82" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_83" type="mesh" mesh="construction_col_83" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_84" type="mesh" mesh="construction_col_84" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_85" type="mesh" mesh="construction_col_85" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_86" type="mesh" mesh="construction_col_86" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_87" type="mesh" mesh="construction_col_87" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_88" type="mesh" mesh="construction_col_88" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_89" type="mesh" mesh="construction_col_89" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_90" type="mesh" mesh="construction_col_90" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_91" type="mesh" mesh="construction_col_91" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_92" type="mesh" mesh="construction_col_92" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_93" type="mesh" mesh="construction_col_93" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_94" type="mesh" mesh="construction_col_94" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_95" type="mesh" mesh="construction_col_95" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_96" type="mesh" mesh="construction_col_96" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_97" type="mesh" mesh="construction_col_97" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_98" type="mesh" mesh="construction_col_98" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_99" type="mesh" mesh="construction_col_99" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_100" type="mesh" mesh="construction_col_100" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_101" type="mesh" mesh="construction_col_101" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_102" type="mesh" mesh="construction_col_102" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_103" type="mesh" mesh="construction_col_103" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_104" type="mesh" mesh="construction_col_104" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_105" type="mesh" mesh="construction_col_105" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_106" type="mesh" mesh="construction_col_106" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_107" type="mesh" mesh="construction_col_107" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_108" type="mesh" mesh="construction_col_108" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_109" type="mesh" mesh="construction_col_109" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_110" type="mesh" mesh="construction_col_110" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_111" type="mesh" mesh="construction_col_111" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_112" type="mesh" mesh="construction_col_112" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_113" type="mesh" mesh="construction_col_113" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_114" type="mesh" mesh="construction_col_114" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_115" type="mesh" mesh="construction_col_115" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_116" type="mesh" mesh="construction_col_116" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_117" type="mesh" mesh="construction_col_117" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_118" type="mesh" mesh="construction_col_118" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_119" type="mesh" mesh="construction_col_119" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_120" type="mesh" mesh="construction_col_120" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_121" type="mesh" mesh="construction_col_121" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_122" type="mesh" mesh="construction_col_122" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_123" type="mesh" mesh="construction_col_123" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_124" type="mesh" mesh="construction_col_124" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_125" type="mesh" mesh="construction_col_125" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_126" type="mesh" mesh="construction_col_126" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_127" type="mesh" mesh="construction_col_127" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_128" type="mesh" mesh="construction_col_128" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_129" type="mesh" mesh="construction_col_129" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_130" type="mesh" mesh="construction_col_130" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_131" type="mesh" mesh="construction_col_131" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_132" type="mesh" mesh="construction_col_132" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_133" type="mesh" mesh="construction_col_133" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_134" type="mesh" mesh="construction_col_134" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_135" type="mesh" mesh="construction_col_135" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_136" type="mesh" mesh="construction_col_136" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_137" type="mesh" mesh="construction_col_137" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_138" type="mesh" mesh="construction_col_138" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_139" type="mesh" mesh="construction_col_139" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_140" type="mesh" mesh="construction_col_140" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_141" type="mesh" mesh="construction_col_141" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_142" type="mesh" mesh="construction_col_142" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_143" type="mesh" mesh="construction_col_143" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_144" type="mesh" mesh="construction_col_144" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_145" type="mesh" mesh="construction_col_145" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_146" type="mesh" mesh="construction_col_146" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_147" type="mesh" mesh="construction_col_147" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_148" type="mesh" mesh="construction_col_148" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_149" type="mesh" mesh="construction_col_149" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_150" type="mesh" mesh="construction_col_150" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_151" type="mesh" mesh="construction_col_151" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_152" type="mesh" mesh="construction_col_152" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_153" type="mesh" mesh="construction_col_153" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_154" type="mesh" mesh="construction_col_154" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_155" type="mesh" mesh="construction_col_155" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_156" type="mesh" mesh="construction_col_156" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_157" type="mesh" mesh="construction_col_157" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_158" type="mesh" mesh="construction_col_158" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_159" type="mesh" mesh="construction_col_159" contype="1" conaffinity="1" rgba="1 0 0 1"/>
-      <geom name="construction_col_geom_160" type="mesh" mesh="construction_col_160" contype="1" conaffinity="1" rgba="1 0 0 1"/>
+
     </body>
   </worldbody>
 

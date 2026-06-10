@@ -1,0 +1,297 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="o_leg_3sections">
+  <default>
+    <geom material="robot_green"/>
+  </default>
+  <option timestep="0.004" gravity="0 0 -9.84"/>
+  <visual>
+    <global offwidth="1920" offheight="1080"/>
+  </visual>
+  <asset>
+    <mesh name="body_middle_mesh" file="body_middle.stl"/>
+    <mesh name="body_middle_roof_mesh" file="body_middle_roof.stl"/>
+    <mesh name="body_middle_head_mesh" file="body_middle_head.stl"/>
+    <mesh name="motor_L_mesh" file="motor_L.stl"/>
+    <mesh name="motor_R_mesh" file="motor_R.stl"/>
+    <mesh name="o_leg_L_mesh" file="o_leg_L.stl"/>
+    <mesh name="o_leg_R_mesh" file="o_leg_R.stl"/>
+    <mesh name="body_joint_mesh" file="body_joint.stl"/>
+    <texture name="grid" type="2d" builtin="checker" rgb1=".1 .2 .3" rgb2=".2 .3 .4" width="300" height="300"/>
+    <material name="grid" texture="grid" texrepeat="30 30" reflectance="0"/>
+    <material name="robot_green" rgba="0.1 0.35 0.1 1"/>
+  </asset>
+  <worldbody>
+    <geom name="ground" type="plane" pos="0 0 -2.12" size="10 10 0.4" material="grid" friction="0.5 0 0"/>
+    <light name="strong_light" pos="0 0 5" dir="0 0 -4" directional="true" diffuse="1 1 4" specular="0.3 0.3 0.6" active="true" castshadow="false" cutoff="100" exponent="10"/>
+    <!-- SIDE CAMERA -->
+    <camera name="side_cam1" pos="4.787 -0.909 -1.537" xyaxes="-0.011 1.000 -0.000 -0.068 -0.001 0.998"/>
+    <!-- TOP CAMERA -->
+    <camera name="side_cam2" pos="0.783 -0.953 3.350" xyaxes="-0.008 1.000 0.000 -0.989 -0.008 0.148"/>
+    <camera name="fp_camera" pos="0.074 0.064 0.150" xyaxes="-1 0 0 0 0 1" fovy="90"/>
+
+
+
+    <!-- ===== SECTION 3 (root) ===== -->
+    <body name="body_middle6" pos="-0.00714 0.36184 -0.008">
+      <joint name="root_free" type="free"/>
+      <geom type="mesh" mesh="body_middle_mesh"/>
+      <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
+
+      <body name="motor_L6" pos="0 0 0">
+        <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+        <geom type="mesh" mesh="motor_L_mesh"/>
+        <body name="o_leg_L6" pos="0 0 0">
+          <joint name="knee_joint_L6" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+          <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+          <geom name="o_leg_L6" type="mesh" mesh="o_leg_L_mesh"/>
+        </body>
+      </body>
+
+      <body name="motor_R6" pos="0 0 0">
+        <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+        <geom type="mesh" mesh="motor_R_mesh"/>
+        <body name="o_leg_R6" pos="0 0 0">
+          <joint name="knee_joint_R6" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+          <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+          <geom name="o_leg_R6" type="mesh" mesh="o_leg_R_mesh"/>
+        </body>
+      </body>
+
+      <!-- vertjoint3: vertical hinge + mesh -->
+      <body name="vertjoint6" pos="0 0 0">
+        <joint name="vertjoint_hinge6" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
+        <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
+        <geom type="mesh" mesh="body_joint_mesh"/>
+
+        <!-- horzjoint3_body: horizontal hinge only, massless, carries section 2 -->
+        <body name="horzjoint6_body" pos="0 0 0">
+          <joint name="horzjoint6" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
+          <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
+
+          <!-- ===== SECTION 2 (child of horzjoint3_body) ===== -->
+          <body name="body_middle5" pos="0.00357 -0.18092 0.003">
+            <geom type="mesh" mesh="body_middle_mesh"/>
+            <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
+
+            <body name="motor_L5" pos="0 0 0">
+              <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+              <geom type="mesh" mesh="motor_L_mesh"/>
+              <body name="o_leg_L5" pos="0 0 0">
+                <joint name="knee_joint_L5" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                <geom name="o_leg_L5" type="mesh" mesh="o_leg_L_mesh"/>
+              </body>
+            </body>
+
+            <body name="motor_R5" pos="0 0 0">
+              <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+              <geom type="mesh" mesh="motor_R_mesh"/>
+              <body name="o_leg_R5" pos="0 0 0">
+                <joint name="knee_joint_R5" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                <geom name="o_leg_R5" type="mesh" mesh="o_leg_R_mesh"/>
+              </body>
+            </body>
+
+            <!-- vertjoint2: vertical hinge + mesh -->
+            <body name="vertjoint5" pos="0 0 0">
+              <joint name="vertjoint_hinge5" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
+              <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
+              <geom type="mesh" mesh="body_joint_mesh"/>
+
+              <!-- horzjoint2_body: horizontal hinge only, massless, carries section 1 -->
+              <body name="horzjoint5_body" pos="0 0 0">
+                <joint name="horzjoint5" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
+                <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
+
+                <!-- ===== SECTION 1 (child of horzjoint2_body) ===== -->
+                <body name="body_middle4" pos="0.00357 -0.18092 0.003">
+                  <geom type="mesh" mesh="body_middle_mesh"/>
+                  <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
+
+                  <body name="motor_L4" pos="0 0 0">
+                    <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                    <geom type="mesh" mesh="motor_L_mesh"/>
+                    <body name="o_leg_L4" pos="0 0 0">
+                      <joint name="knee_joint_L4" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                      <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                      <geom name="o_leg_L4" type="mesh" mesh="o_leg_L_mesh"/>
+                    </body>
+                  </body>
+
+                  <body name="motor_R4" pos="0 0 0">
+                    <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                    <geom type="mesh" mesh="motor_R_mesh"/>
+                    <body name="o_leg_R4" pos="0 0 0">
+                      <joint name="knee_joint_R4" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                      <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                      <geom name="o_leg_R4" type="mesh" mesh="o_leg_R_mesh"/>
+                    </body>
+                  </body>
+
+                  <!-- vertjoint1: vertical hinge + mesh, dead end -->
+                  <body name="vertjoint4" pos="0 0 0">
+                    <joint name="vertjoint_hinge4" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
+                    <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
+                    <geom type="mesh" mesh="body_joint_mesh"/>
+
+                    <!-- horzjoint1_body: horizontal hinge, carries section 4 -->
+                    <body name="horzjoint4_body" pos="0 0 0">
+                      <joint name="horzjoint4" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
+                      <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
+
+                      <!-- ===== SECTION 4 (child of horzjoint1_body) ===== -->
+                      <body name="body_middle3" pos="0.00357 -0.18092 0.003">
+                        <!-- CENTER FIRST-PERSON / SCENE CAMERA
+                             This is mounted on the middle section of the robot.
+                             It is roughly centered in the body and raised by about
+                             2 inches, 0.0508 m, above the local body reference.
+                             The Python viewer uses this named camera as the XML
+                             reference, then pans and auto-faces it in code. -->
+                        <camera name="robot_center_scene_camera" pos="0.074 0.064 0.120" xyaxes="-1 0 0 0 0 1" fovy="90"/>
+                        <geom type="mesh" mesh="body_middle_roof_mesh"/>
+                        <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
+
+                        <body name="motor_L3" pos="0 0 0">
+                          <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                          <geom type="mesh" mesh="motor_L_mesh"/>
+                          <body name="o_leg_L3" pos="0 0 0">
+                            <joint name="knee_joint_L3" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                            <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                            <geom name="o_leg_L3" type="mesh" mesh="o_leg_L_mesh"/>
+                          </body>
+                        </body>
+
+                        <body name="motor_R3" pos="0 0 0">
+                          <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                          <geom type="mesh" mesh="motor_R_mesh"/>
+                          <body name="o_leg_R3" pos="0 0 0">
+                            <joint name="knee_joint_R3" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                            <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                            <geom name="o_leg_R3" type="mesh" mesh="o_leg_R_mesh"/>
+                          </body>
+                        </body>
+
+                        <body name="vertjoint3" pos="0 0 0">
+                          <joint name="vertjoint_hinge3" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
+                          <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
+                          <geom type="mesh" mesh="body_joint_mesh"/>
+
+                          <body name="horzjoint3_body" pos="0 0 0">
+                            <joint name="horzjoint3" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
+                            <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
+
+                            <!-- ===== SECTION 5 (child of horzjoint4_body) ===== -->
+                            <body name="body_middle2" pos="0.00357 -0.18092 0.003">
+                              <geom type="mesh" mesh="body_middle_mesh"/>
+                              <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
+
+                              <body name="motor_L2" pos="0 0 0">
+                                <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                                <geom type="mesh" mesh="motor_L_mesh"/>
+                                <body name="o_leg_L2" pos="0 0 0">
+                                  <joint name="knee_joint_L2" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                                  <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                                  <geom name="o_leg_L2" type="mesh" mesh="o_leg_L_mesh"/>
+                                </body>
+                              </body>
+
+                              <body name="motor_R2" pos="0 0 0">
+                                <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                                <geom type="mesh" mesh="motor_R_mesh"/>
+                                <body name="o_leg_R2" pos="0 0 0">
+                                  <joint name="knee_joint_R2" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                                  <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                                  <geom name="o_leg_R2" type="mesh" mesh="o_leg_R_mesh"/>
+                                </body>
+                              </body>
+
+                              <body name="vertjoint2" pos="0 0 0">
+                                <joint name="vertjoint_hinge2" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
+                                <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
+                                <geom type="mesh" mesh="body_joint_mesh"/>
+
+                                <body name="horzjoint2_body" pos="0 0 0">
+                                  <joint name="horzjoint2" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
+                                  <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
+
+                                  <!-- ===== SECTION 6 (child of horzjoint5_body) ===== -->
+                                  <body name="body_middle1" pos="0.00357 -0.18092 0.003">
+                                    <geom type="mesh" mesh="body_middle_head_mesh"/>
+                                    <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
+
+                                    <body name="motor_L1" pos="0 0 0">
+                                      <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                                      <geom type="mesh" mesh="motor_L_mesh"/>
+                                      <body name="o_leg_L1" pos="0 0 0">
+                                        <joint name="knee_joint_L1" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                                        <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                                        <geom name="o_leg_L1" type="mesh" mesh="o_leg_L_mesh"/>
+                                      </body>
+                                    </body>
+
+                                    <body name="motor_R1" pos="0 0 0">
+                                      <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                                      <geom type="mesh" mesh="motor_R_mesh"/>
+                                      <body name="o_leg_R1" pos="0 0 0">
+                                        <joint name="knee_joint_R1" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                                        <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                                        <geom name="o_leg_R1" type="mesh" mesh="o_leg_R_mesh"/>
+                                      </body>
+                                    </body>
+
+
+
+                                  </body>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+
+                  </body>
+
+                </body>
+              </body>
+
+            </body>
+          </body>
+
+        </body>
+      </body>
+
+    </body>
+  </worldbody>
+
+  <actuator>
+    <position name="knee_L6" joint="knee_joint_L6" kp="10" forcerange="-4 4"/>
+    <position name="knee_R6" joint="knee_joint_R6" kp="10" forcerange="-4 4"/>
+    <position name="vertjoint6" joint="vertjoint_hinge6" ctrlrange="-100 100" kp="10" forcerange="-5 5"/>
+    <position name="horzjoint6" joint="horzjoint6" ctrlrange="-100 100" kp="10"/>
+
+    <position name="knee_L5" joint="knee_joint_L5" kp="10" forcerange="-4 4"/>
+    <position name="knee_R5" joint="knee_joint_R5" kp="10" forcerange="-4 4"/>
+    <position name="vertjoint5" joint="vertjoint_hinge5" ctrlrange="-100 100" kp="10" forcerange="-5 5"/>
+    <position name="horzjoint5" joint="horzjoint5" ctrlrange="-100 100" kp="10"/>
+
+    <position name="knee_L4" joint="knee_joint_L4" kp="10" forcerange="-4 4"/>
+    <position name="knee_R4" joint="knee_joint_R4" kp="10" forcerange="-4 4"/>
+    <position name="vertjoint4" joint="vertjoint_hinge4" ctrlrange="-100 100" kp="10" forcerange="-5 5"/>
+    <position name="horzjoint4" joint="horzjoint4" ctrlrange="-100 100" kp="10"/>
+
+    <position name="knee_L3" joint="knee_joint_L3" kp="10" forcerange="-4 4"/>
+    <position name="knee_R3" joint="knee_joint_R3" kp="10" forcerange="-4 4"/>
+    <position name="vertjoint3" joint="vertjoint_hinge3" ctrlrange="-100 100" kp="10" forcerange="-5 5"/>
+    <position name="horzjoint3" joint="horzjoint3" ctrlrange="-100 100" kp="10"/>
+
+    <position name="knee_L2" joint="knee_joint_L2" kp="10" forcerange="-4 4"/>
+    <position name="knee_R2" joint="knee_joint_R2" kp="10" forcerange="-4 4"/>
+    <position name="vertjoint2" joint="vertjoint_hinge2" ctrlrange="-100 100" kp="10" forcerange="-5 5"/>
+    <position name="horzjoint2" joint="horzjoint2" ctrlrange="-100 100" kp="10"/>
+
+    <position name="knee_L1" joint="knee_joint_L1" kp="10" forcerange="-4 4"/>
+    <position name="knee_R1" joint="knee_joint_R1" kp="10" forcerange="-4 4"/>
+  </actuator>
+</mujoco>

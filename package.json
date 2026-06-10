@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/zalo/mujoco_wasm#readme",
   "dependencies": {
+    "@dimforge/rapier3d-compat": "^0.19.3",
     "@mkkellogg/gaussian-splats-3d": "^0.4.7",
     "esbuild": "^0.25.12",
     "mujoco-js": "^0.0.7",

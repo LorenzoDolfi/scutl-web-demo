@@ -13,7 +13,7 @@ coacd_mesh = coacd.Mesh(mesh.vertices, mesh.faces)
 parts = coacd.run_coacd(
     coacd_mesh,
     threshold=0.005,
-    max_convex_hull=500
+    max_convex_hull=250
 )
 
 for i, part in enumerate(parts):

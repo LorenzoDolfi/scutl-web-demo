@@ -37,18 +37,30 @@ function eulerDegToQuat(xDeg, yDeg, zDeg) {
 
 const mujoco = await load_mujoco();
 
-var initialScene = "scutl.xml";
+var initialScene = "final_center_fp_camera.xml";
 var truckScene = "scutl_coacd.xml";
 var gardenScene = "scutl_garden_coacd.xml";
 var constructionScene = "scutl_construction_coacd.xml";
 var gcrRoomScene = "scutl_gcr_room.xml";
 mujoco.FS.mkdir('/working');
 mujoco.FS.mount(mujoco.MEMFS, { root: '.' }, '/working');
-mujoco.FS.writeFile(
-  "/working/" + initialScene,
-  await (await fetch("./assets/scenes/" + initialScene)).text()
-);
 
+
+// mujoco.FS.writeFile(
+//   "/working/" + initialScene,
+//   await (await fetch("./assets/scenes/" + initialScene)).text()
+// );
+
+const initialXmlText = await (await fetch("./assets/scenes/" + initialScene)).text();
+mujoco.FS.writeFile("/working/" + initialScene, initialXmlText);
+
+// Pre-load STL assets for initial scene
+const fileMatches = [...initialXmlText.matchAll(/file="([^"]+)"/g)];
+const assetFiles = [...new Set(fileMatches.map(m => m[1]))];
+for (const file of assetFiles) {
+  const buffer = await (await fetch("./assets/scenes/" + file)).arrayBuffer();
+  mujoco.FS.writeFile("/working/" + file, new Uint8Array(buffer));
+}
 
 export class MuJoCoDemo {
   constructor() {
@@ -279,7 +291,7 @@ export class MuJoCoDemo {
     Object.assign(envBox.style, {
       position: "fixed",
       top: "10px",
-      right: "5vw",
+      right: "1vw",
       zIndex: "1001",
       background: "#161a24",
       color: "#e2e8f0",
@@ -302,7 +314,6 @@ export class MuJoCoDemo {
         <option value="none">None</option>
         <option value="truck">Truck</option>
         <option value="garden">Garden</option>
-        <option value="gcr_room">GCR Room</option>
       </select>
     `;
 
@@ -314,6 +325,76 @@ export class MuJoCoDemo {
       this.showLoadingScene();
       await this.setEnvironment(e.target.value);
     });
+
+    // Camera dropdown
+    const camBox = document.createElement("div");
+    Object.assign(camBox.style, {
+      position: "fixed",
+      top: "40px",
+      right: "45vw",
+      zIndex: "1001",
+      background: "#161a24",
+      color: "#e2e8f0",
+      border: "1px solid #252a36",
+      borderRadius: "5px",
+      padding: "6px",
+      fontFamily: "Courier New, monospace",
+      fontSize: "12px",
+    });
+
+    camBox.innerHTML = `
+      <label style="margin-right:6px;">Camera</label>
+      <select id="cam-select"
+              style="
+                background:#0f1117;
+                color:#e2e8f0;
+                border:1px solid #252a36;
+                border-radius:4px;
+                padding:4px;">
+        <option value="third">Third Person</option>
+        <option value="first">First Person</option>
+      </select>
+    `;
+    document.body.appendChild(camBox);
+
+    this.cameraMode = "third";
+    this.fpYaw = 0;
+    this.fpPitch = 0;
+    this.fpDragging = false;
+    this.fpLastX = 0;
+    this.fpLastY = 0;
+    document.getElementById("cam-select").addEventListener("change", e => {
+      this.cameraMode = e.target.value;
+      if (this.cameraMode === "third") {
+        this.controls.enabled = true;
+        this.resetCameraToRobotStart();
+      } else {
+        this.controls.enabled = false;
+      }
+    });
+
+    this.renderer.domElement.addEventListener("mousedown", e => {
+      if (this.cameraMode === "first" && e.button === 0) {
+        this.fpDragging = true;
+        this.fpLastX = e.clientX;
+        this.fpLastY = e.clientY;
+      }
+    });
+
+    this.renderer.domElement.addEventListener("mousemove", e => {
+      if (this.cameraMode === "first" && this.fpDragging) {
+        this.fpYaw   -= (e.clientX - this.fpLastX) * 0.003;
+        this.fpPitch -= (e.clientY - this.fpLastY) * 0.003;
+        this.fpPitch  = Math.max(-Math.PI/2, Math.min(Math.PI/2, this.fpPitch));
+        this.fpLastX = e.clientX;
+        this.fpLastY = e.clientY;
+      }
+    });
+
+    this.renderer.domElement.addEventListener("mouseup", () => {
+      this.fpDragging = false;
+    });
+
 
   }
 
@@ -720,15 +801,15 @@ export class MuJoCoDemo {
     // }
 
 
-    if (name === "gcr_room") {
-      await this.loadMujocoScene(gcrRoomScene);
-      await this.loadGCRRoomVisual();
+    // if (name === "gcr_room") {
+    //   await this.loadMujocoScene(gcrRoomScene);
+    //   await this.loadGCRRoomVisual();
 
-      console.log("Environment: GCR room loaded");
+    //   console.log("Environment: GCR room loaded");
 
-      // this.hideGroundVisuals();
-      this.resetCameraToGCRRoomStart();
-    }
+    //   // this.hideGroundVisuals();
+    //   this.resetCameraToGCRRoomStart();
+    // }
 
 
     if (name === "truck") {
@@ -1078,6 +1159,99 @@ export class MuJoCoDemo {
     // if (this.splatViewer) {
     //   this.splatViewer.update();
     // }
+
+
+    // if (this.cameraMode === "first" && this.model && this.data) {
+    //   const camId = mujoco.mj_name2id(this.model, mujoco.mjtObj.mjOBJ_CAMERA.value, "fp_camera");
+    //   if (camId >= 0) {
+    //     const pos = this.data.cam_xpos;
+    //     const mat = this.data.cam_xmat;
+    //     const base = camId * 3;
+    //     const mbase = camId * 9;
+    //     this.camera.position.set(pos[base], pos[base+1], pos[base+2]);
+    //     const m = mat;
+    //     const rm = new THREE.Matrix4().set(
+    //       m[mbase+0], m[mbase+3], m[mbase+6], 0,
+    //       m[mbase+1], m[mbase+4], m[mbase+7], 0,
+    //       m[mbase+2], m[mbase+5], m[mbase+8], 0,
+    //       0, 0, 0, 1
+    //     );
+    //     this.camera.quaternion.setFromRotationMatrix(rm);
+    //   }
+    // }
+
+
+    // if (this.cameraMode === "first" && this.model && this.data) {
+    //   const camId = mujoco.mj_name2id(this.model, mujoco.mjtObj.mjOBJ_CAMERA.value, "fp_camera");
+    //   if (camId >= 0) {
+    //     // Use getPosition to handle MuJoCo->Three.js coordinate conversion
+    //     getPosition(this.data.cam_xpos, camId, this.camera.position);
+
+    //     // Build quaternion from cam_xmat with axis swap
+    //     const m = this.data.cam_xmat;
+    //     const b = camId * 9;
+    //     const rm = new THREE.Matrix4().set(
+    //       m[b+0], -m[b+3],  m[b+6], 0,
+    //       m[b+2], -m[b+5],  m[b+8], 0,
+    //     -m[b+1],  m[b+4], -m[b+7], 0,
+    //       0, 0, 0, 1
+    //     );
+    //     this.camera.quaternion.setFromRotationMatrix(rm);
+    //   }
+    // }
+
+    // if (this.cameraMode === "first" && this.model && this.data) {
+    //   const camId = mujoco.mj_name2id(this.model, mujoco.mjtObj.mjOBJ_CAMERA.value, "fp_camera");
+    //   if (camId >= 0) {
+    //     getPosition(this.data.cam_xpos, camId, this.camera.position);
+    //     getQuaternion(this.data.cam_xquat, camId, this.camera.quaternion);
+    //   }
+    // }
+
+    if (this.cameraMode === "first" && this.model && this.data) {
+      // Find body_middle3 (center segment) index
+      const bodyId = mujoco.mj_name2id(this.model, mujoco.mjtObj.mjOBJ_BODY.value, "body_middle3");
+      if (bodyId >= 0) {
+        const bodyPos = new THREE.Vector3();
+        getPosition(this.data.xpos, bodyId, bodyPos);
+
+        // Fixed offset from robot body to camera (tuned from third person view)
+        const offset = new THREE.Vector3(0.07, 0.211, -0.5);
+
+        // Get robot body rotation and apply it to the offset so camera rotates with robot
+        const bodyQuat = new THREE.Quaternion();
+        getQuaternion(this.data.xquat, bodyId, bodyQuat);
+
+        const guiP = this.scutlGUI.getParams();
+        const goingBackward = guiP.direction < 0 || (guiP.stop === false && guiP.ampHorz < 0);
+        if (goingBackward) {
+          const flipQ = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,1,0), Math.PI);
+          bodyQuat.multiply(flipQ);
+        }
+
+
+        offset.applyQuaternion(bodyQuat);
+
+        this.camera.position.copy(bodyPos).add(offset);
+
+        // Look target: slightly ahead in robot's forward direction
+        // const lookOffset = new THREE.Vector3(0.037, 0.211, 0.5);
+        // lookOffset.applyQuaternion(bodyQuat);
+        // const lookTarget = bodyPos.clone().add(lookOffset);
+        // this.camera.lookAt(lookTarget);
+
+
+
+        const yawQ   = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,1,0), this.fpYaw   || 0);
+        const pitchQ = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1,0,0), this.fpPitch || 0);
+        const lookOffset = new THREE.Vector3(0.037, -0.011, 0.5);
+        lookOffset.applyQuaternion(pitchQ).applyQuaternion(yawQ).applyQuaternion(bodyQuat);
+        const lookTarget = this.camera.position.clone().add(lookOffset);
+        this.camera.lookAt(lookTarget);
+      }
+    }
+
+
 
     this.renderer.render(this.scene, this.camera);
 

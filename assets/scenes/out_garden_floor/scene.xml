@@ -1,0 +1,21 @@
+<mujoco model="splat_collision">
+  <compiler angle="radian"/>
+  <option timestep="0.002"/>
+  <visual><headlight ambient="0.4 0.4 0.4"/></visual>
+  <asset>
+    <!-- boxes need no assets -->
+  </asset>
+  <worldbody>
+    <light pos="0 0 4" dir="0 0 -1"/>
+    <geom name="vox0" type="box" pos="-38.4775 -30.7301 -23.7123" size="0.142419 0.284839 0.569677" rgba="0.5 0.5 0.55 1"/>
+    <geom name="vox1" type="box" pos="-38.4775 -30.8725 -23.0002" size="0.142419 0.142419 0.142419" rgba="0.5 0.5 0.55 1"/>
+    <geom name="vox2" type="box" pos="-37.6229 -30.8725 -23.9971" size="0.427258 0.142419 0.284839" rgba="0.5 0.5 0.55 1"/>
+    <geom name="vox3" type="box" pos="-37.9078 -30.8725 -23.5699" size="0.142419 0.142419 0.142419" rgba="0.5 0.5 0.55 1"/>
+    <geom name="vox4" type="box" pos="-37.1957 -31.1573 -23.9971" size="0.284839 0.142419 0.284839" rgba="0.5 0.5 0.55 1"/>
+    <geom name="vox5" type="box" pos="-37.3381 -30.5877 -24.1395" size="0.142419 0.142419 0.142419" rgba="0.5 0.5 0.55 1"/>
+    <body name="probe" pos="-1.16359 -31.2998 -17.2307">
+      <freejoint/>
+      <geom name="probe" type="sphere" size="0.05" density="300" rgba="0.2 0.6 1 1"/>
+    </body>
+  </worldbody>
+</mujoco>

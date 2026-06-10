@@ -31,7 +31,7 @@ geom_lines = [
 
 for i in range(len(parts)):
     geom_lines.append(
-        f'      <geom name="construction_col_geom_{i}" type="mesh" mesh="construction_col_{i}" contype="1" conaffinity="1" rgba="0 1 0 0"/>'
+        f'      <geom name="construction_col_geom_{i}" type="mesh" mesh="construction_col_{i}" contype="1" conaffinity="1" rgba="0 1 0 1"/>'
     )
 
 geom_lines.append("    </body>")

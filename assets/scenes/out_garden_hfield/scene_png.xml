@@ -1,0 +1,16 @@
+<mujoco model="splat_collision">
+  <compiler angle="radian"/>
+  <option timestep="0.002"/>
+  <visual><headlight ambient="0.4 0.4 0.4"/></visual>
+  <asset>
+    <hfield name="terrain" file="hfield.png" size="48.6587 17.4496 30.1602 0.2"/>
+  </asset>
+  <worldbody>
+    <light pos="0 0 4" dir="0 0 -1"/>
+    <geom name="terrain" type="hfield" hfield="terrain" pos="4.94852 -12.4497 -23.7287" rgba="0.45 0.55 0.4 1"/>
+    <body name="probe" pos="4.94852 -12.4497 7.01417">
+      <freejoint/>
+      <geom name="probe" type="sphere" size="0.05" density="300" rgba="0.2 0.6 1 1"/>
+    </body>
+  </worldbody>
+</mujoco>
