@@ -1,8 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="o_leg_3sections">
-  <default>
-    <geom material="robot_green"/>
-  </default>
   <option timestep="0.002" gravity="0 0 -9.81"/>
   <visual>
     <global offwidth="1920" offheight="1080"/>
@@ -48,33 +45,33 @@
     <!-- ===== SECTION 3 (root) ===== -->
     <body name="body_middle6" pos="-0.00714 0.36184 0.008">
       <joint name="root_free" type="free"/>
-      <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.4 0.6 0.8 1"/>
+      <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.2 0.28 0.12 1"/>
       <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
 
       <body name="motor_L6" pos="0 0 0">
         <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-        <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.3 0.3 0.3 1"/>
+        <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.08 0.08 0.08 1"/>
         <body name="o_leg_L6" pos="0 0 0">
           <joint name="knee_joint_L6" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
           <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-          <geom name="o_leg_L6" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+          <geom name="o_leg_L6" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
         </body>
       </body>
 
       <body name="motor_R6" pos="0 0 0">
         <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-        <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.3 0.3 0.3 1"/>
+        <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.08 0.08 0.08 1"/>
         <body name="o_leg_R6" pos="0 0 0">
           <joint name="knee_joint_R6" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
           <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-          <geom name="o_leg_R6" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+          <geom name="o_leg_R6" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
         </body>
       </body>
 
       <body name="vertjoint6" pos="0 0 0">
         <joint name="vertjoint_hinge6" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
         <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
-        <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.5 0.5 0.5 1"/>
+        <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.08 0.08 0.08 1"/>
 
         <body name="horzjoint6_body" pos="0 0 0">
           <joint name="horzjoint6" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
@@ -82,33 +79,33 @@
 
           <!-- ===== SECTION 2 ===== -->
           <body name="body_middle5" pos="0.00357 -0.18092 0.003">
-            <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.4 0.6 0.8 1"/>
+            <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.2 0.28 0.12 1"/>
             <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
 
             <body name="motor_L5" pos="0 0 0">
               <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-              <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.3 0.3 0.3 1"/>
+              <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.08 0.08 0.08 1"/>
               <body name="o_leg_L5" pos="0 0 0">
                 <joint name="knee_joint_L5" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
                 <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                <geom name="o_leg_L5" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                <geom name="o_leg_L5" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
               </body>
             </body>
 
             <body name="motor_R5" pos="0 0 0">
               <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-              <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.3 0.3 0.3 1"/>
+              <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.08 0.08 0.08 1"/>
               <body name="o_leg_R5" pos="0 0 0">
                 <joint name="knee_joint_R5" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
                 <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                <geom name="o_leg_R5" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                <geom name="o_leg_R5" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
               </body>
             </body>
 
             <body name="vertjoint5" pos="0 0 0">
               <joint name="vertjoint_hinge5" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
               <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
-              <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.5 0.5 0.5 1"/>
+              <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.08 0.08 0.08 1"/>
 
               <body name="horzjoint5_body" pos="0 0 0">
                 <joint name="horzjoint5" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
@@ -116,33 +113,33 @@
 
                 <!-- ===== SECTION 1 ===== -->
                 <body name="body_middle4" pos="0.00357 -0.18092 0.003">
-                  <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.4 0.6 0.8 1"/>
+                  <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.2 0.28 0.12 1"/>
                   <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
 
                   <body name="motor_L4" pos="0 0 0">
                     <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-                    <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.3 0.3 0.3 1"/>
+                    <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.08 0.08 0.08 1"/>
                     <body name="o_leg_L4" pos="0 0 0">
                       <joint name="knee_joint_L4" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
                       <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                      <geom name="o_leg_L4" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                      <geom name="o_leg_L4" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
                     </body>
                   </body>
 
                   <body name="motor_R4" pos="0 0 0">
                     <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-                    <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.3 0.3 0.3 1"/>
+                    <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.08 0.08 0.08 1"/>
                     <body name="o_leg_R4" pos="0 0 0">
                       <joint name="knee_joint_R4" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
                       <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                      <geom name="o_leg_R4" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                      <geom name="o_leg_R4" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
                     </body>
                   </body>
 
                   <body name="vertjoint4" pos="0 0 0">
                     <joint name="vertjoint_hinge4" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
                     <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
-                    <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.5 0.5 0.5 1"/>
+                    <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.08 0.08 0.08 1"/>
 
                     <body name="horzjoint4_body" pos="0 0 0">
                       <joint name="horzjoint4" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
@@ -151,33 +148,33 @@
                       <!-- ===== SECTION 4 ===== -->
                       <body name="body_middle3" pos="0.00357 -0.18092 0.003">
                         <camera name="robot_center_scene_camera" pos="0.074 0.064 0.120" xyaxes="-1 0 0 0 0 1" fovy="90"/>
-                        <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.4 0.7 0.4 1"/>
+                        <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.2 0.28 0.12 1"/>
                         <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
 
                         <body name="motor_L3" pos="0 0 0">
                           <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-                          <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.3 0.3 0.3 1"/>
+                          <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.08 0.08 0.08 1"/>
                           <body name="o_leg_L3" pos="0 0 0">
                             <joint name="knee_joint_L3" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
                             <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                            <geom name="o_leg_L3" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                            <geom name="o_leg_L3" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
                           </body>
                         </body>
 
                         <body name="motor_R3" pos="0 0 0">
                           <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-                          <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.3 0.3 0.3 1"/>
+                          <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.08 0.08 0.08 1"/>
                           <body name="o_leg_R3" pos="0 0 0">
                             <joint name="knee_joint_R3" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
                             <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                            <geom name="o_leg_R3" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                            <geom name="o_leg_R3" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
                           </body>
                         </body>
 
                         <body name="vertjoint3" pos="0 0 0">
                           <joint name="vertjoint_hinge3" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
                           <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
-                          <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.5 0.5 0.5 1"/>
+                          <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.08 0.08 0.08 1"/>
 
                           <body name="horzjoint3_body" pos="0 0 0">
                             <joint name="horzjoint3" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
@@ -185,33 +182,33 @@
 
                             <!-- ===== SECTION 5 ===== -->
                             <body name="body_middle2" pos="0.00357 -0.18092 0.003">
-                              <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.4 0.6 0.8 1"/>
+                              <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.2 0.28 0.12 1"/>
                               <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
 
                               <body name="motor_L2" pos="0 0 0">
                                 <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-                                <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.3 0.3 0.3 1"/>
+                                <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.08 0.08 0.08 1"/>
                                 <body name="o_leg_L2" pos="0 0 0">
                                   <joint name="knee_joint_L2" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
                                   <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                                  <geom name="o_leg_L2" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                                  <geom name="o_leg_L2" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
                                 </body>
                               </body>
 
                               <body name="motor_R2" pos="0 0 0">
                                 <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-                                <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.3 0.3 0.3 1"/>
+                                <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.08 0.08 0.08 1"/>
                                 <body name="o_leg_R2" pos="0 0 0">
                                   <joint name="knee_joint_R2" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
                                   <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                                  <geom name="o_leg_R2" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                                  <geom name="o_leg_R2" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
                                 </body>
                               </body>
 
                               <body name="vertjoint2" pos="0 0 0">
                                 <joint name="vertjoint_hinge2" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
                                 <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
-                                <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.5 0.5 0.5 1"/>
+                                <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.08 0.08 0.08 1"/>
 
                                 <body name="horzjoint2_body" pos="0 0 0">
                                   <joint name="horzjoint2" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
@@ -219,26 +216,26 @@
 
                                   <!-- ===== SECTION 6 (tail) ===== -->
                                   <body name="body_middle1" pos="0.00357 -0.18092 0.003">
-                                    <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.4 0.6 0.8 1"/>
+                                    <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.2 0.28 0.12 1"/>
                                     <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
 
                                     <body name="motor_L1" pos="0 0 0">
                                       <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-                                      <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.3 0.3 0.3 1"/>
+                                      <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.08 0.08 0.08 1"/>
                                       <body name="o_leg_L1" pos="0 0 0">
                                         <joint name="knee_joint_L1" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
                                         <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                                        <geom name="o_leg_L1" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                                        <geom name="o_leg_L1" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
                                       </body>
                                     </body>
 
                                     <body name="motor_R1" pos="0 0 0">
                                       <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-                                      <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.3 0.3 0.3 1"/>
+                                      <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.08 0.08 0.08 1"/>
                                       <body name="o_leg_R1" pos="0 0 0">
                                         <joint name="knee_joint_R1" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
                                         <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                                        <geom name="o_leg_R1" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.8 0.4 0.2 1"/>
+                                        <geom name="o_leg_R1" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
                                       </body>
                                     </body>
 

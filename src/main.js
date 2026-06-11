@@ -369,7 +369,12 @@ export class MuJoCoDemo {
       this.cameraMode = e.target.value;
       if (this.cameraMode === "third") {
         this.controls.enabled = true;
-        this.resetCameraToRobotStart();
+        // this.resetCameraToRobotStart();
+        if (this.currentEnvironment === "playground") {
+          this.resetCameraToPlaygroundStart();
+        } else {
+          this.resetCameraToRobotStart();
+        }
       } else {
         this.controls.enabled = false;
       }
@@ -397,6 +402,29 @@ export class MuJoCoDemo {
       this.fpDragging = false;
     });
 
+    this.renderer.domElement.addEventListener("touchstart", e => {
+      if (this.cameraMode === "first" && e.touches.length === 1) {
+        this.fpDragging = true;
+        this.fpLastX = e.touches[0].clientX;
+        this.fpLastY = e.touches[0].clientY;
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    this.renderer.domElement.addEventListener("touchmove", e => {
+      if (this.cameraMode === "first" && this.fpDragging && e.touches.length === 1) {
+        this.fpYaw   -= (e.touches[0].clientX - this.fpLastX) * 0.003;
+        this.fpPitch -= (e.touches[0].clientY - this.fpLastY) * 0.003;
+        this.fpPitch  = Math.max(-Math.PI/2, Math.min(Math.PI/2, this.fpPitch));
+        this.fpLastX = e.touches[0].clientX;
+        this.fpLastY = e.touches[0].clientY;
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    this.renderer.domElement.addEventListener("touchend", () => {
+      this.fpDragging = false;
+    });
 
   }
 
@@ -626,13 +654,11 @@ export class MuJoCoDemo {
       -0.31107733023432327,
       -2.9085427420402246
     );
-
     this.controls.target.set(
       0.3113039252833211,
       -1.7759607844025347,
       0.1813860823267129
     );
-
     this.controls.update();
   }
 
@@ -645,14 +671,14 @@ export class MuJoCoDemo {
 
   resetCameraToPlaygroundStart() {
     this.camera.position.set(
-      -7.052617680510261,
-      -0.3117005206615284,
-      -0.322040778961267
+      -7.740499620005834,
+      -0.7495773868024169,
+      -0.3987669970866019
     );
     this.controls.target.set(
-      -3.9750285046797176,
-      -1.8039366577520257,
-      -0.3532142676463947
+      -4.01529496122985,
+      -2.0291980716383042,
+      -0.32287181896955625
     );
     this.controls.update();
   }
