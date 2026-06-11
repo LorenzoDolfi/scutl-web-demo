@@ -15,15 +15,6 @@
     <material name="chassis_mat" rgba="0.2 0.28 0.12 1"/>
     <material name="leg_mat"     rgba="0.12 0.12 0.12 1"/>
     <material name="joint_mat"   rgba="0.08 0.08 0.08 1"/>
-    <mesh name="tube_visual_mesh" file="tube_visual.stl"/>
-    <mesh name="tube_col_0_mesh" file="tube_col_0.stl"/>
-    <mesh name="tube_col_1_mesh" file="tube_col_1.stl"/>
-    <mesh name="tube_col_2_mesh" file="tube_col_2.stl"/>
-    <mesh name="tube_col_3_mesh" file="tube_col_3.stl"/>
-    <mesh name="tube_col_4_mesh" file="tube_col_4.stl"/>
-    <mesh name="tube_col_5_mesh" file="tube_col_5.stl"/>
-    <mesh name="tube_col_6_mesh" file="tube_col_6.stl"/>
-    <mesh name="tube_col_7_mesh" file="tube_col_7.stl"/>
   </asset>
   <default>
     <default class="robot">
