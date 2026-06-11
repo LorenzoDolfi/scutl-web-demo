@@ -1,0 +1,791 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="o_leg_3sections">
+  <option timestep="0.004" gravity="0 0 -9.81"/>
+  <visual>
+    <global offwidth="1920" offheight="1080"/>
+  </visual>
+  <asset>
+    <mesh name="truck_visual" file="untitled.stl" scale="1 1 1"/>
+    <material name="robot_green" rgba="0.1 0.35 0.1 1"/>
+    <mesh name="truck_col_0" file="truck_collision_parts/truck_col_0.stl" scale="1 1 1"/>
+    <mesh name="truck_col_1" file="truck_collision_parts/truck_col_1.stl" scale="1 1 1"/>
+    <mesh name="truck_col_2" file="truck_collision_parts/truck_col_2.stl" scale="1 1 1"/>
+    <mesh name="truck_col_3" file="truck_collision_parts/truck_col_3.stl" scale="1 1 1"/>
+    <mesh name="truck_col_4" file="truck_collision_parts/truck_col_4.stl" scale="1 1 1"/>
+    <mesh name="truck_col_5" file="truck_collision_parts/truck_col_5.stl" scale="1 1 1"/>
+    <mesh name="truck_col_6" file="truck_collision_parts/truck_col_6.stl" scale="1 1 1"/>
+    <mesh name="truck_col_7" file="truck_collision_parts/truck_col_7.stl" scale="1 1 1"/>
+    <mesh name="truck_col_8" file="truck_collision_parts/truck_col_8.stl" scale="1 1 1"/>
+    <mesh name="truck_col_9" file="truck_collision_parts/truck_col_9.stl" scale="1 1 1"/>
+    <mesh name="truck_col_10" file="truck_collision_parts/truck_col_10.stl" scale="1 1 1"/>
+    <mesh name="truck_col_11" file="truck_collision_parts/truck_col_11.stl" scale="1 1 1"/>
+    <mesh name="truck_col_12" file="truck_collision_parts/truck_col_12.stl" scale="1 1 1"/>
+    <mesh name="truck_col_13" file="truck_collision_parts/truck_col_13.stl" scale="1 1 1"/>
+    <mesh name="truck_col_14" file="truck_collision_parts/truck_col_14.stl" scale="1 1 1"/>
+    <mesh name="truck_col_15" file="truck_collision_parts/truck_col_15.stl" scale="1 1 1"/>
+    <mesh name="truck_col_16" file="truck_collision_parts/truck_col_16.stl" scale="1 1 1"/>
+    <mesh name="truck_col_17" file="truck_collision_parts/truck_col_17.stl" scale="1 1 1"/>
+    <mesh name="truck_col_18" file="truck_collision_parts/truck_col_18.stl" scale="1 1 1"/>
+    <mesh name="truck_col_19" file="truck_collision_parts/truck_col_19.stl" scale="1 1 1"/>
+    <mesh name="truck_col_20" file="truck_collision_parts/truck_col_20.stl" scale="1 1 1"/>
+    <mesh name="truck_col_21" file="truck_collision_parts/truck_col_21.stl" scale="1 1 1"/>
+    <mesh name="truck_col_22" file="truck_collision_parts/truck_col_22.stl" scale="1 1 1"/>
+    <mesh name="truck_col_23" file="truck_collision_parts/truck_col_23.stl" scale="1 1 1"/>
+    <mesh name="truck_col_24" file="truck_collision_parts/truck_col_24.stl" scale="1 1 1"/>
+    <mesh name="truck_col_25" file="truck_collision_parts/truck_col_25.stl" scale="1 1 1"/>
+    <mesh name="truck_col_26" file="truck_collision_parts/truck_col_26.stl" scale="1 1 1"/>
+    <mesh name="truck_col_27" file="truck_collision_parts/truck_col_27.stl" scale="1 1 1"/>
+    <mesh name="truck_col_28" file="truck_collision_parts/truck_col_28.stl" scale="1 1 1"/>
+    <mesh name="truck_col_29" file="truck_collision_parts/truck_col_29.stl" scale="1 1 1"/>
+    <mesh name="truck_col_30" file="truck_collision_parts/truck_col_30.stl" scale="1 1 1"/>
+    <mesh name="truck_col_31" file="truck_collision_parts/truck_col_31.stl" scale="1 1 1"/>
+    <mesh name="truck_col_32" file="truck_collision_parts/truck_col_32.stl" scale="1 1 1"/>
+    <mesh name="truck_col_33" file="truck_collision_parts/truck_col_33.stl" scale="1 1 1"/>
+    <mesh name="truck_col_34" file="truck_collision_parts/truck_col_34.stl" scale="1 1 1"/>
+    <mesh name="truck_col_35" file="truck_collision_parts/truck_col_35.stl" scale="1 1 1"/>
+    <mesh name="truck_col_36" file="truck_collision_parts/truck_col_36.stl" scale="1 1 1"/>
+    <mesh name="truck_col_37" file="truck_collision_parts/truck_col_37.stl" scale="1 1 1"/>
+    <mesh name="truck_col_38" file="truck_collision_parts/truck_col_38.stl" scale="1 1 1"/>
+    <mesh name="truck_col_39" file="truck_collision_parts/truck_col_39.stl" scale="1 1 1"/>
+    <mesh name="truck_col_40" file="truck_collision_parts/truck_col_40.stl" scale="1 1 1"/>
+    <mesh name="truck_col_41" file="truck_collision_parts/truck_col_41.stl" scale="1 1 1"/>
+    <mesh name="truck_col_42" file="truck_collision_parts/truck_col_42.stl" scale="1 1 1"/>
+    <mesh name="truck_col_43" file="truck_collision_parts/truck_col_43.stl" scale="1 1 1"/>
+    <mesh name="truck_col_44" file="truck_collision_parts/truck_col_44.stl" scale="1 1 1"/>
+    <mesh name="truck_col_45" file="truck_collision_parts/truck_col_45.stl" scale="1 1 1"/>
+    <mesh name="truck_col_46" file="truck_collision_parts/truck_col_46.stl" scale="1 1 1"/>
+    <mesh name="truck_col_47" file="truck_collision_parts/truck_col_47.stl" scale="1 1 1"/>
+    <mesh name="truck_col_48" file="truck_collision_parts/truck_col_48.stl" scale="1 1 1"/>
+    <mesh name="truck_col_49" file="truck_collision_parts/truck_col_49.stl" scale="1 1 1"/>
+    <mesh name="truck_col_50" file="truck_collision_parts/truck_col_50.stl" scale="1 1 1"/>
+    <mesh name="truck_col_51" file="truck_collision_parts/truck_col_51.stl" scale="1 1 1"/>
+    <mesh name="truck_col_52" file="truck_collision_parts/truck_col_52.stl" scale="1 1 1"/>
+    <mesh name="truck_col_53" file="truck_collision_parts/truck_col_53.stl" scale="1 1 1"/>
+    <mesh name="truck_col_54" file="truck_collision_parts/truck_col_54.stl" scale="1 1 1"/>
+    <mesh name="truck_col_55" file="truck_collision_parts/truck_col_55.stl" scale="1 1 1"/>
+    <mesh name="truck_col_56" file="truck_collision_parts/truck_col_56.stl" scale="1 1 1"/>
+    <mesh name="truck_col_57" file="truck_collision_parts/truck_col_57.stl" scale="1 1 1"/>
+    <mesh name="truck_col_58" file="truck_collision_parts/truck_col_58.stl" scale="1 1 1"/>
+    <mesh name="truck_col_59" file="truck_collision_parts/truck_col_59.stl" scale="1 1 1"/>
+    <mesh name="truck_col_60" file="truck_collision_parts/truck_col_60.stl" scale="1 1 1"/>
+    <mesh name="truck_col_61" file="truck_collision_parts/truck_col_61.stl" scale="1 1 1"/>
+    <mesh name="truck_col_62" file="truck_collision_parts/truck_col_62.stl" scale="1 1 1"/>
+    <mesh name="truck_col_63" file="truck_collision_parts/truck_col_63.stl" scale="1 1 1"/>
+    <mesh name="truck_col_64" file="truck_collision_parts/truck_col_64.stl" scale="1 1 1"/>
+    <mesh name="truck_col_65" file="truck_collision_parts/truck_col_65.stl" scale="1 1 1"/>
+    <mesh name="truck_col_66" file="truck_collision_parts/truck_col_66.stl" scale="1 1 1"/>
+    <mesh name="truck_col_67" file="truck_collision_parts/truck_col_67.stl" scale="1 1 1"/>
+    <mesh name="truck_col_68" file="truck_collision_parts/truck_col_68.stl" scale="1 1 1"/>
+    <mesh name="truck_col_69" file="truck_collision_parts/truck_col_69.stl" scale="1 1 1"/>
+    <mesh name="truck_col_70" file="truck_collision_parts/truck_col_70.stl" scale="1 1 1"/>
+    <mesh name="truck_col_71" file="truck_collision_parts/truck_col_71.stl" scale="1 1 1"/>
+    <mesh name="truck_col_72" file="truck_collision_parts/truck_col_72.stl" scale="1 1 1"/>
+    <mesh name="truck_col_73" file="truck_collision_parts/truck_col_73.stl" scale="1 1 1"/>
+    <mesh name="truck_col_74" file="truck_collision_parts/truck_col_74.stl" scale="1 1 1"/>
+    <mesh name="truck_col_75" file="truck_collision_parts/truck_col_75.stl" scale="1 1 1"/>
+    <mesh name="truck_col_76" file="truck_collision_parts/truck_col_76.stl" scale="1 1 1"/>
+    <mesh name="truck_col_77" file="truck_collision_parts/truck_col_77.stl" scale="1 1 1"/>
+    <mesh name="truck_col_78" file="truck_collision_parts/truck_col_78.stl" scale="1 1 1"/>
+    <mesh name="truck_col_79" file="truck_collision_parts/truck_col_79.stl" scale="1 1 1"/>
+    <mesh name="truck_col_80" file="truck_collision_parts/truck_col_80.stl" scale="1 1 1"/>
+    <mesh name="truck_col_81" file="truck_collision_parts/truck_col_81.stl" scale="1 1 1"/>
+    <mesh name="truck_col_82" file="truck_collision_parts/truck_col_82.stl" scale="1 1 1"/>
+    <mesh name="truck_col_83" file="truck_collision_parts/truck_col_83.stl" scale="1 1 1"/>
+    <mesh name="truck_col_84" file="truck_collision_parts/truck_col_84.stl" scale="1 1 1"/>
+    <mesh name="truck_col_85" file="truck_collision_parts/truck_col_85.stl" scale="1 1 1"/>
+    <mesh name="truck_col_86" file="truck_collision_parts/truck_col_86.stl" scale="1 1 1"/>
+    <mesh name="truck_col_87" file="truck_collision_parts/truck_col_87.stl" scale="1 1 1"/>
+    <mesh name="truck_col_88" file="truck_collision_parts/truck_col_88.stl" scale="1 1 1"/>
+    <mesh name="truck_col_89" file="truck_collision_parts/truck_col_89.stl" scale="1 1 1"/>
+    <mesh name="truck_col_90" file="truck_collision_parts/truck_col_90.stl" scale="1 1 1"/>
+    <mesh name="truck_col_91" file="truck_collision_parts/truck_col_91.stl" scale="1 1 1"/>
+    <mesh name="truck_col_92" file="truck_collision_parts/truck_col_92.stl" scale="1 1 1"/>
+    <mesh name="truck_col_93" file="truck_collision_parts/truck_col_93.stl" scale="1 1 1"/>
+    <mesh name="truck_col_94" file="truck_collision_parts/truck_col_94.stl" scale="1 1 1"/>
+    <mesh name="truck_col_95" file="truck_collision_parts/truck_col_95.stl" scale="1 1 1"/>
+    <mesh name="truck_col_96" file="truck_collision_parts/truck_col_96.stl" scale="1 1 1"/>
+    <mesh name="truck_col_97" file="truck_collision_parts/truck_col_97.stl" scale="1 1 1"/>
+    <mesh name="truck_col_98" file="truck_collision_parts/truck_col_98.stl" scale="1 1 1"/>
+    <mesh name="truck_col_99" file="truck_collision_parts/truck_col_99.stl" scale="1 1 1"/>
+    <mesh name="truck_col_100" file="truck_collision_parts/truck_col_100.stl" scale="1 1 1"/>
+    <mesh name="truck_col_101" file="truck_collision_parts/truck_col_101.stl" scale="1 1 1"/>
+    <mesh name="truck_col_102" file="truck_collision_parts/truck_col_102.stl" scale="1 1 1"/>
+    <mesh name="truck_col_103" file="truck_collision_parts/truck_col_103.stl" scale="1 1 1"/>
+    <mesh name="truck_col_104" file="truck_collision_parts/truck_col_104.stl" scale="1 1 1"/>
+    <mesh name="truck_col_105" file="truck_collision_parts/truck_col_105.stl" scale="1 1 1"/>
+    <mesh name="truck_col_106" file="truck_collision_parts/truck_col_106.stl" scale="1 1 1"/>
+    <mesh name="truck_col_107" file="truck_collision_parts/truck_col_107.stl" scale="1 1 1"/>
+    <mesh name="truck_col_108" file="truck_collision_parts/truck_col_108.stl" scale="1 1 1"/>
+    <mesh name="truck_col_109" file="truck_collision_parts/truck_col_109.stl" scale="1 1 1"/>
+    <mesh name="truck_col_110" file="truck_collision_parts/truck_col_110.stl" scale="1 1 1"/>
+    <mesh name="truck_col_111" file="truck_collision_parts/truck_col_111.stl" scale="1 1 1"/>
+    <mesh name="truck_col_112" file="truck_collision_parts/truck_col_112.stl" scale="1 1 1"/>
+    <mesh name="truck_col_113" file="truck_collision_parts/truck_col_113.stl" scale="1 1 1"/>
+    <mesh name="truck_col_114" file="truck_collision_parts/truck_col_114.stl" scale="1 1 1"/>
+    <mesh name="truck_col_115" file="truck_collision_parts/truck_col_115.stl" scale="1 1 1"/>
+    <mesh name="truck_col_116" file="truck_collision_parts/truck_col_116.stl" scale="1 1 1"/>
+    <mesh name="truck_col_117" file="truck_collision_parts/truck_col_117.stl" scale="1 1 1"/>
+    <mesh name="truck_col_118" file="truck_collision_parts/truck_col_118.stl" scale="1 1 1"/>
+    <mesh name="truck_col_119" file="truck_collision_parts/truck_col_119.stl" scale="1 1 1"/>
+    <mesh name="truck_col_120" file="truck_collision_parts/truck_col_120.stl" scale="1 1 1"/>
+    <mesh name="truck_col_121" file="truck_collision_parts/truck_col_121.stl" scale="1 1 1"/>
+    <mesh name="truck_col_122" file="truck_collision_parts/truck_col_122.stl" scale="1 1 1"/>
+    <mesh name="truck_col_123" file="truck_collision_parts/truck_col_123.stl" scale="1 1 1"/>
+    <mesh name="truck_col_124" file="truck_collision_parts/truck_col_124.stl" scale="1 1 1"/>
+    <mesh name="truck_col_125" file="truck_collision_parts/truck_col_125.stl" scale="1 1 1"/>
+    <mesh name="truck_col_126" file="truck_collision_parts/truck_col_126.stl" scale="1 1 1"/>
+    <mesh name="truck_col_127" file="truck_collision_parts/truck_col_127.stl" scale="1 1 1"/>
+    <mesh name="truck_col_128" file="truck_collision_parts/truck_col_128.stl" scale="1 1 1"/>
+    <mesh name="truck_col_129" file="truck_collision_parts/truck_col_129.stl" scale="1 1 1"/>
+    <mesh name="truck_col_130" file="truck_collision_parts/truck_col_130.stl" scale="1 1 1"/>
+    <mesh name="truck_col_131" file="truck_collision_parts/truck_col_131.stl" scale="1 1 1"/>
+    <mesh name="truck_col_132" file="truck_collision_parts/truck_col_132.stl" scale="1 1 1"/>
+    <mesh name="truck_col_133" file="truck_collision_parts/truck_col_133.stl" scale="1 1 1"/>
+    <mesh name="truck_col_134" file="truck_collision_parts/truck_col_134.stl" scale="1 1 1"/>
+    <mesh name="truck_col_135" file="truck_collision_parts/truck_col_135.stl" scale="1 1 1"/>
+    <mesh name="truck_col_136" file="truck_collision_parts/truck_col_136.stl" scale="1 1 1"/>
+    <mesh name="truck_col_137" file="truck_collision_parts/truck_col_137.stl" scale="1 1 1"/>
+    <mesh name="truck_col_138" file="truck_collision_parts/truck_col_138.stl" scale="1 1 1"/>
+    <mesh name="truck_col_139" file="truck_collision_parts/truck_col_139.stl" scale="1 1 1"/>
+    <mesh name="truck_col_140" file="truck_collision_parts/truck_col_140.stl" scale="1 1 1"/>
+    <mesh name="truck_col_141" file="truck_collision_parts/truck_col_141.stl" scale="1 1 1"/>
+    <mesh name="truck_col_142" file="truck_collision_parts/truck_col_142.stl" scale="1 1 1"/>
+    <mesh name="truck_col_143" file="truck_collision_parts/truck_col_143.stl" scale="1 1 1"/>
+    <mesh name="truck_col_144" file="truck_collision_parts/truck_col_144.stl" scale="1 1 1"/>
+    <mesh name="truck_col_145" file="truck_collision_parts/truck_col_145.stl" scale="1 1 1"/>
+    <mesh name="truck_col_146" file="truck_collision_parts/truck_col_146.stl" scale="1 1 1"/>
+    <mesh name="truck_col_147" file="truck_collision_parts/truck_col_147.stl" scale="1 1 1"/>
+    <mesh name="truck_col_148" file="truck_collision_parts/truck_col_148.stl" scale="1 1 1"/>
+    <mesh name="truck_col_149" file="truck_collision_parts/truck_col_149.stl" scale="1 1 1"/>
+    <mesh name="truck_col_150" file="truck_collision_parts/truck_col_150.stl" scale="1 1 1"/>
+    <mesh name="truck_col_151" file="truck_collision_parts/truck_col_151.stl" scale="1 1 1"/>
+    <mesh name="truck_col_152" file="truck_collision_parts/truck_col_152.stl" scale="1 1 1"/>
+    <mesh name="truck_col_153" file="truck_collision_parts/truck_col_153.stl" scale="1 1 1"/>
+    <mesh name="truck_col_154" file="truck_collision_parts/truck_col_154.stl" scale="1 1 1"/>
+    <mesh name="truck_col_155" file="truck_collision_parts/truck_col_155.stl" scale="1 1 1"/>
+    <mesh name="truck_col_156" file="truck_collision_parts/truck_col_156.stl" scale="1 1 1"/>
+    <mesh name="truck_col_157" file="truck_collision_parts/truck_col_157.stl" scale="1 1 1"/>
+    <mesh name="truck_col_158" file="truck_collision_parts/truck_col_158.stl" scale="1 1 1"/>
+    <mesh name="truck_col_159" file="truck_collision_parts/truck_col_159.stl" scale="1 1 1"/>
+    <mesh name="truck_col_160" file="truck_collision_parts/truck_col_160.stl" scale="1 1 1"/>
+    <mesh name="truck_col_161" file="truck_collision_parts/truck_col_161.stl" scale="1 1 1"/>
+    <mesh name="truck_col_162" file="truck_collision_parts/truck_col_162.stl" scale="1 1 1"/>
+    <mesh name="truck_col_163" file="truck_collision_parts/truck_col_163.stl" scale="1 1 1"/>
+    <mesh name="truck_col_164" file="truck_collision_parts/truck_col_164.stl" scale="1 1 1"/>
+    <mesh name="truck_col_165" file="truck_collision_parts/truck_col_165.stl" scale="1 1 1"/>
+    <mesh name="truck_col_166" file="truck_collision_parts/truck_col_166.stl" scale="1 1 1"/>
+    <mesh name="truck_col_167" file="truck_collision_parts/truck_col_167.stl" scale="1 1 1"/>
+    <mesh name="truck_col_168" file="truck_collision_parts/truck_col_168.stl" scale="1 1 1"/>
+    <mesh name="truck_col_169" file="truck_collision_parts/truck_col_169.stl" scale="1 1 1"/>
+    <mesh name="truck_col_170" file="truck_collision_parts/truck_col_170.stl" scale="1 1 1"/>
+    <mesh name="truck_col_171" file="truck_collision_parts/truck_col_171.stl" scale="1 1 1"/>
+    <mesh name="truck_col_172" file="truck_collision_parts/truck_col_172.stl" scale="1 1 1"/>
+    <mesh name="truck_col_173" file="truck_collision_parts/truck_col_173.stl" scale="1 1 1"/>
+    <mesh name="truck_col_174" file="truck_collision_parts/truck_col_174.stl" scale="1 1 1"/>
+    <mesh name="truck_col_175" file="truck_collision_parts/truck_col_175.stl" scale="1 1 1"/>
+    <mesh name="truck_col_176" file="truck_collision_parts/truck_col_176.stl" scale="1 1 1"/>
+    <mesh name="truck_col_177" file="truck_collision_parts/truck_col_177.stl" scale="1 1 1"/>
+    <mesh name="truck_col_178" file="truck_collision_parts/truck_col_178.stl" scale="1 1 1"/>
+    <mesh name="truck_col_179" file="truck_collision_parts/truck_col_179.stl" scale="1 1 1"/>
+    <mesh name="truck_col_180" file="truck_collision_parts/truck_col_180.stl" scale="1 1 1"/>
+    <mesh name="truck_col_181" file="truck_collision_parts/truck_col_181.stl" scale="1 1 1"/>
+    <mesh name="truck_col_182" file="truck_collision_parts/truck_col_182.stl" scale="1 1 1"/>
+    <mesh name="truck_col_183" file="truck_collision_parts/truck_col_183.stl" scale="1 1 1"/>
+    <mesh name="truck_col_184" file="truck_collision_parts/truck_col_184.stl" scale="1 1 1"/>
+    <mesh name="truck_col_185" file="truck_collision_parts/truck_col_185.stl" scale="1 1 1"/>
+    <mesh name="truck_col_186" file="truck_collision_parts/truck_col_186.stl" scale="1 1 1"/>
+    <mesh name="truck_col_187" file="truck_collision_parts/truck_col_187.stl" scale="1 1 1"/>
+    <mesh name="truck_col_188" file="truck_collision_parts/truck_col_188.stl" scale="1 1 1"/>
+    <mesh name="truck_col_189" file="truck_collision_parts/truck_col_189.stl" scale="1 1 1"/>
+    <mesh name="truck_col_190" file="truck_collision_parts/truck_col_190.stl" scale="1 1 1"/>
+    <mesh name="truck_col_191" file="truck_collision_parts/truck_col_191.stl" scale="1 1 1"/>
+    <mesh name="truck_col_192" file="truck_collision_parts/truck_col_192.stl" scale="1 1 1"/>
+    <mesh name="truck_col_193" file="truck_collision_parts/truck_col_193.stl" scale="1 1 1"/>
+    <mesh name="truck_col_194" file="truck_collision_parts/truck_col_194.stl" scale="1 1 1"/>
+    <mesh name="truck_col_195" file="truck_collision_parts/truck_col_195.stl" scale="1 1 1"/>
+    <mesh name="truck_col_196" file="truck_collision_parts/truck_col_196.stl" scale="1 1 1"/>
+    <mesh name="truck_col_197" file="truck_collision_parts/truck_col_197.stl" scale="1 1 1"/>
+    <mesh name="truck_col_198" file="truck_collision_parts/truck_col_198.stl" scale="1 1 1"/>
+    <mesh name="truck_col_199" file="truck_collision_parts/truck_col_199.stl" scale="1 1 1"/>
+    <mesh name="truck_col_200" file="truck_collision_parts/truck_col_200.stl" scale="1 1 1"/>
+    <mesh name="truck_col_201" file="truck_collision_parts/truck_col_201.stl" scale="1 1 1"/>
+    <mesh name="truck_col_202" file="truck_collision_parts/truck_col_202.stl" scale="1 1 1"/>
+    <mesh name="truck_col_203" file="truck_collision_parts/truck_col_203.stl" scale="1 1 1"/>
+    <mesh name="truck_col_204" file="truck_collision_parts/truck_col_204.stl" scale="1 1 1"/>
+    <mesh name="truck_col_205" file="truck_collision_parts/truck_col_205.stl" scale="1 1 1"/>
+    <mesh name="truck_col_206" file="truck_collision_parts/truck_col_206.stl" scale="1 1 1"/>
+    <mesh name="truck_col_207" file="truck_collision_parts/truck_col_207.stl" scale="1 1 1"/>
+    <mesh name="truck_col_208" file="truck_collision_parts/truck_col_208.stl" scale="1 1 1"/>
+    <mesh name="truck_col_209" file="truck_collision_parts/truck_col_209.stl" scale="1 1 1"/>
+    <mesh name="truck_col_210" file="truck_collision_parts/truck_col_210.stl" scale="1 1 1"/>
+    <mesh name="truck_col_211" file="truck_collision_parts/truck_col_211.stl" scale="1 1 1"/>
+    <mesh name="truck_col_212" file="truck_collision_parts/truck_col_212.stl" scale="1 1 1"/>
+    <mesh name="truck_col_213" file="truck_collision_parts/truck_col_213.stl" scale="1 1 1"/>
+    <mesh name="truck_col_214" file="truck_collision_parts/truck_col_214.stl" scale="1 1 1"/>
+    <mesh name="truck_col_215" file="truck_collision_parts/truck_col_215.stl" scale="1 1 1"/>
+    <mesh name="truck_col_216" file="truck_collision_parts/truck_col_216.stl" scale="1 1 1"/>
+    <mesh name="truck_col_217" file="truck_collision_parts/truck_col_217.stl" scale="1 1 1"/>
+    <mesh name="truck_col_218" file="truck_collision_parts/truck_col_218.stl" scale="1 1 1"/>
+    <mesh name="truck_col_219" file="truck_collision_parts/truck_col_219.stl" scale="1 1 1"/>
+    <mesh name="truck_col_220" file="truck_collision_parts/truck_col_220.stl" scale="1 1 1"/>
+    <mesh name="truck_col_221" file="truck_collision_parts/truck_col_221.stl" scale="1 1 1"/>
+    <mesh name="truck_col_222" file="truck_collision_parts/truck_col_222.stl" scale="1 1 1"/>
+    <mesh name="truck_col_223" file="truck_collision_parts/truck_col_223.stl" scale="1 1 1"/>
+    <mesh name="truck_col_224" file="truck_collision_parts/truck_col_224.stl" scale="1 1 1"/>
+    <mesh name="truck_col_225" file="truck_collision_parts/truck_col_225.stl" scale="1 1 1"/>
+    <mesh name="truck_col_226" file="truck_collision_parts/truck_col_226.stl" scale="1 1 1"/>
+    <mesh name="truck_col_227" file="truck_collision_parts/truck_col_227.stl" scale="1 1 1"/>
+    <mesh name="truck_col_228" file="truck_collision_parts/truck_col_228.stl" scale="1 1 1"/>
+    <mesh name="truck_col_229" file="truck_collision_parts/truck_col_229.stl" scale="1 1 1"/>
+    <mesh name="truck_col_230" file="truck_collision_parts/truck_col_230.stl" scale="1 1 1"/>
+    <mesh name="truck_col_231" file="truck_collision_parts/truck_col_231.stl" scale="1 1 1"/>
+    <mesh name="truck_col_232" file="truck_collision_parts/truck_col_232.stl" scale="1 1 1"/>
+    <mesh name="truck_col_233" file="truck_collision_parts/truck_col_233.stl" scale="1 1 1"/>
+    <mesh name="truck_col_234" file="truck_collision_parts/truck_col_234.stl" scale="1 1 1"/>
+    <mesh name="truck_col_235" file="truck_collision_parts/truck_col_235.stl" scale="1 1 1"/>
+    <mesh name="truck_col_236" file="truck_collision_parts/truck_col_236.stl" scale="1 1 1"/>
+    <mesh name="truck_col_237" file="truck_collision_parts/truck_col_237.stl" scale="1 1 1"/>
+    <mesh name="truck_col_238" file="truck_collision_parts/truck_col_238.stl" scale="1 1 1"/>
+    <mesh name="truck_col_239" file="truck_collision_parts/truck_col_239.stl" scale="1 1 1"/>
+    <mesh name="truck_col_240" file="truck_collision_parts/truck_col_240.stl" scale="1 1 1"/>
+    <mesh name="truck_col_241" file="truck_collision_parts/truck_col_241.stl" scale="1 1 1"/>
+    <mesh name="truck_col_242" file="truck_collision_parts/truck_col_242.stl" scale="1 1 1"/>
+    <mesh name="truck_col_243" file="truck_collision_parts/truck_col_243.stl" scale="1 1 1"/>
+    <mesh name="truck_col_244" file="truck_collision_parts/truck_col_244.stl" scale="1 1 1"/>
+    <mesh name="truck_col_245" file="truck_collision_parts/truck_col_245.stl" scale="1 1 1"/>
+    <mesh name="truck_col_246" file="truck_collision_parts/truck_col_246.stl" scale="1 1 1"/>
+    <mesh name="truck_col_247" file="truck_collision_parts/truck_col_247.stl" scale="1 1 1"/>
+    <mesh name="truck_col_248" file="truck_collision_parts/truck_col_248.stl" scale="1 1 1"/>
+    <mesh name="truck_col_249" file="truck_collision_parts/truck_col_249.stl" scale="1 1 1"/>
+    <mesh name="truck_col_250" file="truck_collision_parts/truck_col_250.stl" scale="1 1 1"/>
+    <mesh name="truck_col_251" file="truck_collision_parts/truck_col_251.stl" scale="1 1 1"/>
+    <mesh name="truck_col_252" file="truck_collision_parts/truck_col_252.stl" scale="1 1 1"/>
+    <mesh name="truck_col_253" file="truck_collision_parts/truck_col_253.stl" scale="1 1 1"/>
+    <mesh name="truck_col_254" file="truck_collision_parts/truck_col_254.stl" scale="1 1 1"/>
+    <mesh name="truck_col_255" file="truck_collision_parts/truck_col_255.stl" scale="1 1 1"/>
+    <mesh name="truck_col_256" file="truck_collision_parts/truck_col_256.stl" scale="1 1 1"/>
+    <mesh name="truck_col_257" file="truck_collision_parts/truck_col_257.stl" scale="1 1 1"/>
+    <mesh name="truck_col_258" file="truck_collision_parts/truck_col_258.stl" scale="1 1 1"/>
+    <mesh name="truck_col_259" file="truck_collision_parts/truck_col_259.stl" scale="1 1 1"/>
+    <mesh name="truck_col_260" file="truck_collision_parts/truck_col_260.stl" scale="1 1 1"/>
+    <mesh name="truck_col_261" file="truck_collision_parts/truck_col_261.stl" scale="1 1 1"/>
+    <mesh name="truck_col_262" file="truck_collision_parts/truck_col_262.stl" scale="1 1 1"/>
+    <mesh name="truck_col_263" file="truck_collision_parts/truck_col_263.stl" scale="1 1 1"/>
+    <mesh name="truck_col_264" file="truck_collision_parts/truck_col_264.stl" scale="1 1 1"/>
+    <mesh name="truck_col_265" file="truck_collision_parts/truck_col_265.stl" scale="1 1 1"/>
+    <mesh name="truck_col_266" file="truck_collision_parts/truck_col_266.stl" scale="1 1 1"/>
+    <mesh name="truck_col_267" file="truck_collision_parts/truck_col_267.stl" scale="1 1 1"/>
+    <mesh name="truck_col_268" file="truck_collision_parts/truck_col_268.stl" scale="1 1 1"/>
+    <mesh name="truck_col_269" file="truck_collision_parts/truck_col_269.stl" scale="1 1 1"/>
+    <mesh name="truck_col_270" file="truck_collision_parts/truck_col_270.stl" scale="1 1 1"/>
+    <mesh name="truck_col_271" file="truck_collision_parts/truck_col_271.stl" scale="1 1 1"/>
+    <mesh name="truck_col_272" file="truck_collision_parts/truck_col_272.stl" scale="1 1 1"/>
+    <mesh name="truck_col_273" file="truck_collision_parts/truck_col_273.stl" scale="1 1 1"/>
+    <mesh name="truck_col_274" file="truck_collision_parts/truck_col_274.stl" scale="1 1 1"/>
+    <mesh name="truck_col_275" file="truck_collision_parts/truck_col_275.stl" scale="1 1 1"/>
+    <mesh name="truck_col_276" file="truck_collision_parts/truck_col_276.stl" scale="1 1 1"/>
+    <mesh name="truck_col_277" file="truck_collision_parts/truck_col_277.stl" scale="1 1 1"/>
+    <mesh name="truck_col_278" file="truck_collision_parts/truck_col_278.stl" scale="1 1 1"/>
+    <mesh name="truck_col_279" file="truck_collision_parts/truck_col_279.stl" scale="1 1 1"/>
+    <mesh name="truck_col_280" file="truck_collision_parts/truck_col_280.stl" scale="1 1 1"/>
+    <mesh name="truck_col_281" file="truck_collision_parts/truck_col_281.stl" scale="1 1 1"/>
+    <mesh name="truck_col_282" file="truck_collision_parts/truck_col_282.stl" scale="1 1 1"/>
+    <mesh name="truck_col_283" file="truck_collision_parts/truck_col_283.stl" scale="1 1 1"/>
+    <mesh name="truck_col_284" file="truck_collision_parts/truck_col_284.stl" scale="1 1 1"/>
+    <mesh name="truck_col_285" file="truck_collision_parts/truck_col_285.stl" scale="1 1 1"/>
+    <mesh name="truck_col_286" file="truck_collision_parts/truck_col_286.stl" scale="1 1 1"/>
+    <mesh name="truck_col_287" file="truck_collision_parts/truck_col_287.stl" scale="1 1 1"/>
+    <mesh name="truck_col_288" file="truck_collision_parts/truck_col_288.stl" scale="1 1 1"/>
+    <mesh name="truck_col_289" file="truck_collision_parts/truck_col_289.stl" scale="1 1 1"/>
+    <mesh name="truck_col_290" file="truck_collision_parts/truck_col_290.stl" scale="1 1 1"/>
+    <mesh name="truck_col_291" file="truck_collision_parts/truck_col_291.stl" scale="1 1 1"/>
+    <mesh name="truck_col_292" file="truck_collision_parts/truck_col_292.stl" scale="1 1 1"/>
+    <mesh name="truck_col_293" file="truck_collision_parts/truck_col_293.stl" scale="1 1 1"/>
+    <mesh name="truck_col_294" file="truck_collision_parts/truck_col_294.stl" scale="1 1 1"/>
+    <mesh name="truck_col_295" file="truck_collision_parts/truck_col_295.stl" scale="1 1 1"/>
+    <mesh name="truck_col_296" file="truck_collision_parts/truck_col_296.stl" scale="1 1 1"/>
+    <mesh name="truck_col_297" file="truck_collision_parts/truck_col_297.stl" scale="1 1 1"/>
+    <mesh name="truck_col_298" file="truck_collision_parts/truck_col_298.stl" scale="1 1 1"/>
+    <mesh name="truck_col_299" file="truck_collision_parts/truck_col_299.stl" scale="1 1 1"/>
+
+    <texture name="grid" type="2d" builtin="checker" rgb1=".1 .2 .3" rgb2=".2 .3 .4" width="300" height="300"/>
+    <material name="grid" texture="grid" texrepeat="30 30" reflectance="0"/>
+  </asset>
+  <worldbody>
+    <geom name="ground" type="plane" pos="0 0 -2.12" size="10 10 0.4" material="grid" friction="0.5 0 0"/>
+    <light name="strong_light" pos="0 0 5" dir="0 0 -4" directional="true" diffuse="1 1 4" specular="0.3 0.3 0.6" active="true" castshadow="false" cutoff="100" exponent="10"/>
+    <camera name="side_cam1" pos="4.787 -0.909 -1.537" xyaxes="-0.011 1.000 -0.000 -0.068 -0.001 0.998"/>
+    <camera name="side_cam2" pos="0.783 -0.953 3.350" xyaxes="-0.008 1.000 0.000 -0.989 -0.008 0.148"/>
+
+    <body name="truck_collision_body"
+          pos="0 -2 -0.79"
+          euler="260 0 0">
+
+        <geom name="truck_visual_geom" type="mesh" mesh="truck_visual" contype="0" conaffinity="0" rgba="1 0 0 0.25"/>
+        <geom name="truck_col_geom_0" type="mesh" mesh="truck_col_0" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_1" type="mesh" mesh="truck_col_1" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_2" type="mesh" mesh="truck_col_2" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_3" type="mesh" mesh="truck_col_3" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_4" type="mesh" mesh="truck_col_4" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_5" type="mesh" mesh="truck_col_5" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_6" type="mesh" mesh="truck_col_6" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_7" type="mesh" mesh="truck_col_7" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_8" type="mesh" mesh="truck_col_8" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_9" type="mesh" mesh="truck_col_9" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_10" type="mesh" mesh="truck_col_10" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_11" type="mesh" mesh="truck_col_11" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_12" type="mesh" mesh="truck_col_12" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_13" type="mesh" mesh="truck_col_13" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_14" type="mesh" mesh="truck_col_14" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_15" type="mesh" mesh="truck_col_15" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_16" type="mesh" mesh="truck_col_16" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_17" type="mesh" mesh="truck_col_17" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_18" type="mesh" mesh="truck_col_18" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_19" type="mesh" mesh="truck_col_19" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_20" type="mesh" mesh="truck_col_20" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_21" type="mesh" mesh="truck_col_21" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_22" type="mesh" mesh="truck_col_22" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_23" type="mesh" mesh="truck_col_23" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_24" type="mesh" mesh="truck_col_24" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_25" type="mesh" mesh="truck_col_25" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_26" type="mesh" mesh="truck_col_26" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_27" type="mesh" mesh="truck_col_27" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_28" type="mesh" mesh="truck_col_28" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_29" type="mesh" mesh="truck_col_29" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_30" type="mesh" mesh="truck_col_30" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_31" type="mesh" mesh="truck_col_31" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_32" type="mesh" mesh="truck_col_32" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_33" type="mesh" mesh="truck_col_33" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_34" type="mesh" mesh="truck_col_34" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_35" type="mesh" mesh="truck_col_35" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_36" type="mesh" mesh="truck_col_36" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_37" type="mesh" mesh="truck_col_37" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_38" type="mesh" mesh="truck_col_38" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_39" type="mesh" mesh="truck_col_39" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_40" type="mesh" mesh="truck_col_40" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_41" type="mesh" mesh="truck_col_41" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_42" type="mesh" mesh="truck_col_42" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_43" type="mesh" mesh="truck_col_43" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_44" type="mesh" mesh="truck_col_44" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_45" type="mesh" mesh="truck_col_45" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_46" type="mesh" mesh="truck_col_46" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_47" type="mesh" mesh="truck_col_47" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_48" type="mesh" mesh="truck_col_48" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_49" type="mesh" mesh="truck_col_49" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_50" type="mesh" mesh="truck_col_50" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_51" type="mesh" mesh="truck_col_51" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_52" type="mesh" mesh="truck_col_52" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_53" type="mesh" mesh="truck_col_53" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_54" type="mesh" mesh="truck_col_54" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_55" type="mesh" mesh="truck_col_55" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_56" type="mesh" mesh="truck_col_56" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_57" type="mesh" mesh="truck_col_57" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_58" type="mesh" mesh="truck_col_58" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_59" type="mesh" mesh="truck_col_59" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_60" type="mesh" mesh="truck_col_60" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_61" type="mesh" mesh="truck_col_61" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_62" type="mesh" mesh="truck_col_62" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_63" type="mesh" mesh="truck_col_63" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_64" type="mesh" mesh="truck_col_64" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_65" type="mesh" mesh="truck_col_65" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_66" type="mesh" mesh="truck_col_66" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_67" type="mesh" mesh="truck_col_67" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_68" type="mesh" mesh="truck_col_68" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_69" type="mesh" mesh="truck_col_69" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_70" type="mesh" mesh="truck_col_70" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_71" type="mesh" mesh="truck_col_71" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_72" type="mesh" mesh="truck_col_72" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_73" type="mesh" mesh="truck_col_73" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_74" type="mesh" mesh="truck_col_74" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_75" type="mesh" mesh="truck_col_75" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_76" type="mesh" mesh="truck_col_76" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_77" type="mesh" mesh="truck_col_77" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_78" type="mesh" mesh="truck_col_78" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_79" type="mesh" mesh="truck_col_79" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_80" type="mesh" mesh="truck_col_80" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_81" type="mesh" mesh="truck_col_81" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_82" type="mesh" mesh="truck_col_82" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_83" type="mesh" mesh="truck_col_83" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_84" type="mesh" mesh="truck_col_84" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_85" type="mesh" mesh="truck_col_85" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_86" type="mesh" mesh="truck_col_86" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_87" type="mesh" mesh="truck_col_87" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_88" type="mesh" mesh="truck_col_88" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_89" type="mesh" mesh="truck_col_89" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_90" type="mesh" mesh="truck_col_90" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_91" type="mesh" mesh="truck_col_91" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_92" type="mesh" mesh="truck_col_92" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_93" type="mesh" mesh="truck_col_93" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_94" type="mesh" mesh="truck_col_94" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_95" type="mesh" mesh="truck_col_95" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_96" type="mesh" mesh="truck_col_96" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_97" type="mesh" mesh="truck_col_97" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_98" type="mesh" mesh="truck_col_98" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_99" type="mesh" mesh="truck_col_99" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_100" type="mesh" mesh="truck_col_100" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_101" type="mesh" mesh="truck_col_101" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_102" type="mesh" mesh="truck_col_102" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_103" type="mesh" mesh="truck_col_103" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_104" type="mesh" mesh="truck_col_104" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_105" type="mesh" mesh="truck_col_105" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_106" type="mesh" mesh="truck_col_106" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_107" type="mesh" mesh="truck_col_107" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_108" type="mesh" mesh="truck_col_108" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_109" type="mesh" mesh="truck_col_109" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_110" type="mesh" mesh="truck_col_110" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_111" type="mesh" mesh="truck_col_111" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_112" type="mesh" mesh="truck_col_112" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_113" type="mesh" mesh="truck_col_113" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_114" type="mesh" mesh="truck_col_114" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_115" type="mesh" mesh="truck_col_115" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_116" type="mesh" mesh="truck_col_116" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_117" type="mesh" mesh="truck_col_117" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_118" type="mesh" mesh="truck_col_118" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_119" type="mesh" mesh="truck_col_119" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_120" type="mesh" mesh="truck_col_120" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_121" type="mesh" mesh="truck_col_121" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_122" type="mesh" mesh="truck_col_122" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_123" type="mesh" mesh="truck_col_123" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_124" type="mesh" mesh="truck_col_124" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_125" type="mesh" mesh="truck_col_125" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_126" type="mesh" mesh="truck_col_126" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_127" type="mesh" mesh="truck_col_127" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_128" type="mesh" mesh="truck_col_128" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_129" type="mesh" mesh="truck_col_129" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_130" type="mesh" mesh="truck_col_130" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_131" type="mesh" mesh="truck_col_131" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_132" type="mesh" mesh="truck_col_132" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_133" type="mesh" mesh="truck_col_133" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_134" type="mesh" mesh="truck_col_134" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_135" type="mesh" mesh="truck_col_135" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_136" type="mesh" mesh="truck_col_136" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_137" type="mesh" mesh="truck_col_137" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_138" type="mesh" mesh="truck_col_138" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_139" type="mesh" mesh="truck_col_139" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_140" type="mesh" mesh="truck_col_140" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_141" type="mesh" mesh="truck_col_141" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_142" type="mesh" mesh="truck_col_142" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_143" type="mesh" mesh="truck_col_143" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_144" type="mesh" mesh="truck_col_144" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_145" type="mesh" mesh="truck_col_145" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_146" type="mesh" mesh="truck_col_146" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_147" type="mesh" mesh="truck_col_147" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_148" type="mesh" mesh="truck_col_148" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_149" type="mesh" mesh="truck_col_149" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_150" type="mesh" mesh="truck_col_150" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_151" type="mesh" mesh="truck_col_151" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_152" type="mesh" mesh="truck_col_152" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_153" type="mesh" mesh="truck_col_153" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_154" type="mesh" mesh="truck_col_154" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_155" type="mesh" mesh="truck_col_155" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_156" type="mesh" mesh="truck_col_156" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_157" type="mesh" mesh="truck_col_157" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_158" type="mesh" mesh="truck_col_158" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_159" type="mesh" mesh="truck_col_159" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_160" type="mesh" mesh="truck_col_160" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_161" type="mesh" mesh="truck_col_161" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_162" type="mesh" mesh="truck_col_162" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_163" type="mesh" mesh="truck_col_163" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_164" type="mesh" mesh="truck_col_164" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_165" type="mesh" mesh="truck_col_165" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_166" type="mesh" mesh="truck_col_166" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_167" type="mesh" mesh="truck_col_167" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_168" type="mesh" mesh="truck_col_168" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_169" type="mesh" mesh="truck_col_169" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_170" type="mesh" mesh="truck_col_170" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_171" type="mesh" mesh="truck_col_171" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_172" type="mesh" mesh="truck_col_172" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_173" type="mesh" mesh="truck_col_173" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_174" type="mesh" mesh="truck_col_174" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_175" type="mesh" mesh="truck_col_175" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_176" type="mesh" mesh="truck_col_176" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_177" type="mesh" mesh="truck_col_177" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_178" type="mesh" mesh="truck_col_178" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_179" type="mesh" mesh="truck_col_179" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_180" type="mesh" mesh="truck_col_180" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_181" type="mesh" mesh="truck_col_181" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_182" type="mesh" mesh="truck_col_182" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_183" type="mesh" mesh="truck_col_183" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_184" type="mesh" mesh="truck_col_184" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_185" type="mesh" mesh="truck_col_185" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_186" type="mesh" mesh="truck_col_186" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_187" type="mesh" mesh="truck_col_187" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_188" type="mesh" mesh="truck_col_188" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_189" type="mesh" mesh="truck_col_189" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_190" type="mesh" mesh="truck_col_190" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_191" type="mesh" mesh="truck_col_191" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_192" type="mesh" mesh="truck_col_192" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_193" type="mesh" mesh="truck_col_193" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_194" type="mesh" mesh="truck_col_194" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_195" type="mesh" mesh="truck_col_195" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_196" type="mesh" mesh="truck_col_196" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_197" type="mesh" mesh="truck_col_197" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_198" type="mesh" mesh="truck_col_198" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_199" type="mesh" mesh="truck_col_199" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_200" type="mesh" mesh="truck_col_200" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_201" type="mesh" mesh="truck_col_201" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_202" type="mesh" mesh="truck_col_202" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_203" type="mesh" mesh="truck_col_203" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_204" type="mesh" mesh="truck_col_204" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_205" type="mesh" mesh="truck_col_205" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_206" type="mesh" mesh="truck_col_206" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_207" type="mesh" mesh="truck_col_207" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_208" type="mesh" mesh="truck_col_208" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_209" type="mesh" mesh="truck_col_209" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_210" type="mesh" mesh="truck_col_210" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_211" type="mesh" mesh="truck_col_211" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_212" type="mesh" mesh="truck_col_212" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_213" type="mesh" mesh="truck_col_213" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_214" type="mesh" mesh="truck_col_214" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_215" type="mesh" mesh="truck_col_215" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_216" type="mesh" mesh="truck_col_216" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_217" type="mesh" mesh="truck_col_217" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_218" type="mesh" mesh="truck_col_218" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_219" type="mesh" mesh="truck_col_219" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_220" type="mesh" mesh="truck_col_220" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_221" type="mesh" mesh="truck_col_221" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_222" type="mesh" mesh="truck_col_222" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_223" type="mesh" mesh="truck_col_223" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_224" type="mesh" mesh="truck_col_224" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_225" type="mesh" mesh="truck_col_225" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_226" type="mesh" mesh="truck_col_226" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_227" type="mesh" mesh="truck_col_227" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_228" type="mesh" mesh="truck_col_228" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_229" type="mesh" mesh="truck_col_229" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_230" type="mesh" mesh="truck_col_230" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_231" type="mesh" mesh="truck_col_231" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_232" type="mesh" mesh="truck_col_232" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_233" type="mesh" mesh="truck_col_233" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_234" type="mesh" mesh="truck_col_234" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_235" type="mesh" mesh="truck_col_235" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_236" type="mesh" mesh="truck_col_236" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_237" type="mesh" mesh="truck_col_237" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_238" type="mesh" mesh="truck_col_238" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_239" type="mesh" mesh="truck_col_239" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_240" type="mesh" mesh="truck_col_240" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_241" type="mesh" mesh="truck_col_241" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_242" type="mesh" mesh="truck_col_242" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_243" type="mesh" mesh="truck_col_243" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_244" type="mesh" mesh="truck_col_244" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_245" type="mesh" mesh="truck_col_245" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_246" type="mesh" mesh="truck_col_246" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_247" type="mesh" mesh="truck_col_247" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_248" type="mesh" mesh="truck_col_248" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_249" type="mesh" mesh="truck_col_249" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_250" type="mesh" mesh="truck_col_250" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_251" type="mesh" mesh="truck_col_251" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_252" type="mesh" mesh="truck_col_252" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_253" type="mesh" mesh="truck_col_253" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_254" type="mesh" mesh="truck_col_254" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_255" type="mesh" mesh="truck_col_255" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_256" type="mesh" mesh="truck_col_256" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_257" type="mesh" mesh="truck_col_257" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_258" type="mesh" mesh="truck_col_258" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_259" type="mesh" mesh="truck_col_259" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_260" type="mesh" mesh="truck_col_260" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_261" type="mesh" mesh="truck_col_261" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_262" type="mesh" mesh="truck_col_262" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_263" type="mesh" mesh="truck_col_263" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_264" type="mesh" mesh="truck_col_264" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_265" type="mesh" mesh="truck_col_265" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_266" type="mesh" mesh="truck_col_266" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_267" type="mesh" mesh="truck_col_267" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_268" type="mesh" mesh="truck_col_268" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_269" type="mesh" mesh="truck_col_269" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_270" type="mesh" mesh="truck_col_270" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_271" type="mesh" mesh="truck_col_271" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_272" type="mesh" mesh="truck_col_272" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_273" type="mesh" mesh="truck_col_273" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_274" type="mesh" mesh="truck_col_274" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_275" type="mesh" mesh="truck_col_275" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_276" type="mesh" mesh="truck_col_276" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_277" type="mesh" mesh="truck_col_277" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_278" type="mesh" mesh="truck_col_278" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_279" type="mesh" mesh="truck_col_279" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_280" type="mesh" mesh="truck_col_280" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_281" type="mesh" mesh="truck_col_281" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_282" type="mesh" mesh="truck_col_282" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_283" type="mesh" mesh="truck_col_283" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_284" type="mesh" mesh="truck_col_284" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_285" type="mesh" mesh="truck_col_285" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_286" type="mesh" mesh="truck_col_286" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_287" type="mesh" mesh="truck_col_287" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_288" type="mesh" mesh="truck_col_288" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_289" type="mesh" mesh="truck_col_289" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_290" type="mesh" mesh="truck_col_290" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_291" type="mesh" mesh="truck_col_291" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_292" type="mesh" mesh="truck_col_292" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_293" type="mesh" mesh="truck_col_293" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_294" type="mesh" mesh="truck_col_294" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_295" type="mesh" mesh="truck_col_295" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_296" type="mesh" mesh="truck_col_296" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_297" type="mesh" mesh="truck_col_297" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_298" type="mesh" mesh="truck_col_298" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        <geom name="truck_col_geom_299" type="mesh" mesh="truck_col_299" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
+        
+    </body>
+
+    <!-- ===== SECTION 3 (root) ===== -->
+    <body name="body_middle6" pos="-0.00714 0.36184 0.008">
+      <joint name="root_free" type="free"/>
+      <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.2 0.28 0.12 1"/>
+      <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
+
+      <body name="motor_L6" pos="0 0 0">
+        <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+        <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.08 0.08 0.08 1"/>
+        <body name="o_leg_L6" pos="0 0 0">
+          <joint name="knee_joint_L6" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+          <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+          <geom name="o_leg_L6" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
+        </body>
+      </body>
+
+      <body name="motor_R6" pos="0 0 0">
+        <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+        <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.08 0.08 0.08 1"/>
+        <body name="o_leg_R6" pos="0 0 0">
+          <joint name="knee_joint_R6" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+          <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+          <geom name="o_leg_R6" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
+        </body>
+      </body>
+
+      <body name="vertjoint6" pos="0 0 0">
+        <joint name="vertjoint_hinge6" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
+        <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
+        <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.08 0.08 0.08 1"/>
+
+        <body name="horzjoint6_body" pos="0 0 0">
+          <joint name="horzjoint6" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
+          <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
+
+          <!-- ===== SECTION 2 ===== -->
+          <body name="body_middle5" pos="0.00357 -0.18092 0.003">
+            <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.2 0.28 0.12 1"/>
+            <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
+
+            <body name="motor_L5" pos="0 0 0">
+              <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+              <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.08 0.08 0.08 1"/>
+              <body name="o_leg_L5" pos="0 0 0">
+                <joint name="knee_joint_L5" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                <geom name="o_leg_L5" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
+              </body>
+            </body>
+
+            <body name="motor_R5" pos="0 0 0">
+              <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+              <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.08 0.08 0.08 1"/>
+              <body name="o_leg_R5" pos="0 0 0">
+                <joint name="knee_joint_R5" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                <geom name="o_leg_R5" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
+              </body>
+            </body>
+
+            <body name="vertjoint5" pos="0 0 0">
+              <joint name="vertjoint_hinge5" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
+              <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
+              <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.08 0.08 0.08 1"/>
+
+              <body name="horzjoint5_body" pos="0 0 0">
+                <joint name="horzjoint5" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
+                <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
+
+                <!-- ===== SECTION 1 ===== -->
+                <body name="body_middle4" pos="0.00357 -0.18092 0.003">
+                  <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.2 0.28 0.12 1"/>
+                  <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
+
+                  <body name="motor_L4" pos="0 0 0">
+                    <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                    <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.08 0.08 0.08 1"/>
+                    <body name="o_leg_L4" pos="0 0 0">
+                      <joint name="knee_joint_L4" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                      <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                      <geom name="o_leg_L4" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
+                    </body>
+                  </body>
+
+                  <body name="motor_R4" pos="0 0 0">
+                    <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                    <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.08 0.08 0.08 1"/>
+                    <body name="o_leg_R4" pos="0 0 0">
+                      <joint name="knee_joint_R4" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                      <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                      <geom name="o_leg_R4" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
+                    </body>
+                  </body>
+
+                  <body name="vertjoint4" pos="0 0 0">
+                    <joint name="vertjoint_hinge4" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
+                    <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
+                    <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.08 0.08 0.08 1"/>
+
+                    <body name="horzjoint4_body" pos="0 0 0">
+                      <joint name="horzjoint4" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
+                      <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
+
+                      <!-- ===== SECTION 4 ===== -->
+                      <body name="body_middle3" pos="0.00357 -0.18092 0.003">
+                        <camera name="robot_center_scene_camera" pos="0.074 0.064 0.120" xyaxes="-1 0 0 0 0 1" fovy="90"/>
+                        <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.2 0.28 0.12 1"/>
+                        <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
+
+                        <body name="motor_L3" pos="0 0 0">
+                          <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                          <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.08 0.08 0.08 1"/>
+                          <body name="o_leg_L3" pos="0 0 0">
+                            <joint name="knee_joint_L3" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                            <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                            <geom name="o_leg_L3" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
+                          </body>
+                        </body>
+
+                        <body name="motor_R3" pos="0 0 0">
+                          <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                          <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.08 0.08 0.08 1"/>
+                          <body name="o_leg_R3" pos="0 0 0">
+                            <joint name="knee_joint_R3" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                            <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                            <geom name="o_leg_R3" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
+                          </body>
+                        </body>
+
+       
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <position name="knee_L6" joint="knee_joint_L6" kp="10" forcerange="-4 4"/>
+    <position name="knee_R6" joint="knee_joint_R6" kp="10" forcerange="-4 4"/>
+    <position name="vertjoint6" joint="vertjoint_hinge6" ctrlrange="-100 100" kp="10" forcerange="-5 5"/>
+    <position name="horzjoint6" joint="horzjoint6" ctrlrange="-100 100" kp="10"/>
+
+    <position name="knee_L5" joint="knee_joint_L5" kp="10" forcerange="-4 4"/>
+    <position name="knee_R5" joint="knee_joint_R5" kp="10" forcerange="-4 4"/>
+    <position name="vertjoint5" joint="vertjoint_hinge5" ctrlrange="-100 100" kp="10" forcerange="-5 5"/>
+    <position name="horzjoint5" joint="horzjoint5" ctrlrange="-100 100" kp="10"/>
+
+    <position name="knee_L4" joint="knee_joint_L4" kp="10" forcerange="-4 4"/>
+    <position name="knee_R4" joint="knee_joint_R4" kp="10" forcerange="-4 4"/>
+    <position name="vertjoint4" joint="vertjoint_hinge4" ctrlrange="-100 100" kp="10" forcerange="-5 5"/>
+    <position name="horzjoint4" joint="horzjoint4" ctrlrange="-100 100" kp="10"/>
+
+    <position name="knee_L3" joint="knee_joint_L3" kp="10" forcerange="-4 4"/>
+    <position name="knee_R3" joint="knee_joint_R3" kp="10" forcerange="-4 4"/>
+
+
+  </actuator>
+</mujoco>

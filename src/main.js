@@ -43,6 +43,23 @@ var gardenScene = "scutl_garden_coacd.xml";
 var constructionScene = "scutl_construction_coacd.xml";
 var gcrRoomScene = "scutl_gcr_room.xml";
 var stairsScene = "scutl_stairs_wide.xml";
+var scutl3seg = "scutl_3seg.xml";
+var scutl4seg = "scutl_4seg.xml";
+var scutl5seg = "scutl_5seg.xml";
+var scutl6seg = "scutl.xml";
+var stairs3seg = "scutl_stairs_wide_3seg.xml";
+var stairs4seg = "scutl_stairs_wide_4seg.xml";
+var stairs5seg = "scutl_stairs_wide_5seg.xml";
+// stairs 6seg = existing stairsScene
+
+var truck3seg = "scutl_coacd_3seg.xml";
+var truck4seg = "scutl_coacd_4seg.xml";
+var truck5seg = "scutl_coacd_5seg.xml";
+
+var garden3seg = "scutl_garden_coacd_3seg.xml";
+var garden4seg = "scutl_garden_coacd_4seg.xml";
+var garden5seg = "scutl_garden_coacd_5seg.xml";
+
 mujoco.FS.mkdir('/working');
 mujoco.FS.mount(mujoco.MEMFS, { root: '.' }, '/working');
 
@@ -155,6 +172,7 @@ export class MuJoCoDemo {
     this.container.appendChild(this.renderer.domElement);
     this.splatViewer = null;
     this.currentEnvironment = "none";
+    this.currentSegments = 6;
     this.environmentSelect = null;
 
     this.loadingOverlay = document.createElement("div");
@@ -291,8 +309,8 @@ export class MuJoCoDemo {
     const envBox = document.createElement("div");
     Object.assign(envBox.style, {
       position: "fixed",
-      top: "10px",
-      right: "1vw",
+      top: "0.25vw",
+      right: "30vw",
       zIndex: "1001",
       background: "#161a24",
       color: "#e2e8f0",
@@ -323,7 +341,20 @@ export class MuJoCoDemo {
 
     this.environmentSelect = envBox.querySelector("#env-select");
 
+    // this.environmentSelect.addEventListener("change", async e => {
+    //   this.showLoadingScene();
+    //   await this.setEnvironment(e.target.value);
+    // });
+
+
     this.environmentSelect.addEventListener("change", async e => {
+      const n = this.currentSegments;
+      const stairMap  = { 3: stairs3seg, 4: stairs4seg, 5: stairs5seg, 6: "scutl_stairs_wide.xml" };
+      const truckMap  = { 3: truck3seg,  4: truck4seg,  5: truck5seg,  6: "scutl_coacd.xml" };
+      const gardenMap = { 3: garden3seg, 4: garden4seg, 5: garden5seg, 6: "scutl_garden_coacd.xml" };
+      stairsScene = stairMap[n];
+      truckScene  = truckMap[n];
+      gardenScene = gardenMap[n];
       this.showLoadingScene();
       await this.setEnvironment(e.target.value);
     });
@@ -332,8 +363,8 @@ export class MuJoCoDemo {
     const camBox = document.createElement("div");
     Object.assign(camBox.style, {
       position: "fixed",
-      top: "40px",
-      right: "45vw",
+      top: "0.25vw",
+      right: "43vw",
       zIndex: "1001",
       background: "#161a24",
       color: "#e2e8f0",
@@ -379,6 +410,79 @@ export class MuJoCoDemo {
         this.controls.enabled = false;
       }
     });
+
+    // Segment count dropdown
+    const segBox = document.createElement("div");
+    Object.assign(segBox.style, {
+      position: "fixed",
+      top: "0.25vw",
+      right: "55vw",
+      zIndex: "1001",
+      background: "#161a24",
+      color: "#e2e8f0",
+      border: "1px solid #252a36",
+      borderRadius: "5px",
+      padding: "6px",
+      fontFamily: "Courier New, monospace",
+      fontSize: "12px",
+    });
+    segBox.innerHTML = `
+      <label style="margin-right:6px;">Body Segments</label>
+      <select id="seg-select"
+              style="background:#0f1117;color:#e2e8f0;border:1px solid #252a36;border-radius:4px;padding:4px;">
+        <option value="6">6</option>
+        <option value="5">5</option>
+        <option value="4">4</option>
+        <option value="3">3</option>
+      </select>
+    `;
+    document.body.appendChild(segBox);
+
+    // document.getElementById("seg-select").addEventListener("change", async e => {
+    //   const n = e.target.value;
+    //   const segScenes = { "3": scutl3seg, "4": scutl4seg, "5": scutl5seg, "6": scutl6seg };
+    //   this.showLoadingScene();
+    //   try {
+    //     // Reload current environment's scene but swap robot XML
+    //     // For "none" just reload the seg XML directly
+    //     if (this.currentEnvironment === "none") {
+    //       initialScene = segScenes[n];
+    //       await this.loadMujocoScene(initialScene);
+    //       this.groundVisuals?.forEach(obj => { obj.visible = true; });
+    //       this.resetCameraToRobotStart();
+    //     } else {
+    //       // Store the choice and re-trigger current environment
+    //       initialScene = segScenes[n];
+    //       await this.setEnvironment(this.currentEnvironment);
+    //     }
+    //   } finally {
+    //     this.hideLoadingScene();
+    //   }
+    // });
+
+
+    document.getElementById("seg-select").addEventListener("change", async e => {
+      const n = parseInt(e.target.value);
+      this.currentSegments = n;
+
+      const noneMap   = { 3: scutl3seg,  4: scutl4seg,  5: scutl5seg,  6: scutl6seg };
+      const stairMap  = { 3: stairs3seg, 4: stairs4seg, 5: stairs5seg, 6: "scutl_stairs_wide.xml" };
+      const truckMap  = { 3: truck3seg,  4: truck4seg,  5: truck5seg,  6: "scutl_coacd.xml" };
+      const gardenMap = { 3: garden3seg, 4: garden4seg, 5: garden5seg, 6: "scutl_garden_coacd.xml" };
+
+      initialScene = noneMap[n];
+      stairsScene  = stairMap[n];
+      truckScene   = truckMap[n];
+      gardenScene  = gardenMap[n];
+
+      this.showLoadingScene();
+      try {
+        await this.setEnvironment(this.currentEnvironment);
+      } finally {
+        this.hideLoadingScene();
+      }
+    });
+
 
     this.renderer.domElement.addEventListener("mousedown", e => {
       if (this.cameraMode === "first" && e.button === 0) {
@@ -498,6 +602,9 @@ export class MuJoCoDemo {
     this.mujoco_time = 0.0;
   }
 
+
+
+  
   hideGroundVisuals() {
     this.groundVisuals?.forEach(obj => {
       obj.visible = false;
@@ -1259,7 +1366,16 @@ export class MuJoCoDemo {
 
     if (this.cameraMode === "first" && this.model && this.data) {
       // Find body_middle3 (center segment) index
-      const bodyId = mujoco.mj_name2id(this.model, mujoco.mjtObj.mjOBJ_BODY.value, "body_middle3");
+      // const bodyId = mujoco.mj_name2id(this.model, mujoco.mjtObj.mjOBJ_BODY.value, "body_middle3");
+
+            // Pick camera anchor: middle segment of however many are loaded
+      const camAnchor = { 3: "body_middle5", 4: "body_middle5", 5: "body_middle4", 6: "body_middle3" };
+      const bodyId = mujoco.mj_name2id(
+        this.model,
+        mujoco.mjtObj.mjOBJ_BODY.value,
+        camAnchor[this.currentSegments || 6]
+      );
+
       if (bodyId >= 0) {
         const bodyPos = new THREE.Vector3();
         getPosition(this.data.xpos, bodyId, bodyPos);

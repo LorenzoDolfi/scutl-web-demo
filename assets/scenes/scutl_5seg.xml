@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="o_leg_3sections">
-  <option timestep="0.002" gravity="0 0 -9.81"/>
+
+  <option timestep="0.004" gravity="0 0 -9.81"/>
   <visual>
     <global offwidth="1920" offheight="1080"/>
   </visual>
@@ -8,33 +9,6 @@
     <texture name="grid" type="2d" builtin="checker" rgb1=".1 .2 .3" rgb2=".2 .3 .4" width="300" height="300"/>
     <material name="grid" texture="grid" texrepeat="30 30" reflectance="0"/>
     <material name="robot_green" rgba="0.1 0.35 0.1 1"/>
-    <mesh name="garden_visual" file="garden_collision.stl" scale="2 2 2"/>
-    <mesh name="garden_col_0" file="garden_collision_parts/garden_col_0.stl" scale="2 2 2"/>
-    <mesh name="garden_col_1" file="garden_collision_parts/garden_col_1.stl" scale="2 2 2"/>
-    <mesh name="garden_col_2" file="garden_collision_parts/garden_col_2.stl" scale="2 2 2"/>
-    <mesh name="garden_col_3" file="garden_collision_parts/garden_col_3.stl" scale="2 2 2"/>
-    <mesh name="garden_col_4" file="garden_collision_parts/garden_col_4.stl" scale="2 2 2"/>
-    <mesh name="garden_col_5" file="garden_collision_parts/garden_col_5.stl" scale="2 2 2"/>
-    <mesh name="garden_col_6" file="garden_collision_parts/garden_col_6.stl" scale="2 2 2"/>
-    <mesh name="garden_col_7" file="garden_collision_parts/garden_col_7.stl" scale="2 2 2"/>
-    <mesh name="garden_col_8" file="garden_collision_parts/garden_col_8.stl" scale="2 2 2"/>
-    <mesh name="garden_col_9" file="garden_collision_parts/garden_col_9.stl" scale="2 2 2"/>
-    <mesh name="garden_col_10" file="garden_collision_parts/garden_col_10.stl" scale="2 2 2"/>
-    <mesh name="garden_col_11" file="garden_collision_parts/garden_col_11.stl" scale="2 2 2"/>
-    <mesh name="garden_col_12" file="garden_collision_parts/garden_col_12.stl" scale="2 2 2"/>
-    <mesh name="garden_col_13" file="garden_collision_parts/garden_col_13.stl" scale="2 2 2"/>
-    <mesh name="garden_col_14" file="garden_collision_parts/garden_col_14.stl" scale="2 2 2"/>
-    <mesh name="garden_col_15" file="garden_collision_parts/garden_col_15.stl" scale="2 2 2"/>
-    <mesh name="garden_col_16" file="garden_collision_parts/garden_col_16.stl" scale="2 2 2"/>
-    <mesh name="garden_col_17" file="garden_collision_parts/garden_col_17.stl" scale="2 2 2"/>
-    <mesh name="garden_col_18" file="garden_collision_parts/garden_col_18.stl" scale="2 2 2"/>
-    <mesh name="garden_col_19" file="garden_collision_parts/garden_col_19.stl" scale="2 2 2"/>
-    <mesh name="garden_col_20" file="garden_collision_parts/garden_col_20.stl" scale="2 2 2"/>
-    <mesh name="garden_col_21" file="garden_collision_parts/garden_col_21.stl" scale="2 2 2"/>
-    <mesh name="garden_col_22" file="garden_collision_parts/garden_col_22.stl" scale="2 2 2"/>
-    <mesh name="garden_col_23" file="garden_collision_parts/garden_col_23.stl" scale="2 2 2"/>
-    <mesh name="garden_col_24" file="garden_collision_parts/garden_col_24.stl" scale="2 2 2"/>
-    <mesh name="garden_col_25" file="garden_collision_parts/garden_col_25.stl" scale="2 2 2"/>
   </asset>
   <worldbody>
     <geom name="ground" type="plane" pos="0 0 -2.12" size="10 10 0.4" material="grid" friction="0.5 0 0"/>
@@ -204,147 +178,19 @@
                                   <geom name="o_leg_R2" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
                                 </body>
                               </body>
-
-                              <body name="vertjoint2" pos="0 0 0">
-                                <joint name="vertjoint_hinge2" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
-                                <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
-                                <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.08 0.08 0.08 1"/>
-
-                                <body name="horzjoint2_body" pos="0 0 0">
-                                  <joint name="horzjoint2" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
-                                  <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
-
-                                  <!-- ===== SECTION 6 (tail) ===== -->
-                                  <body name="body_middle1" pos="0.00357 -0.18092 0.003">
-                                    <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.2 0.28 0.12 1"/>
-                                    <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
-
-                                    <body name="motor_L1" pos="0 0 0">
-                                      <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-                                      <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.08 0.08 0.08 1"/>
-                                      <body name="o_leg_L1" pos="0 0 0">
-                                        <joint name="knee_joint_L1" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
-                                        <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                                        <geom name="o_leg_L1" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
-                                      </body>
-                                    </body>
-
-                                    <body name="motor_R1" pos="0 0 0">
-                                      <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
-                                      <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.08 0.08 0.08 1"/>
-                                      <body name="o_leg_R1" pos="0 0 0">
-                                        <joint name="knee_joint_R1" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
-                                        <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
-                                        <geom name="o_leg_R1" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
-                                      </body>
-                                    </body>
-
-                                  </body>
-                                </body>
-                              </body>
-                            </body>
-                          </body>
-                        </body>
-                      </body>
-                    </body>
-                  </body>
-                </body>
-              </body>
-            </body>
-          </body>
-        </body>
       </body>
-    </body>
-    <body name="garden_collision_body" pos="1.1 -3.4 -2.8" euler="0 0 5">
-      <geom
-    name="test_cube"
-    type="box"
-    pos="0.25 3.4 0.5"
-    size="0.1 0.5 0.35"
-    rgba="1 0 0 1"
-    euler=" 0 0 112"/>
-      <geom
-    name="test_cube1"
-    type="box"
-    pos="1 3.7 0.5"
-    size="0.1 0.5 0.35"
-    rgba="1 0 0 1"
-    euler=" 0 0 115"/>
-      <geom
-    name="test_cube2"
-    type="box"
-    pos="0.47 4 0.5"
-    size="0.1 0.5 0.35"
-    rgba="1 0 0 1"
-    euler=" 0 0 20"/>
-      <geom
-    name="test_cube3"
-    type="box"
-    pos="0.9 3 0.5"
-    size="0.1 0.5 0.35"
-    rgba="1 0 0 1"
-    euler=" 0 0 20"/>
-
-
-
-      <geom
-    name="test_cube11"
-    type="box"
-    pos="0.25 4.5 1"
-    size="0.1 0.5 0.1"
-    rgba="1 0 0 1"
-    euler=" 90 0 0"/>
-      <geom
-    name="test_cube21"
-    type="box"
-    pos="-0.35 3.2 1"
-    size="0.1 0.5 0.1"
-    rgba="1 0 0 1"
-    euler=" 90 20 0"/>
-      <geom
-    name="test_cube31"
-    type="box"
-    pos="1 2.6 1"
-    size="0.1 0.5 0.1"
-    rgba="1 0 0 1"
-    euler=" 90 0 0"/>
-      <geom
-    name="test_cube41"
-    type="box"
-    pos="1.55 3.95 1"
-    size="0.1 0.5 0.1"
-    rgba="1 0 0 1"
-    euler=" 90 20 0"/>
-
-      <geom name="garden_visual_geom" type="mesh" mesh="garden_visual" contype="0" conaffinity="0" rgba="1 0 0 0.0"/>
-      <geom name="garden_col_geom_0" type="mesh" mesh="garden_col_0" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_1" type="mesh" mesh="garden_col_1" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_2" type="mesh" mesh="garden_col_2" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_3" type="mesh" mesh="garden_col_3" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_4" type="mesh" mesh="garden_col_4" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_5" type="mesh" mesh="garden_col_5" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_6" type="mesh" mesh="garden_col_6" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_7" type="mesh" mesh="garden_col_7" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_8" type="mesh" mesh="garden_col_8" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_9" type="mesh" mesh="garden_col_9" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_10" type="mesh" mesh="garden_col_10" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_11" type="mesh" mesh="garden_col_11" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_12" type="mesh" mesh="garden_col_12" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_13" type="mesh" mesh="garden_col_13" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_14" type="mesh" mesh="garden_col_14" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_15" type="mesh" mesh="garden_col_15" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_16" type="mesh" mesh="garden_col_16" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_17" type="mesh" mesh="garden_col_17" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_18" type="mesh" mesh="garden_col_18" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_19" type="mesh" mesh="garden_col_19" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_20" type="mesh" mesh="garden_col_20" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_21" type="mesh" mesh="garden_col_21" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_22" type="mesh" mesh="garden_col_22" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_23" type="mesh" mesh="garden_col_23" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_24" type="mesh" mesh="garden_col_24" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_25" type="mesh" mesh="garden_col_25" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-
-    </body>
+      </body>
+      </body>
+      </body>
+      </body>
+      </body>
+      </body>
+      </body>
+      </body>
+      </body>
+      </body>
+      </body>
+      </body>
   </worldbody>
 
   <actuator>
@@ -352,28 +198,19 @@
     <position name="knee_R6" joint="knee_joint_R6" kp="10" forcerange="-4 4"/>
     <position name="vertjoint6" joint="vertjoint_hinge6" ctrlrange="-100 100" kp="10" forcerange="-5 5"/>
     <position name="horzjoint6" joint="horzjoint6" ctrlrange="-100 100" kp="10"/>
-
     <position name="knee_L5" joint="knee_joint_L5" kp="10" forcerange="-4 4"/>
     <position name="knee_R5" joint="knee_joint_R5" kp="10" forcerange="-4 4"/>
     <position name="vertjoint5" joint="vertjoint_hinge5" ctrlrange="-100 100" kp="10" forcerange="-5 5"/>
     <position name="horzjoint5" joint="horzjoint5" ctrlrange="-100 100" kp="10"/>
-
     <position name="knee_L4" joint="knee_joint_L4" kp="10" forcerange="-4 4"/>
     <position name="knee_R4" joint="knee_joint_R4" kp="10" forcerange="-4 4"/>
     <position name="vertjoint4" joint="vertjoint_hinge4" ctrlrange="-100 100" kp="10" forcerange="-5 5"/>
     <position name="horzjoint4" joint="horzjoint4" ctrlrange="-100 100" kp="10"/>
-
     <position name="knee_L3" joint="knee_joint_L3" kp="10" forcerange="-4 4"/>
     <position name="knee_R3" joint="knee_joint_R3" kp="10" forcerange="-4 4"/>
     <position name="vertjoint3" joint="vertjoint_hinge3" ctrlrange="-100 100" kp="10" forcerange="-5 5"/>
     <position name="horzjoint3" joint="horzjoint3" ctrlrange="-100 100" kp="10"/>
-
     <position name="knee_L2" joint="knee_joint_L2" kp="10" forcerange="-4 4"/>
     <position name="knee_R2" joint="knee_joint_R2" kp="10" forcerange="-4 4"/>
-    <position name="vertjoint2" joint="vertjoint_hinge2" ctrlrange="-100 100" kp="10" forcerange="-5 5"/>
-    <position name="horzjoint2" joint="horzjoint2" ctrlrange="-100 100" kp="10"/>
-
-    <position name="knee_L1" joint="knee_joint_L1" kp="10" forcerange="-4 4"/>
-    <position name="knee_R1" joint="knee_joint_R1" kp="10" forcerange="-4 4"/>
   </actuator>
 </mujoco>

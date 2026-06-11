@@ -1,0 +1,1025 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="scutl_stairs">
+  <option timestep="0.004" gravity="0 0 -9.84"/>
+  <visual>
+    <global offwidth="1920" offheight="1080"/>
+  </visual>
+  <asset>
+    <texture name="grid" type="2d" builtin="checker" rgb1=".1 .2 .3" rgb2=".2 .3 .4" width="300" height="300"/>
+    <texture name="stair_tex" type="2d" builtin="checker" rgb1=".4 .4 .4" rgb2=".6 .6 .6" width="100" height="100"/>
+    <material name="grid" texture="grid" texrepeat="30 30" reflectance="0"/>
+    <material name="stair_mat" texture="stair_tex" texrepeat="2 2" reflectance="0.1"/>
+    <material name="robot_green" rgba="0.1 0.35 0.1 1"/>
+    <texture name="wood_tex" type="2d" builtin="checker" rgb1=".55 .40 .25" rgb2=".45 .32 .18" width="100" height="100"/>
+    <material name="wood" texture="wood_tex" texrepeat="4 1" reflectance="0.05"/>
+    <material name="chassis_mat" rgba="0.2 0.28 0.12 1"/>
+    <material name="leg_mat"     rgba="0.12 0.12 0.12 1"/>
+    <material name="joint_mat"   rgba="0.08 0.08 0.08 1"/>
+  </asset>
+  <default>
+    <default class="robot">
+      <geom material="robot_green" condim="6" friction="1.5 0.05 0.01"/>
+    </default>
+    <default class="stair">
+      <geom type="box" material="stair_mat" condim="6" friction="1.5 0.05 0.01"/>
+    </default>
+    <default class="joist">
+      <geom type="box" material="wood" condim="6" friction="1.5 0.05 0.01"/>
+    </default>
+  </default>
+  <worldbody>
+    <light name="strong_light" pos="0 0 5" dir="0 0 -4" directional="true" diffuse="1 1 4" specular="0.3 0.3 0.6" active="true" castshadow="false" cutoff="100" exponent="10"/>
+
+    <!-- flat approach ground -->
+    <geom name="ground" type="plane" pos="0 0 -2.12" size="10 10 0.4" material="grid" condim="6" friction="1.5 0.05 0.01"/>
+
+    <!-- staircase: 8 steps, each 0.04m rise, 0.12m run, 0.3m wide -->
+    <!-- step 1 -->
+    <geom class="stair" name="step1" size="0.06 0.45 0.02" pos="0.12 0.36184 -2.10"/>
+    <!-- step 2 -->
+    <geom class="stair" name="step2" size="0.06 0.45 0.06" pos="0.24 0.36184 -2.08"/>
+    <!-- step 3 -->
+    <geom class="stair" name="step3" size="0.06 0.45 0.1" pos="0.36 0.36184 -2.06"/>
+    <!-- step 4 -->
+    <geom class="stair" name="step4" size="0.06 0.45 0.14" pos="0.48 0.36184 -2.04"/>
+    <!-- step 5 -->
+    <geom class="stair" name="step5" size="0.06 0.45 0.18" pos="0.60 0.36184 -2.02"/>
+    <!-- step 6 -->
+    <geom class="stair" name="step6" size="0.06 0.45 0.22" pos="0.72 0.36184 -2.00"/>
+    <!-- step 7 -->
+    <geom class="stair" name="step7" size="0.06 0.45 0.26" pos="0.84 0.36184 -1.98"/>
+    <!-- step 8 -->
+    <geom class="stair" name="step8" size="0.06 0.45 0.30" pos="0.96 0.36184 -1.96"/>
+    <!-- landing platform at top -->
+    <geom class="stair" name="landing" size="0.30 0.45 0.30" pos="1.38 0.36184 -1.96"/>
+
+    <geom class="joist" name="joist0" size="0.0254 0.6096 0.0762" pos="-4.0320 0.35 -2.0438"/>
+    <geom class="joist" name="joist1" size="0.0254 0.6096 0.0762" pos="-3.6256 0.35 -2.0438"/>
+    <geom class="joist" name="joist2" size="0.0254 0.6096 0.0762" pos="-3.2192 0.35 -2.0438"/>
+    <geom class="joist" name="joist3" size="0.0254 0.6096 0.0762" pos="-2.8128 0.35 -2.0438"/>
+    <geom class="joist" name="joist4" size="0.0254 0.6096 0.0762" pos="-2.4064 0.35 -2.0438"/>
+    <geom class="joist" name="joist5" size="0.0254 0.6096 0.0762" pos="-2.0000 0.35 -2.0438"/>
+    <geom class="joist" name="joist6" size="0.0254 0.6096 0.0762" pos="-1.5936 0.35 -2.0438"/>
+    <geom class="joist" name="joist7" size="0.0254 0.6096 0.0762" pos="-1.1872 0.35 -2.0438"/>
+    <geom class="joist" name="joist8" size="0.0254 0.6096 0.0762" pos="-0.7808 0.35 -2.0438"/>
+    <geom class="joist" name="joist9" size="0.0254 0.6096 0.0762" pos="-0.3744 0.35 -2.0438"/>
+
+    <geom name="tube0" type="cylinder" size="0.07 1.0" pos="-3.8900 2.7 -2.05" euler="90 0 0" rgba="0.7 0.6 0.5 1" condim="3" friction="1.0 0.05 0.01"/>
+    <geom name="tube1" type="cylinder" size="0.07 1.0" pos="-3.3500 2.7 -2.05" euler="90 0 0" rgba="0.7 0.6 0.5 1" condim="3" friction="1.0 0.05 0.01"/>
+    <geom name="tube2" type="cylinder" size="0.07 1.0" pos="-2.8100 2.7 -2.05" euler="90 0 0" rgba="0.7 0.6 0.5 1" condim="3" friction="1.0 0.05 0.01"/>
+    <geom name="tube3" type="cylinder" size="0.07 1.0" pos="-2.2700 2.7 -2.05" euler="90 0 0" rgba="0.7 0.6 0.5 1" condim="3" friction="1.0 0.05 0.01"/>
+    <geom name="tube4" type="cylinder" size="0.07 1.0" pos="-1.7300 2.7 -2.05" euler="90 0 0" rgba="0.7 0.6 0.5 1" condim="3" friction="1.0 0.05 0.01"/>
+    <geom name="tube5" type="cylinder" size="0.07 1.0" pos="-1.1900 2.7 -2.05" euler="90 0 0" rgba="0.7 0.6 0.5 1" condim="3" friction="1.0 0.05 0.01"/>
+    <geom name="tube6" type="cylinder" size="0.07 1.0" pos="-0.6500 2.7 -2.05" euler="90 0 0" rgba="0.7 0.6 0.5 1" condim="3" friction="1.0 0.05 0.01"/>
+    <geom name="tube7" type="cylinder" size="0.07 1.0" pos="-0.1100 2.7 -2.05" euler="90 0 0" rgba="0.7 0.6 0.5 1" condim="3" friction="1.0 0.05 0.01"/>
+
+
+    <geom class="stair" name="step11" size="0.06 0.45 0.02" pos="2.61 0.36184 -2.10" euler="0 0 180"/>
+    <!-- step 2 -->
+    <geom class="stair" name="step21" size="0.06 0.45 0.06" pos="2.49 0.36184 -2.08" euler="0 0 180"/>
+    <!-- step 3 -->
+    <geom class="stair" name="step31" size="0.06 0.45 0.1" pos="2.37 0.36184 -2.06" euler="0 0 180"/>
+    <!-- step 4 -->
+    <geom class="stair" name="step41" size="0.06 0.45 0.14" pos="2.25 0.36184 -2.04" euler="0 0 180"/>
+    <!-- step 5 -->
+    <geom class="stair" name="step51" size="0.06 0.45 0.18" pos="2.13 0.36184 -2.02" euler="0 0 180"/>
+    <!-- step 6 -->
+    <geom class="stair" name="step61" size="0.06 0.45 0.22" pos="2.01 0.36184 -2.00" euler="0 0 180"/>
+    <!-- step 7 -->
+    <geom class="stair" name="step71" size="0.06 0.45 0.26" pos="1.89 0.36184 -1.98" euler="0 0 180"/>
+    <!-- step 8 -->
+    <geom class="stair" name="step81" size="0.06 0.45 0.30" pos="1.77 0.36184 -1.96" euler="0 0 180"/>
+
+    <body name="terrain" pos="-3.08 -1.4 -2.12" euler="0 0 90">
+        <geom name="cube_0_0" type="box" size="0.05 0.05 0.0225" pos="-0.35 -0.75 0.0225" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_0_1" type="box" size="0.05 0.05 0.0475" pos="-0.35 -0.65 0.0475" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_0_2" type="box" size="0.05 0.05 0.012" pos="-0.35 -0.55 0.012" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_0_3" type="box" size="0.05 0.05 0.0075" pos="-0.35 -0.45 0.0075" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_0_4" type="box" size="0.05 0.05 0.05" pos="-0.35 -0.35 0.05" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_0_5" type="box" size="0.05 0.05 0.0455" pos="-0.35 -0.25 0.0455" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_0_6" type="box" size="0.05 0.05 0.048" pos="-0.35 -0.15 0.048" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_0_7" type="box" size="0.05 0.05 0.0125" pos="-0.35 -0.05 0.0125" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_0_8" type="box" size="0.05 0.05 0.002" pos="-0.35 0.05 0.002" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_0_9" type="box" size="0.05 0.05 0.035" pos="-0.35 0.15 0.035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_0_10" type="box" size="0.05 0.05 0.0295" pos="-0.35 0.25 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_0_11" type="box" size="0.05 0.05 0.043" pos="-0.35 0.35 0.043" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_0_12" type="box" size="0.05 0.05 0.0495" pos="-0.35 0.45 0.0495" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_0_13" type="box" size="0.05 0.05 0.042" pos="-0.35 0.55 0.042" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_0_14" type="box" size="0.05 0.05 0.053" pos="-0.35 0.65 0.053" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_0_15" type="box" size="0.05 0.05 0.009" pos="-0.35 0.75 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_1_0" type="box" size="0.05 0.05 0.0475" pos="-0.25 -0.75 0.0475" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_1_1" type="box" size="0.05 0.05 0.0405" pos="-0.25 -0.65 0.0405" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_1_2" type="box" size="0.05 0.05 0.0315" pos="-0.25 -0.55 0.0315" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_1_3" type="box" size="0.05 0.05 0.0195" pos="-0.25 -0.45 0.0195" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_1_4" type="box" size="0.05 0.05 0.0385" pos="-0.25 -0.35 0.0385" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_1_5" type="box" size="0.05 0.05 0.0495" pos="-0.25 -0.25 0.0495" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_1_6" type="box" size="0.05 0.05 0.028" pos="-0.25 -0.15 0.028" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_1_7" type="box" size="0.05 0.05 0.0375" pos="-0.25 -0.05 0.0375" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_1_8" type="box" size="0.05 0.05 0.0485" pos="-0.25 0.05 0.0485" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_1_9" type="box" size="0.05 0.05 0.0285" pos="-0.25 0.15 0.0285" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_1_10" type="box" size="0.05 0.05 0.0195" pos="-0.25 0.25 0.0195" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_1_11" type="box" size="0.05 0.05 0.0105" pos="-0.25 0.35 0.0105" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_1_12" type="box" size="0.05 0.05 0.0265" pos="-0.25 0.45 0.0265" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_1_13" type="box" size="0.05 0.05 0.059" pos="-0.25 0.55 0.059" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_1_14" type="box" size="0.05 0.05 0.0155" pos="-0.25 0.65 0.0155" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_1_15" type="box" size="0.05 0.05 0.009" pos="-0.25 0.75 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_2_0" type="box" size="0.05 0.05 0.0135" pos="-0.15 -0.75 0.0135" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_2_1" type="box" size="0.05 0.05 0.0215" pos="-0.15 -0.65 0.0215" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_2_2" type="box" size="0.05 0.05 0.03" pos="-0.15 -0.55 0.03" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_2_3" type="box" size="0.05 0.05 0.0295" pos="-0.15 -0.45 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_2_4" type="box" size="0.05 0.05 0.0385" pos="-0.15 -0.35 0.0385" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_2_5" type="box" size="0.05 0.05 0.0345" pos="-0.15 -0.25 0.0345" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_2_6" type="box" size="0.05 0.05 0.045" pos="-0.15 -0.15 0.045" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_2_7" type="box" size="0.05 0.05 0.0425" pos="-0.15 -0.05 0.0425" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_2_8" type="box" size="0.05 0.05 0.0385" pos="-0.15 0.05 0.0385" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_2_9" type="box" size="0.05 0.05 0.0585" pos="-0.15 0.15 0.0585" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_2_10" type="box" size="0.05 0.05 0.0575" pos="-0.15 0.25 0.0575" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_2_11" type="box" size="0.05 0.05 0.054" pos="-0.15 0.35 0.054" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_2_12" type="box" size="0.05 0.05 0.053" pos="-0.15 0.45 0.053" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_2_13" type="box" size="0.05 0.05 0.0105" pos="-0.15 0.55 0.0105" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_2_14" type="box" size="0.05 0.05 0.058" pos="-0.15 0.65 0.058" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_2_15" type="box" size="0.05 0.05 0.046" pos="-0.15 0.75 0.046" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_3_0" type="box" size="0.05 0.05 0.03" pos="-0.05 -0.75 0.03" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_3_1" type="box" size="0.05 0.05 0.0535" pos="-0.05 -0.65 0.0535" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_3_2" type="box" size="0.05 0.05 0.018" pos="-0.05 -0.55 0.018" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_3_3" type="box" size="0.05 0.05 0.029" pos="-0.05 -0.45 0.029" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_3_4" type="box" size="0.05 0.05 0.0295" pos="-0.05 -0.35 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_3_5" type="box" size="0.05 0.05 0.0375" pos="-0.05 -0.25 0.0375" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_3_6" type="box" size="0.05 0.05 0.0315" pos="-0.05 -0.15 0.0315" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_3_7" type="box" size="0.05 0.05 0.035" pos="-0.05 -0.05 0.035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_3_8" type="box" size="0.05 0.05 0.0425" pos="-0.05 0.05 0.0425" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_3_9" type="box" size="0.05 0.05 0.02" pos="-0.05 0.15 0.02" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_3_10" type="box" size="0.05 0.05 0.0265" pos="-0.05 0.25 0.0265" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_3_11" type="box" size="0.05 0.05 0.0005" pos="-0.05 0.35 0.0005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_3_12" type="box" size="0.05 0.05 0.049" pos="-0.05 0.45 0.049" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_3_13" type="box" size="0.05 0.05 0.058" pos="-0.05 0.55 0.058" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_3_14" type="box" size="0.05 0.05 0.003" pos="-0.05 0.65 0.003" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_3_15" type="box" size="0.05 0.05 0.0035" pos="-0.05 0.75 0.0035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_4_0" type="box" size="0.05 0.05 0.026" pos="0.05 -0.75 0.026" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_4_1" type="box" size="0.05 0.05 0.0535" pos="0.05 -0.65 0.0535" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_4_2" type="box" size="0.05 0.05 0.0135" pos="0.05 -0.55 0.0135" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_4_3" type="box" size="0.05 0.05 0.006" pos="0.05 -0.45 0.006" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_4_4" type="box" size="0.05 0.05 0.022" pos="0.05 -0.35 0.022" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_4_5" type="box" size="0.05 0.05 0.06" pos="0.05 -0.25 0.06" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_4_6" type="box" size="0.05 0.05 0.0365" pos="0.05 -0.15 0.0365" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_4_7" type="box" size="0.05 0.05 0.039" pos="0.05 -0.05 0.039" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_4_8" type="box" size="0.05 0.05 0.01" pos="0.05 0.05 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_4_9" type="box" size="0.05 0.05 0.0005" pos="0.05 0.15 0.0005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_4_10" type="box" size="0.05 0.05 0.048" pos="0.05 0.25 0.048" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_4_11" type="box" size="0.05 0.05 0.038" pos="0.05 0.35 0.038" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_4_12" type="box" size="0.05 0.05 0.0175" pos="0.05 0.45 0.0175" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_4_13" type="box" size="0.05 0.05 0.0285" pos="0.05 0.55 0.0285" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_4_14" type="box" size="0.05 0.05 0.012" pos="0.05 0.65 0.012" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_4_15" type="box" size="0.05 0.05 0.005" pos="0.05 0.75 0.005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_5_0" type="box" size="0.05 0.05 0.044" pos="0.15 -0.75 0.044" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_5_1" type="box" size="0.05 0.05 0.01" pos="0.15 -0.65 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_5_2" type="box" size="0.05 0.05 0.0585" pos="0.15 -0.55 0.0585" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_5_3" type="box" size="0.05 0.05 0.0295" pos="0.15 -0.45 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_5_4" type="box" size="0.05 0.05 0.034" pos="0.15 -0.35 0.034" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_5_5" type="box" size="0.05 0.05 0.021" pos="0.15 -0.25 0.021" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_5_6" type="box" size="0.05 0.05 0.046" pos="0.15 -0.15 0.046" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_5_7" type="box" size="0.05 0.05 0.031" pos="0.15 -0.05 0.031" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_5_8" type="box" size="0.05 0.05 0.023" pos="0.15 0.05 0.023" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_5_9" type="box" size="0.05 0.05 0.0345" pos="0.15 0.15 0.0345" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_5_10" type="box" size="0.05 0.05 0.0325" pos="0.15 0.25 0.0325" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_5_11" type="box" size="0.05 0.05 0.0375" pos="0.15 0.35 0.0375" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_5_12" type="box" size="0.05 0.05 0.0585" pos="0.15 0.45 0.0585" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_5_13" type="box" size="0.05 0.05 0.038" pos="0.15 0.55 0.038" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_5_14" type="box" size="0.05 0.05 0.001" pos="0.15 0.65 0.001" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_5_15" type="box" size="0.05 0.05 0.005" pos="0.15 0.75 0.005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_6_0" type="box" size="0.05 0.05 0.014" pos="0.25 -0.75 0.014" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_6_1" type="box" size="0.05 0.05 0.0455" pos="0.25 -0.65 0.0455" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_6_2" type="box" size="0.05 0.05 0.0055" pos="0.25 -0.55 0.0055" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_6_3" type="box" size="0.05 0.05 0.013" pos="0.25 -0.45 0.013" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_6_4" type="box" size="0.05 0.05 0.0205" pos="0.25 -0.35 0.0205" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_6_5" type="box" size="0.05 0.05 0.056" pos="0.25 -0.25 0.056" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_6_6" type="box" size="0.05 0.05 0.04" pos="0.25 -0.15 0.04" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_6_7" type="box" size="0.05 0.05 0.0525" pos="0.25 -0.05 0.0525" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_6_8" type="box" size="0.05 0.05 0.01" pos="0.25 0.05 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_6_9" type="box" size="0.05 0.05 0.017" pos="0.25 0.15 0.017" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_6_10" type="box" size="0.05 0.05 0.0515" pos="0.25 0.25 0.0515" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_6_11" type="box" size="0.05 0.05 0.0205" pos="0.25 0.35 0.0205" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_6_12" type="box" size="0.05 0.05 0.0405" pos="0.25 0.45 0.0405" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_6_13" type="box" size="0.05 0.05 0.028" pos="0.25 0.55 0.028" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_6_14" type="box" size="0.05 0.05 0.01" pos="0.25 0.65 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_6_15" type="box" size="0.05 0.05 0.06" pos="0.25 0.75 0.06" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_7_0" type="box" size="0.05 0.05 0.0135" pos="0.35 -0.75 0.0135" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_7_1" type="box" size="0.05 0.05 0.046" pos="0.35 -0.65 0.046" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_7_2" type="box" size="0.05 0.05 0.006" pos="0.35 -0.55 0.006" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_7_3" type="box" size="0.05 0.05 0.0465" pos="0.35 -0.45 0.0465" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_7_4" type="box" size="0.05 0.05 0.016" pos="0.35 -0.35 0.016" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_7_5" type="box" size="0.05 0.05 0.009" pos="0.35 -0.25 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_7_6" type="box" size="0.05 0.05 0.009" pos="0.35 -0.15 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_7_7" type="box" size="0.05 0.05 0.012" pos="0.35 -0.05 0.012" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_7_8" type="box" size="0.05 0.05 0.0405" pos="0.35 0.05 0.0405" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_7_9" type="box" size="0.05 0.05 0.021" pos="0.35 0.15 0.021" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_7_10" type="box" size="0.05 0.05 0.033" pos="0.35 0.25 0.033" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_7_11" type="box" size="0.05 0.05 0.0085" pos="0.35 0.35 0.0085" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_7_12" type="box" size="0.05 0.05 0.016" pos="0.35 0.45 0.016" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_7_13" type="box" size="0.05 0.05 0.035" pos="0.35 0.55 0.035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_7_14" type="box" size="0.05 0.05 0.0435" pos="0.35 0.65 0.0435" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cube_7_15" type="box" size="0.05 0.05 0.0145" pos="0.35 0.75 0.0145" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_0_0" type="box" size="0.05 0.05 0.0225" pos="-0.35 -2.3500 0.0225" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_0_1" type="box" size="0.05 0.05 0.0475" pos="-0.35 -2.2500 0.0475" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_0_2" type="box" size="0.05 0.05 0.012" pos="-0.35 -2.1500 0.012" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_0_3" type="box" size="0.05 0.05 0.0075" pos="-0.35 -2.0500 0.0075" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_0_4" type="box" size="0.05 0.05 0.05" pos="-0.35 -1.9500 0.05" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_0_5" type="box" size="0.05 0.05 0.0455" pos="-0.35 -1.8500 0.0455" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_0_6" type="box" size="0.05 0.05 0.048" pos="-0.35 -1.7500 0.048" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_0_7" type="box" size="0.05 0.05 0.0125" pos="-0.35 -1.6500 0.0125" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_0_8" type="box" size="0.05 0.05 0.002" pos="-0.35 -1.5500 0.002" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_0_9" type="box" size="0.05 0.05 0.035" pos="-0.35 -1.4500 0.035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_0_10" type="box" size="0.05 0.05 0.0295" pos="-0.35 -1.3500 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_0_11" type="box" size="0.05 0.05 0.043" pos="-0.35 -1.2500 0.043" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_0_12" type="box" size="0.05 0.05 0.0495" pos="-0.35 -1.1500 0.0495" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_0_13" type="box" size="0.05 0.05 0.042" pos="-0.35 -1.0500 0.042" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_0_14" type="box" size="0.05 0.05 0.053" pos="-0.35 -0.9500 0.053" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_0_15" type="box" size="0.05 0.05 0.009" pos="-0.35 -0.8500 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_1_0" type="box" size="0.05 0.05 0.0475" pos="-0.25 -2.3500 0.0475" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_1_1" type="box" size="0.05 0.05 0.0405" pos="-0.25 -2.2500 0.0405" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_1_2" type="box" size="0.05 0.05 0.0315" pos="-0.25 -2.1500 0.0315" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_1_3" type="box" size="0.05 0.05 0.0195" pos="-0.25 -2.0500 0.0195" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_1_4" type="box" size="0.05 0.05 0.0385" pos="-0.25 -1.9500 0.0385" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_1_5" type="box" size="0.05 0.05 0.0495" pos="-0.25 -1.8500 0.0495" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_1_6" type="box" size="0.05 0.05 0.028" pos="-0.25 -1.7500 0.028" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_1_7" type="box" size="0.05 0.05 0.0375" pos="-0.25 -1.6500 0.0375" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_1_8" type="box" size="0.05 0.05 0.0485" pos="-0.25 -1.5500 0.0485" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_1_9" type="box" size="0.05 0.05 0.0285" pos="-0.25 -1.4500 0.0285" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_1_10" type="box" size="0.05 0.05 0.0195" pos="-0.25 -1.3500 0.0195" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_1_11" type="box" size="0.05 0.05 0.0105" pos="-0.25 -1.2500 0.0105" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_1_12" type="box" size="0.05 0.05 0.0265" pos="-0.25 -1.1500 0.0265" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_1_13" type="box" size="0.05 0.05 0.059" pos="-0.25 -1.0500 0.059" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_1_14" type="box" size="0.05 0.05 0.0155" pos="-0.25 -0.9500 0.0155" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_1_15" type="box" size="0.05 0.05 0.009" pos="-0.25 -0.8500 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_2_0" type="box" size="0.05 0.05 0.0135" pos="-0.15 -2.3500 0.0135" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_2_1" type="box" size="0.05 0.05 0.0215" pos="-0.15 -2.2500 0.0215" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_2_2" type="box" size="0.05 0.05 0.03" pos="-0.15 -2.1500 0.03" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_2_3" type="box" size="0.05 0.05 0.0295" pos="-0.15 -2.0500 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_2_4" type="box" size="0.05 0.05 0.0385" pos="-0.15 -1.9500 0.0385" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_2_5" type="box" size="0.05 0.05 0.0345" pos="-0.15 -1.8500 0.0345" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_2_6" type="box" size="0.05 0.05 0.045" pos="-0.15 -1.7500 0.045" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_2_7" type="box" size="0.05 0.05 0.0425" pos="-0.15 -1.6500 0.0425" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_2_8" type="box" size="0.05 0.05 0.0385" pos="-0.15 -1.5500 0.0385" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_2_9" type="box" size="0.05 0.05 0.0585" pos="-0.15 -1.4500 0.0585" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_2_10" type="box" size="0.05 0.05 0.0575" pos="-0.15 -1.3500 0.0575" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_2_11" type="box" size="0.05 0.05 0.054" pos="-0.15 -1.2500 0.054" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_2_12" type="box" size="0.05 0.05 0.053" pos="-0.15 -1.1500 0.053" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_2_13" type="box" size="0.05 0.05 0.0105" pos="-0.15 -1.0500 0.0105" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_2_14" type="box" size="0.05 0.05 0.058" pos="-0.15 -0.9500 0.058" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_2_15" type="box" size="0.05 0.05 0.046" pos="-0.15 -0.8500 0.046" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_3_0" type="box" size="0.05 0.05 0.03" pos="-0.05 -2.3500 0.03" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_3_1" type="box" size="0.05 0.05 0.0535" pos="-0.05 -2.2500 0.0535" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_3_2" type="box" size="0.05 0.05 0.018" pos="-0.05 -2.1500 0.018" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_3_3" type="box" size="0.05 0.05 0.029" pos="-0.05 -2.0500 0.029" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_3_4" type="box" size="0.05 0.05 0.0295" pos="-0.05 -1.9500 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_3_5" type="box" size="0.05 0.05 0.0375" pos="-0.05 -1.8500 0.0375" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_3_6" type="box" size="0.05 0.05 0.0315" pos="-0.05 -1.7500 0.0315" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_3_7" type="box" size="0.05 0.05 0.035" pos="-0.05 -1.6500 0.035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_3_8" type="box" size="0.05 0.05 0.0425" pos="-0.05 -1.5500 0.0425" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_3_9" type="box" size="0.05 0.05 0.02" pos="-0.05 -1.4500 0.02" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_3_10" type="box" size="0.05 0.05 0.0265" pos="-0.05 -1.3500 0.0265" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_3_11" type="box" size="0.05 0.05 0.0005" pos="-0.05 -1.2500 0.0005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_3_12" type="box" size="0.05 0.05 0.049" pos="-0.05 -1.1500 0.049" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_3_13" type="box" size="0.05 0.05 0.058" pos="-0.05 -1.0500 0.058" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_3_14" type="box" size="0.05 0.05 0.003" pos="-0.05 -0.9500 0.003" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_3_15" type="box" size="0.05 0.05 0.0035" pos="-0.05 -0.8500 0.0035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_4_0" type="box" size="0.05 0.05 0.026" pos="0.05 -2.3500 0.026" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_4_1" type="box" size="0.05 0.05 0.0535" pos="0.05 -2.2500 0.0535" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_4_2" type="box" size="0.05 0.05 0.0135" pos="0.05 -2.1500 0.0135" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_4_3" type="box" size="0.05 0.05 0.006" pos="0.05 -2.0500 0.006" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_4_4" type="box" size="0.05 0.05 0.022" pos="0.05 -1.9500 0.022" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_4_5" type="box" size="0.05 0.05 0.06" pos="0.05 -1.8500 0.06" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_4_6" type="box" size="0.05 0.05 0.0365" pos="0.05 -1.7500 0.0365" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_4_7" type="box" size="0.05 0.05 0.039" pos="0.05 -1.6500 0.039" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_4_8" type="box" size="0.05 0.05 0.01" pos="0.05 -1.5500 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_4_9" type="box" size="0.05 0.05 0.0005" pos="0.05 -1.4500 0.0005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_4_10" type="box" size="0.05 0.05 0.048" pos="0.05 -1.3500 0.048" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_4_11" type="box" size="0.05 0.05 0.038" pos="0.05 -1.2500 0.038" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_4_12" type="box" size="0.05 0.05 0.0175" pos="0.05 -1.1500 0.0175" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_4_13" type="box" size="0.05 0.05 0.0285" pos="0.05 -1.0500 0.0285" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_4_14" type="box" size="0.05 0.05 0.012" pos="0.05 -0.9500 0.012" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_4_15" type="box" size="0.05 0.05 0.005" pos="0.05 -0.8500 0.005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_5_0" type="box" size="0.05 0.05 0.044" pos="0.15 -2.3500 0.044" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_5_1" type="box" size="0.05 0.05 0.01" pos="0.15 -2.2500 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_5_2" type="box" size="0.05 0.05 0.0585" pos="0.15 -2.1500 0.0585" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_5_3" type="box" size="0.05 0.05 0.0295" pos="0.15 -2.0500 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_5_4" type="box" size="0.05 0.05 0.034" pos="0.15 -1.9500 0.034" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_5_5" type="box" size="0.05 0.05 0.021" pos="0.15 -1.8500 0.021" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_5_6" type="box" size="0.05 0.05 0.046" pos="0.15 -1.7500 0.046" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_5_7" type="box" size="0.05 0.05 0.031" pos="0.15 -1.6500 0.031" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_5_8" type="box" size="0.05 0.05 0.023" pos="0.15 -1.5500 0.023" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_5_9" type="box" size="0.05 0.05 0.0345" pos="0.15 -1.4500 0.0345" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_5_10" type="box" size="0.05 0.05 0.0325" pos="0.15 -1.3500 0.0325" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_5_11" type="box" size="0.05 0.05 0.0375" pos="0.15 -1.2500 0.0375" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_5_12" type="box" size="0.05 0.05 0.0585" pos="0.15 -1.1500 0.0585" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_5_13" type="box" size="0.05 0.05 0.038" pos="0.15 -1.0500 0.038" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_5_14" type="box" size="0.05 0.05 0.001" pos="0.15 -0.9500 0.001" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_5_15" type="box" size="0.05 0.05 0.005" pos="0.15 -0.8500 0.005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_6_0" type="box" size="0.05 0.05 0.014" pos="0.25 -2.3500 0.014" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_6_1" type="box" size="0.05 0.05 0.0455" pos="0.25 -2.2500 0.0455" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_6_2" type="box" size="0.05 0.05 0.0055" pos="0.25 -2.1500 0.0055" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_6_3" type="box" size="0.05 0.05 0.013" pos="0.25 -2.0500 0.013" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_6_4" type="box" size="0.05 0.05 0.0205" pos="0.25 -1.9500 0.0205" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_6_5" type="box" size="0.05 0.05 0.056" pos="0.25 -1.8500 0.056" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_6_6" type="box" size="0.05 0.05 0.04" pos="0.25 -1.7500 0.04" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_6_7" type="box" size="0.05 0.05 0.0525" pos="0.25 -1.6500 0.0525" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_6_8" type="box" size="0.05 0.05 0.01" pos="0.25 -1.5500 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_6_9" type="box" size="0.05 0.05 0.017" pos="0.25 -1.4500 0.017" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_6_10" type="box" size="0.05 0.05 0.0515" pos="0.25 -1.3500 0.0515" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_6_11" type="box" size="0.05 0.05 0.0205" pos="0.25 -1.2500 0.0205" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_6_12" type="box" size="0.05 0.05 0.0405" pos="0.25 -1.1500 0.0405" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_6_13" type="box" size="0.05 0.05 0.028" pos="0.25 -1.0500 0.028" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_6_14" type="box" size="0.05 0.05 0.01" pos="0.25 -0.9500 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_6_15" type="box" size="0.05 0.05 0.06" pos="0.25 -0.8500 0.06" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_7_0" type="box" size="0.05 0.05 0.0135" pos="0.35 -2.3500 0.0135" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_7_1" type="box" size="0.05 0.05 0.046" pos="0.35 -2.2500 0.046" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_7_2" type="box" size="0.05 0.05 0.006" pos="0.35 -2.1500 0.006" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_7_3" type="box" size="0.05 0.05 0.0465" pos="0.35 -2.0500 0.0465" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_7_4" type="box" size="0.05 0.05 0.016" pos="0.35 -1.9500 0.016" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_7_5" type="box" size="0.05 0.05 0.009" pos="0.35 -1.8500 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_7_6" type="box" size="0.05 0.05 0.009" pos="0.35 -1.7500 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_7_7" type="box" size="0.05 0.05 0.012" pos="0.35 -1.6500 0.012" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_7_8" type="box" size="0.05 0.05 0.0405" pos="0.35 -1.5500 0.0405" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_7_9" type="box" size="0.05 0.05 0.021" pos="0.35 -1.4500 0.021" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_7_10" type="box" size="0.05 0.05 0.033" pos="0.35 -1.3500 0.033" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_7_11" type="box" size="0.05 0.05 0.0085" pos="0.35 -1.2500 0.0085" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_7_12" type="box" size="0.05 0.05 0.016" pos="0.35 -1.1500 0.016" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_7_13" type="box" size="0.05 0.05 0.035" pos="0.35 -1.0500 0.035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_7_14" type="box" size="0.05 0.05 0.0435" pos="0.35 -0.9500 0.0435" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b2_cube_7_15" type="box" size="0.05 0.05 0.0145" pos="0.35 -0.8500 0.0145" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_0_0" type="box" size="0.05 0.05 0.0225" pos="-0.35 -3.9500 0.0225" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_0_1" type="box" size="0.05 0.05 0.0475" pos="-0.35 -3.8500 0.0475" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_0_2" type="box" size="0.05 0.05 0.012" pos="-0.35 -3.7500 0.012" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_0_3" type="box" size="0.05 0.05 0.0075" pos="-0.35 -3.6500 0.0075" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_0_4" type="box" size="0.05 0.05 0.05" pos="-0.35 -3.5500 0.05" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_0_5" type="box" size="0.05 0.05 0.0455" pos="-0.35 -3.4500 0.0455" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_0_6" type="box" size="0.05 0.05 0.048" pos="-0.35 -3.3500 0.048" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_0_7" type="box" size="0.05 0.05 0.0125" pos="-0.35 -3.2500 0.0125" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_0_8" type="box" size="0.05 0.05 0.002" pos="-0.35 -3.1500 0.002" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_0_9" type="box" size="0.05 0.05 0.035" pos="-0.35 -3.0500 0.035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_0_10" type="box" size="0.05 0.05 0.0295" pos="-0.35 -2.9500 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_0_11" type="box" size="0.05 0.05 0.043" pos="-0.35 -2.8500 0.043" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_0_12" type="box" size="0.05 0.05 0.0495" pos="-0.35 -2.7500 0.0495" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_0_13" type="box" size="0.05 0.05 0.042" pos="-0.35 -2.6500 0.042" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_0_14" type="box" size="0.05 0.05 0.053" pos="-0.35 -2.5500 0.053" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_0_15" type="box" size="0.05 0.05 0.009" pos="-0.35 -2.4500 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_1_0" type="box" size="0.05 0.05 0.0475" pos="-0.25 -3.9500 0.0475" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_1_1" type="box" size="0.05 0.05 0.0405" pos="-0.25 -3.8500 0.0405" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_1_2" type="box" size="0.05 0.05 0.0315" pos="-0.25 -3.7500 0.0315" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_1_3" type="box" size="0.05 0.05 0.0195" pos="-0.25 -3.6500 0.0195" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_1_4" type="box" size="0.05 0.05 0.0385" pos="-0.25 -3.5500 0.0385" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_1_5" type="box" size="0.05 0.05 0.0495" pos="-0.25 -3.4500 0.0495" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_1_6" type="box" size="0.05 0.05 0.028" pos="-0.25 -3.3500 0.028" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_1_7" type="box" size="0.05 0.05 0.0375" pos="-0.25 -3.2500 0.0375" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_1_8" type="box" size="0.05 0.05 0.0485" pos="-0.25 -3.1500 0.0485" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_1_9" type="box" size="0.05 0.05 0.0285" pos="-0.25 -3.0500 0.0285" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_1_10" type="box" size="0.05 0.05 0.0195" pos="-0.25 -2.9500 0.0195" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_1_11" type="box" size="0.05 0.05 0.0105" pos="-0.25 -2.8500 0.0105" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_1_12" type="box" size="0.05 0.05 0.0265" pos="-0.25 -2.7500 0.0265" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_1_13" type="box" size="0.05 0.05 0.059" pos="-0.25 -2.6500 0.059" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_1_14" type="box" size="0.05 0.05 0.0155" pos="-0.25 -2.5500 0.0155" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_1_15" type="box" size="0.05 0.05 0.009" pos="-0.25 -2.4500 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_2_0" type="box" size="0.05 0.05 0.0135" pos="-0.15 -3.9500 0.0135" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_2_1" type="box" size="0.05 0.05 0.0215" pos="-0.15 -3.8500 0.0215" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_2_2" type="box" size="0.05 0.05 0.03" pos="-0.15 -3.7500 0.03" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_2_3" type="box" size="0.05 0.05 0.0295" pos="-0.15 -3.6500 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_2_4" type="box" size="0.05 0.05 0.0385" pos="-0.15 -3.5500 0.0385" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_2_5" type="box" size="0.05 0.05 0.0345" pos="-0.15 -3.4500 0.0345" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_2_6" type="box" size="0.05 0.05 0.045" pos="-0.15 -3.3500 0.045" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_2_7" type="box" size="0.05 0.05 0.0425" pos="-0.15 -3.2500 0.0425" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_2_8" type="box" size="0.05 0.05 0.0385" pos="-0.15 -3.1500 0.0385" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_2_9" type="box" size="0.05 0.05 0.0585" pos="-0.15 -3.0500 0.0585" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_2_10" type="box" size="0.05 0.05 0.0575" pos="-0.15 -2.9500 0.0575" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_2_11" type="box" size="0.05 0.05 0.054" pos="-0.15 -2.8500 0.054" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_2_12" type="box" size="0.05 0.05 0.053" pos="-0.15 -2.7500 0.053" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_2_13" type="box" size="0.05 0.05 0.0105" pos="-0.15 -2.6500 0.0105" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_2_14" type="box" size="0.05 0.05 0.058" pos="-0.15 -2.5500 0.058" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_2_15" type="box" size="0.05 0.05 0.046" pos="-0.15 -2.4500 0.046" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_3_0" type="box" size="0.05 0.05 0.03" pos="-0.05 -3.9500 0.03" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_3_1" type="box" size="0.05 0.05 0.0535" pos="-0.05 -3.8500 0.0535" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_3_2" type="box" size="0.05 0.05 0.018" pos="-0.05 -3.7500 0.018" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_3_3" type="box" size="0.05 0.05 0.029" pos="-0.05 -3.6500 0.029" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_3_4" type="box" size="0.05 0.05 0.0295" pos="-0.05 -3.5500 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_3_5" type="box" size="0.05 0.05 0.0375" pos="-0.05 -3.4500 0.0375" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_3_6" type="box" size="0.05 0.05 0.0315" pos="-0.05 -3.3500 0.0315" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_3_7" type="box" size="0.05 0.05 0.035" pos="-0.05 -3.2500 0.035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_3_8" type="box" size="0.05 0.05 0.0425" pos="-0.05 -3.1500 0.0425" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_3_9" type="box" size="0.05 0.05 0.02" pos="-0.05 -3.0500 0.02" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_3_10" type="box" size="0.05 0.05 0.0265" pos="-0.05 -2.9500 0.0265" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_3_11" type="box" size="0.05 0.05 0.0005" pos="-0.05 -2.8500 0.0005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_3_12" type="box" size="0.05 0.05 0.049" pos="-0.05 -2.7500 0.049" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_3_13" type="box" size="0.05 0.05 0.058" pos="-0.05 -2.6500 0.058" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_3_14" type="box" size="0.05 0.05 0.003" pos="-0.05 -2.5500 0.003" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_3_15" type="box" size="0.05 0.05 0.0035" pos="-0.05 -2.4500 0.0035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_4_0" type="box" size="0.05 0.05 0.026" pos="0.05 -3.9500 0.026" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_4_1" type="box" size="0.05 0.05 0.0535" pos="0.05 -3.8500 0.0535" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_4_2" type="box" size="0.05 0.05 0.0135" pos="0.05 -3.7500 0.0135" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_4_3" type="box" size="0.05 0.05 0.006" pos="0.05 -3.6500 0.006" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_4_4" type="box" size="0.05 0.05 0.022" pos="0.05 -3.5500 0.022" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_4_5" type="box" size="0.05 0.05 0.06" pos="0.05 -3.4500 0.06" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_4_6" type="box" size="0.05 0.05 0.0365" pos="0.05 -3.3500 0.0365" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_4_7" type="box" size="0.05 0.05 0.039" pos="0.05 -3.2500 0.039" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_4_8" type="box" size="0.05 0.05 0.01" pos="0.05 -3.1500 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_4_9" type="box" size="0.05 0.05 0.0005" pos="0.05 -3.0500 0.0005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_4_10" type="box" size="0.05 0.05 0.048" pos="0.05 -2.9500 0.048" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_4_11" type="box" size="0.05 0.05 0.038" pos="0.05 -2.8500 0.038" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_4_12" type="box" size="0.05 0.05 0.0175" pos="0.05 -2.7500 0.0175" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_4_13" type="box" size="0.05 0.05 0.0285" pos="0.05 -2.6500 0.0285" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_4_14" type="box" size="0.05 0.05 0.012" pos="0.05 -2.5500 0.012" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_4_15" type="box" size="0.05 0.05 0.005" pos="0.05 -2.4500 0.005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_5_0" type="box" size="0.05 0.05 0.044" pos="0.15 -3.9500 0.044" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_5_1" type="box" size="0.05 0.05 0.01" pos="0.15 -3.8500 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_5_2" type="box" size="0.05 0.05 0.0585" pos="0.15 -3.7500 0.0585" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_5_3" type="box" size="0.05 0.05 0.0295" pos="0.15 -3.6500 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_5_4" type="box" size="0.05 0.05 0.034" pos="0.15 -3.5500 0.034" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_5_5" type="box" size="0.05 0.05 0.021" pos="0.15 -3.4500 0.021" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_5_6" type="box" size="0.05 0.05 0.046" pos="0.15 -3.3500 0.046" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_5_7" type="box" size="0.05 0.05 0.031" pos="0.15 -3.2500 0.031" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_5_8" type="box" size="0.05 0.05 0.023" pos="0.15 -3.1500 0.023" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_5_9" type="box" size="0.05 0.05 0.0345" pos="0.15 -3.0500 0.0345" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_5_10" type="box" size="0.05 0.05 0.0325" pos="0.15 -2.9500 0.0325" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_5_11" type="box" size="0.05 0.05 0.0375" pos="0.15 -2.8500 0.0375" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_5_12" type="box" size="0.05 0.05 0.0585" pos="0.15 -2.7500 0.0585" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_5_13" type="box" size="0.05 0.05 0.038" pos="0.15 -2.6500 0.038" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_5_14" type="box" size="0.05 0.05 0.001" pos="0.15 -2.5500 0.001" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_5_15" type="box" size="0.05 0.05 0.005" pos="0.15 -2.4500 0.005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_6_0" type="box" size="0.05 0.05 0.014" pos="0.25 -3.9500 0.014" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_6_1" type="box" size="0.05 0.05 0.0455" pos="0.25 -3.8500 0.0455" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_6_2" type="box" size="0.05 0.05 0.0055" pos="0.25 -3.7500 0.0055" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_6_3" type="box" size="0.05 0.05 0.013" pos="0.25 -3.6500 0.013" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_6_4" type="box" size="0.05 0.05 0.0205" pos="0.25 -3.5500 0.0205" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_6_5" type="box" size="0.05 0.05 0.056" pos="0.25 -3.4500 0.056" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_6_6" type="box" size="0.05 0.05 0.04" pos="0.25 -3.3500 0.04" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_6_7" type="box" size="0.05 0.05 0.0525" pos="0.25 -3.2500 0.0525" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_6_8" type="box" size="0.05 0.05 0.01" pos="0.25 -3.1500 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_6_9" type="box" size="0.05 0.05 0.017" pos="0.25 -3.0500 0.017" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_6_10" type="box" size="0.05 0.05 0.0515" pos="0.25 -2.9500 0.0515" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_6_11" type="box" size="0.05 0.05 0.0205" pos="0.25 -2.8500 0.0205" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_6_12" type="box" size="0.05 0.05 0.0405" pos="0.25 -2.7500 0.0405" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_6_13" type="box" size="0.05 0.05 0.028" pos="0.25 -2.6500 0.028" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_6_14" type="box" size="0.05 0.05 0.01" pos="0.25 -2.5500 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_6_15" type="box" size="0.05 0.05 0.06" pos="0.25 -2.4500 0.06" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_7_0" type="box" size="0.05 0.05 0.0135" pos="0.35 -3.9500 0.0135" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_7_1" type="box" size="0.05 0.05 0.046" pos="0.35 -3.8500 0.046" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_7_2" type="box" size="0.05 0.05 0.006" pos="0.35 -3.7500 0.006" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_7_3" type="box" size="0.05 0.05 0.0465" pos="0.35 -3.6500 0.0465" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_7_4" type="box" size="0.05 0.05 0.016" pos="0.35 -3.5500 0.016" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_7_5" type="box" size="0.05 0.05 0.009" pos="0.35 -3.4500 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_7_6" type="box" size="0.05 0.05 0.009" pos="0.35 -3.3500 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_7_7" type="box" size="0.05 0.05 0.012" pos="0.35 -3.2500 0.012" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_7_8" type="box" size="0.05 0.05 0.0405" pos="0.35 -3.1500 0.0405" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_7_9" type="box" size="0.05 0.05 0.021" pos="0.35 -3.0500 0.021" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_7_10" type="box" size="0.05 0.05 0.033" pos="0.35 -2.9500 0.033" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_7_11" type="box" size="0.05 0.05 0.0085" pos="0.35 -2.8500 0.0085" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_7_12" type="box" size="0.05 0.05 0.016" pos="0.35 -2.7500 0.016" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_7_13" type="box" size="0.05 0.05 0.035" pos="0.35 -2.6500 0.035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_7_14" type="box" size="0.05 0.05 0.0435" pos="0.35 -2.5500 0.0435" rgba="0.6 0.4 0.3 1"/>
+        <geom name="b3_cube_7_15" type="box" size="0.05 0.05 0.0145" pos="0.35 -2.4500 0.0145" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_0_0" type="box" size="0.05 0.05 0.0225" pos="-1.1500 -0.75 0.0225" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_0_1" type="box" size="0.05 0.05 0.0475" pos="-1.1500 -0.65 0.0475" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_0_2" type="box" size="0.05 0.05 0.012" pos="-1.1500 -0.55 0.012" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_0_3" type="box" size="0.05 0.05 0.0075" pos="-1.1500 -0.45 0.0075" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_0_4" type="box" size="0.05 0.05 0.05" pos="-1.1500 -0.35 0.05" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_0_5" type="box" size="0.05 0.05 0.0455" pos="-1.1500 -0.25 0.0455" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_0_6" type="box" size="0.05 0.05 0.048" pos="-1.1500 -0.15 0.048" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_0_7" type="box" size="0.05 0.05 0.0125" pos="-1.1500 -0.05 0.0125" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_0_8" type="box" size="0.05 0.05 0.002" pos="-1.1500 0.05 0.002" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_0_9" type="box" size="0.05 0.05 0.035" pos="-1.1500 0.15 0.035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_0_10" type="box" size="0.05 0.05 0.0295" pos="-1.1500 0.25 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_0_11" type="box" size="0.05 0.05 0.043" pos="-1.1500 0.35 0.043" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_0_12" type="box" size="0.05 0.05 0.0495" pos="-1.1500 0.45 0.0495" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_0_13" type="box" size="0.05 0.05 0.042" pos="-1.1500 0.55 0.042" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_0_14" type="box" size="0.05 0.05 0.053" pos="-1.1500 0.65 0.053" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_0_15" type="box" size="0.05 0.05 0.009" pos="-1.1500 0.75 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_1_0" type="box" size="0.05 0.05 0.0475" pos="-1.0500 -0.75 0.0475" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_1_1" type="box" size="0.05 0.05 0.0405" pos="-1.0500 -0.65 0.0405" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_1_2" type="box" size="0.05 0.05 0.0315" pos="-1.0500 -0.55 0.0315" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_1_3" type="box" size="0.05 0.05 0.0195" pos="-1.0500 -0.45 0.0195" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_1_4" type="box" size="0.05 0.05 0.0385" pos="-1.0500 -0.35 0.0385" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_1_5" type="box" size="0.05 0.05 0.0495" pos="-1.0500 -0.25 0.0495" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_1_6" type="box" size="0.05 0.05 0.028" pos="-1.0500 -0.15 0.028" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_1_7" type="box" size="0.05 0.05 0.0375" pos="-1.0500 -0.05 0.0375" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_1_8" type="box" size="0.05 0.05 0.0485" pos="-1.0500 0.05 0.0485" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_1_9" type="box" size="0.05 0.05 0.0285" pos="-1.0500 0.15 0.0285" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_1_10" type="box" size="0.05 0.05 0.0195" pos="-1.0500 0.25 0.0195" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_1_11" type="box" size="0.05 0.05 0.0105" pos="-1.0500 0.35 0.0105" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_1_12" type="box" size="0.05 0.05 0.0265" pos="-1.0500 0.45 0.0265" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_1_13" type="box" size="0.05 0.05 0.059" pos="-1.0500 0.55 0.059" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_1_14" type="box" size="0.05 0.05 0.0155" pos="-1.0500 0.65 0.0155" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_1_15" type="box" size="0.05 0.05 0.009" pos="-1.0500 0.75 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_2_0" type="box" size="0.05 0.05 0.0135" pos="-0.9500 -0.75 0.0135" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_2_1" type="box" size="0.05 0.05 0.0215" pos="-0.9500 -0.65 0.0215" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_2_2" type="box" size="0.05 0.05 0.03" pos="-0.9500 -0.55 0.03" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_2_3" type="box" size="0.05 0.05 0.0295" pos="-0.9500 -0.45 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_2_4" type="box" size="0.05 0.05 0.0385" pos="-0.9500 -0.35 0.0385" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_2_5" type="box" size="0.05 0.05 0.0345" pos="-0.9500 -0.25 0.0345" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_2_6" type="box" size="0.05 0.05 0.045" pos="-0.9500 -0.15 0.045" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_2_7" type="box" size="0.05 0.05 0.0425" pos="-0.9500 -0.05 0.0425" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_2_8" type="box" size="0.05 0.05 0.0385" pos="-0.9500 0.05 0.0385" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_2_9" type="box" size="0.05 0.05 0.0585" pos="-0.9500 0.15 0.0585" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_2_10" type="box" size="0.05 0.05 0.0575" pos="-0.9500 0.25 0.0575" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_2_11" type="box" size="0.05 0.05 0.054" pos="-0.9500 0.35 0.054" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_2_12" type="box" size="0.05 0.05 0.053" pos="-0.9500 0.45 0.053" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_2_13" type="box" size="0.05 0.05 0.0105" pos="-0.9500 0.55 0.0105" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_2_14" type="box" size="0.05 0.05 0.058" pos="-0.9500 0.65 0.058" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_2_15" type="box" size="0.05 0.05 0.046" pos="-0.9500 0.75 0.046" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_3_0" type="box" size="0.05 0.05 0.03" pos="-0.8500 -0.75 0.03" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_3_1" type="box" size="0.05 0.05 0.0535" pos="-0.8500 -0.65 0.0535" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_3_2" type="box" size="0.05 0.05 0.018" pos="-0.8500 -0.55 0.018" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_3_3" type="box" size="0.05 0.05 0.029" pos="-0.8500 -0.45 0.029" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_3_4" type="box" size="0.05 0.05 0.0295" pos="-0.8500 -0.35 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_3_5" type="box" size="0.05 0.05 0.0375" pos="-0.8500 -0.25 0.0375" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_3_6" type="box" size="0.05 0.05 0.0315" pos="-0.8500 -0.15 0.0315" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_3_7" type="box" size="0.05 0.05 0.035" pos="-0.8500 -0.05 0.035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_3_8" type="box" size="0.05 0.05 0.0425" pos="-0.8500 0.05 0.0425" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_3_9" type="box" size="0.05 0.05 0.02" pos="-0.8500 0.15 0.02" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_3_10" type="box" size="0.05 0.05 0.0265" pos="-0.8500 0.25 0.0265" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_3_11" type="box" size="0.05 0.05 0.0005" pos="-0.8500 0.35 0.0005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_3_12" type="box" size="0.05 0.05 0.049" pos="-0.8500 0.45 0.049" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_3_13" type="box" size="0.05 0.05 0.058" pos="-0.8500 0.55 0.058" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_3_14" type="box" size="0.05 0.05 0.003" pos="-0.8500 0.65 0.003" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_3_15" type="box" size="0.05 0.05 0.0035" pos="-0.8500 0.75 0.0035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_4_0" type="box" size="0.05 0.05 0.026" pos="-0.7500 -0.75 0.026" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_4_1" type="box" size="0.05 0.05 0.0535" pos="-0.7500 -0.65 0.0535" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_4_2" type="box" size="0.05 0.05 0.0135" pos="-0.7500 -0.55 0.0135" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_4_3" type="box" size="0.05 0.05 0.006" pos="-0.7500 -0.45 0.006" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_4_4" type="box" size="0.05 0.05 0.022" pos="-0.7500 -0.35 0.022" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_4_5" type="box" size="0.05 0.05 0.06" pos="-0.7500 -0.25 0.06" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_4_6" type="box" size="0.05 0.05 0.0365" pos="-0.7500 -0.15 0.0365" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_4_7" type="box" size="0.05 0.05 0.039" pos="-0.7500 -0.05 0.039" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_4_8" type="box" size="0.05 0.05 0.01" pos="-0.7500 0.05 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_4_9" type="box" size="0.05 0.05 0.0005" pos="-0.7500 0.15 0.0005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_4_10" type="box" size="0.05 0.05 0.048" pos="-0.7500 0.25 0.048" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_4_11" type="box" size="0.05 0.05 0.038" pos="-0.7500 0.35 0.038" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_4_12" type="box" size="0.05 0.05 0.0175" pos="-0.7500 0.45 0.0175" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_4_13" type="box" size="0.05 0.05 0.0285" pos="-0.7500 0.55 0.0285" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_4_14" type="box" size="0.05 0.05 0.012" pos="-0.7500 0.65 0.012" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_4_15" type="box" size="0.05 0.05 0.005" pos="-0.7500 0.75 0.005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_5_0" type="box" size="0.05 0.05 0.044" pos="-0.6500 -0.75 0.044" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_5_1" type="box" size="0.05 0.05 0.01" pos="-0.6500 -0.65 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_5_2" type="box" size="0.05 0.05 0.0585" pos="-0.6500 -0.55 0.0585" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_5_3" type="box" size="0.05 0.05 0.0295" pos="-0.6500 -0.45 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_5_4" type="box" size="0.05 0.05 0.034" pos="-0.6500 -0.35 0.034" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_5_5" type="box" size="0.05 0.05 0.021" pos="-0.6500 -0.25 0.021" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_5_6" type="box" size="0.05 0.05 0.046" pos="-0.6500 -0.15 0.046" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_5_7" type="box" size="0.05 0.05 0.031" pos="-0.6500 -0.05 0.031" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_5_8" type="box" size="0.05 0.05 0.023" pos="-0.6500 0.05 0.023" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_5_9" type="box" size="0.05 0.05 0.0345" pos="-0.6500 0.15 0.0345" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_5_10" type="box" size="0.05 0.05 0.0325" pos="-0.6500 0.25 0.0325" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_5_11" type="box" size="0.05 0.05 0.0375" pos="-0.6500 0.35 0.0375" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_5_12" type="box" size="0.05 0.05 0.0585" pos="-0.6500 0.45 0.0585" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_5_13" type="box" size="0.05 0.05 0.038" pos="-0.6500 0.55 0.038" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_5_14" type="box" size="0.05 0.05 0.001" pos="-0.6500 0.65 0.001" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_5_15" type="box" size="0.05 0.05 0.005" pos="-0.6500 0.75 0.005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_6_0" type="box" size="0.05 0.05 0.014" pos="-0.5500 -0.75 0.014" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_6_1" type="box" size="0.05 0.05 0.0455" pos="-0.5500 -0.65 0.0455" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_6_2" type="box" size="0.05 0.05 0.0055" pos="-0.5500 -0.55 0.0055" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_6_3" type="box" size="0.05 0.05 0.013" pos="-0.5500 -0.45 0.013" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_6_4" type="box" size="0.05 0.05 0.0205" pos="-0.5500 -0.35 0.0205" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_6_5" type="box" size="0.05 0.05 0.056" pos="-0.5500 -0.25 0.056" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_6_6" type="box" size="0.05 0.05 0.04" pos="-0.5500 -0.15 0.04" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_6_7" type="box" size="0.05 0.05 0.0525" pos="-0.5500 -0.05 0.0525" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_6_8" type="box" size="0.05 0.05 0.01" pos="-0.5500 0.05 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_6_9" type="box" size="0.05 0.05 0.017" pos="-0.5500 0.15 0.017" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_6_10" type="box" size="0.05 0.05 0.0515" pos="-0.5500 0.25 0.0515" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_6_11" type="box" size="0.05 0.05 0.0205" pos="-0.5500 0.35 0.0205" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_6_12" type="box" size="0.05 0.05 0.0405" pos="-0.5500 0.45 0.0405" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_6_13" type="box" size="0.05 0.05 0.028" pos="-0.5500 0.55 0.028" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_6_14" type="box" size="0.05 0.05 0.01" pos="-0.5500 0.65 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_6_15" type="box" size="0.05 0.05 0.06" pos="-0.5500 0.75 0.06" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_7_0" type="box" size="0.05 0.05 0.0135" pos="-0.4500 -0.75 0.0135" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_7_1" type="box" size="0.05 0.05 0.046" pos="-0.4500 -0.65 0.046" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_7_2" type="box" size="0.05 0.05 0.006" pos="-0.4500 -0.55 0.006" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_7_3" type="box" size="0.05 0.05 0.0465" pos="-0.4500 -0.45 0.0465" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_7_4" type="box" size="0.05 0.05 0.016" pos="-0.4500 -0.35 0.016" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_7_5" type="box" size="0.05 0.05 0.009" pos="-0.4500 -0.25 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_7_6" type="box" size="0.05 0.05 0.009" pos="-0.4500 -0.15 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_7_7" type="box" size="0.05 0.05 0.012" pos="-0.4500 -0.05 0.012" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_7_8" type="box" size="0.05 0.05 0.0405" pos="-0.4500 0.05 0.0405" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_7_9" type="box" size="0.05 0.05 0.021" pos="-0.4500 0.15 0.021" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_7_10" type="box" size="0.05 0.05 0.033" pos="-0.4500 0.25 0.033" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_7_11" type="box" size="0.05 0.05 0.0085" pos="-0.4500 0.35 0.0085" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_7_12" type="box" size="0.05 0.05 0.016" pos="-0.4500 0.45 0.016" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_7_13" type="box" size="0.05 0.05 0.035" pos="-0.4500 0.55 0.035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_7_14" type="box" size="0.05 0.05 0.0435" pos="-0.4500 0.65 0.0435" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cx_cube_7_15" type="box" size="0.05 0.05 0.0145" pos="-0.4500 0.75 0.0145" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_0_0" type="box" size="0.05 0.05 0.0225" pos="-1.1500 -2.3500 0.0225" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_0_1" type="box" size="0.05 0.05 0.0475" pos="-1.1500 -2.2500 0.0475" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_0_2" type="box" size="0.05 0.05 0.012" pos="-1.1500 -2.1500 0.012" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_0_3" type="box" size="0.05 0.05 0.0075" pos="-1.1500 -2.0500 0.0075" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_0_4" type="box" size="0.05 0.05 0.05" pos="-1.1500 -1.9500 0.05" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_0_5" type="box" size="0.05 0.05 0.0455" pos="-1.1500 -1.8500 0.0455" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_0_6" type="box" size="0.05 0.05 0.048" pos="-1.1500 -1.7500 0.048" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_0_7" type="box" size="0.05 0.05 0.0125" pos="-1.1500 -1.6500 0.0125" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_0_8" type="box" size="0.05 0.05 0.002" pos="-1.1500 -1.5500 0.002" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_0_9" type="box" size="0.05 0.05 0.035" pos="-1.1500 -1.4500 0.035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_0_10" type="box" size="0.05 0.05 0.0295" pos="-1.1500 -1.3500 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_0_11" type="box" size="0.05 0.05 0.043" pos="-1.1500 -1.2500 0.043" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_0_12" type="box" size="0.05 0.05 0.0495" pos="-1.1500 -1.1500 0.0495" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_0_13" type="box" size="0.05 0.05 0.042" pos="-1.1500 -1.0500 0.042" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_0_14" type="box" size="0.05 0.05 0.053" pos="-1.1500 -0.9500 0.053" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_0_15" type="box" size="0.05 0.05 0.009" pos="-1.1500 -0.8500 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_1_0" type="box" size="0.05 0.05 0.0475" pos="-1.0500 -2.3500 0.0475" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_1_1" type="box" size="0.05 0.05 0.0405" pos="-1.0500 -2.2500 0.0405" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_1_2" type="box" size="0.05 0.05 0.0315" pos="-1.0500 -2.1500 0.0315" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_1_3" type="box" size="0.05 0.05 0.0195" pos="-1.0500 -2.0500 0.0195" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_1_4" type="box" size="0.05 0.05 0.0385" pos="-1.0500 -1.9500 0.0385" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_1_5" type="box" size="0.05 0.05 0.0495" pos="-1.0500 -1.8500 0.0495" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_1_6" type="box" size="0.05 0.05 0.028" pos="-1.0500 -1.7500 0.028" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_1_7" type="box" size="0.05 0.05 0.0375" pos="-1.0500 -1.6500 0.0375" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_1_8" type="box" size="0.05 0.05 0.0485" pos="-1.0500 -1.5500 0.0485" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_1_9" type="box" size="0.05 0.05 0.0285" pos="-1.0500 -1.4500 0.0285" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_1_10" type="box" size="0.05 0.05 0.0195" pos="-1.0500 -1.3500 0.0195" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_1_11" type="box" size="0.05 0.05 0.0105" pos="-1.0500 -1.2500 0.0105" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_1_12" type="box" size="0.05 0.05 0.0265" pos="-1.0500 -1.1500 0.0265" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_1_13" type="box" size="0.05 0.05 0.059" pos="-1.0500 -1.0500 0.059" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_1_14" type="box" size="0.05 0.05 0.0155" pos="-1.0500 -0.9500 0.0155" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_1_15" type="box" size="0.05 0.05 0.009" pos="-1.0500 -0.8500 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_2_0" type="box" size="0.05 0.05 0.0135" pos="-0.9500 -2.3500 0.0135" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_2_1" type="box" size="0.05 0.05 0.0215" pos="-0.9500 -2.2500 0.0215" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_2_2" type="box" size="0.05 0.05 0.03" pos="-0.9500 -2.1500 0.03" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_2_3" type="box" size="0.05 0.05 0.0295" pos="-0.9500 -2.0500 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_2_4" type="box" size="0.05 0.05 0.0385" pos="-0.9500 -1.9500 0.0385" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_2_5" type="box" size="0.05 0.05 0.0345" pos="-0.9500 -1.8500 0.0345" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_2_6" type="box" size="0.05 0.05 0.045" pos="-0.9500 -1.7500 0.045" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_2_7" type="box" size="0.05 0.05 0.0425" pos="-0.9500 -1.6500 0.0425" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_2_8" type="box" size="0.05 0.05 0.0385" pos="-0.9500 -1.5500 0.0385" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_2_9" type="box" size="0.05 0.05 0.0585" pos="-0.9500 -1.4500 0.0585" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_2_10" type="box" size="0.05 0.05 0.0575" pos="-0.9500 -1.3500 0.0575" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_2_11" type="box" size="0.05 0.05 0.054" pos="-0.9500 -1.2500 0.054" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_2_12" type="box" size="0.05 0.05 0.053" pos="-0.9500 -1.1500 0.053" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_2_13" type="box" size="0.05 0.05 0.0105" pos="-0.9500 -1.0500 0.0105" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_2_14" type="box" size="0.05 0.05 0.058" pos="-0.9500 -0.9500 0.058" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_2_15" type="box" size="0.05 0.05 0.046" pos="-0.9500 -0.8500 0.046" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_3_0" type="box" size="0.05 0.05 0.03" pos="-0.8500 -2.3500 0.03" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_3_1" type="box" size="0.05 0.05 0.0535" pos="-0.8500 -2.2500 0.0535" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_3_2" type="box" size="0.05 0.05 0.018" pos="-0.8500 -2.1500 0.018" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_3_3" type="box" size="0.05 0.05 0.029" pos="-0.8500 -2.0500 0.029" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_3_4" type="box" size="0.05 0.05 0.0295" pos="-0.8500 -1.9500 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_3_5" type="box" size="0.05 0.05 0.0375" pos="-0.8500 -1.8500 0.0375" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_3_6" type="box" size="0.05 0.05 0.0315" pos="-0.8500 -1.7500 0.0315" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_3_7" type="box" size="0.05 0.05 0.035" pos="-0.8500 -1.6500 0.035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_3_8" type="box" size="0.05 0.05 0.0425" pos="-0.8500 -1.5500 0.0425" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_3_9" type="box" size="0.05 0.05 0.02" pos="-0.8500 -1.4500 0.02" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_3_10" type="box" size="0.05 0.05 0.0265" pos="-0.8500 -1.3500 0.0265" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_3_11" type="box" size="0.05 0.05 0.0005" pos="-0.8500 -1.2500 0.0005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_3_12" type="box" size="0.05 0.05 0.049" pos="-0.8500 -1.1500 0.049" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_3_13" type="box" size="0.05 0.05 0.058" pos="-0.8500 -1.0500 0.058" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_3_14" type="box" size="0.05 0.05 0.003" pos="-0.8500 -0.9500 0.003" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_3_15" type="box" size="0.05 0.05 0.0035" pos="-0.8500 -0.8500 0.0035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_4_0" type="box" size="0.05 0.05 0.026" pos="-0.7500 -2.3500 0.026" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_4_1" type="box" size="0.05 0.05 0.0535" pos="-0.7500 -2.2500 0.0535" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_4_2" type="box" size="0.05 0.05 0.0135" pos="-0.7500 -2.1500 0.0135" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_4_3" type="box" size="0.05 0.05 0.006" pos="-0.7500 -2.0500 0.006" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_4_4" type="box" size="0.05 0.05 0.022" pos="-0.7500 -1.9500 0.022" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_4_5" type="box" size="0.05 0.05 0.06" pos="-0.7500 -1.8500 0.06" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_4_6" type="box" size="0.05 0.05 0.0365" pos="-0.7500 -1.7500 0.0365" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_4_7" type="box" size="0.05 0.05 0.039" pos="-0.7500 -1.6500 0.039" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_4_8" type="box" size="0.05 0.05 0.01" pos="-0.7500 -1.5500 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_4_9" type="box" size="0.05 0.05 0.0005" pos="-0.7500 -1.4500 0.0005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_4_10" type="box" size="0.05 0.05 0.048" pos="-0.7500 -1.3500 0.048" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_4_11" type="box" size="0.05 0.05 0.038" pos="-0.7500 -1.2500 0.038" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_4_12" type="box" size="0.05 0.05 0.0175" pos="-0.7500 -1.1500 0.0175" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_4_13" type="box" size="0.05 0.05 0.0285" pos="-0.7500 -1.0500 0.0285" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_4_14" type="box" size="0.05 0.05 0.012" pos="-0.7500 -0.9500 0.012" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_4_15" type="box" size="0.05 0.05 0.005" pos="-0.7500 -0.8500 0.005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_5_0" type="box" size="0.05 0.05 0.044" pos="-0.6500 -2.3500 0.044" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_5_1" type="box" size="0.05 0.05 0.01" pos="-0.6500 -2.2500 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_5_2" type="box" size="0.05 0.05 0.0585" pos="-0.6500 -2.1500 0.0585" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_5_3" type="box" size="0.05 0.05 0.0295" pos="-0.6500 -2.0500 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_5_4" type="box" size="0.05 0.05 0.034" pos="-0.6500 -1.9500 0.034" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_5_5" type="box" size="0.05 0.05 0.021" pos="-0.6500 -1.8500 0.021" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_5_6" type="box" size="0.05 0.05 0.046" pos="-0.6500 -1.7500 0.046" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_5_7" type="box" size="0.05 0.05 0.031" pos="-0.6500 -1.6500 0.031" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_5_8" type="box" size="0.05 0.05 0.023" pos="-0.6500 -1.5500 0.023" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_5_9" type="box" size="0.05 0.05 0.0345" pos="-0.6500 -1.4500 0.0345" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_5_10" type="box" size="0.05 0.05 0.0325" pos="-0.6500 -1.3500 0.0325" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_5_11" type="box" size="0.05 0.05 0.0375" pos="-0.6500 -1.2500 0.0375" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_5_12" type="box" size="0.05 0.05 0.0585" pos="-0.6500 -1.1500 0.0585" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_5_13" type="box" size="0.05 0.05 0.038" pos="-0.6500 -1.0500 0.038" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_5_14" type="box" size="0.05 0.05 0.001" pos="-0.6500 -0.9500 0.001" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_5_15" type="box" size="0.05 0.05 0.005" pos="-0.6500 -0.8500 0.005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_6_0" type="box" size="0.05 0.05 0.014" pos="-0.5500 -2.3500 0.014" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_6_1" type="box" size="0.05 0.05 0.0455" pos="-0.5500 -2.2500 0.0455" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_6_2" type="box" size="0.05 0.05 0.0055" pos="-0.5500 -2.1500 0.0055" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_6_3" type="box" size="0.05 0.05 0.013" pos="-0.5500 -2.0500 0.013" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_6_4" type="box" size="0.05 0.05 0.0205" pos="-0.5500 -1.9500 0.0205" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_6_5" type="box" size="0.05 0.05 0.056" pos="-0.5500 -1.8500 0.056" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_6_6" type="box" size="0.05 0.05 0.04" pos="-0.5500 -1.7500 0.04" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_6_7" type="box" size="0.05 0.05 0.0525" pos="-0.5500 -1.6500 0.0525" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_6_8" type="box" size="0.05 0.05 0.01" pos="-0.5500 -1.5500 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_6_9" type="box" size="0.05 0.05 0.017" pos="-0.5500 -1.4500 0.017" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_6_10" type="box" size="0.05 0.05 0.0515" pos="-0.5500 -1.3500 0.0515" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_6_11" type="box" size="0.05 0.05 0.0205" pos="-0.5500 -1.2500 0.0205" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_6_12" type="box" size="0.05 0.05 0.0405" pos="-0.5500 -1.1500 0.0405" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_6_13" type="box" size="0.05 0.05 0.028" pos="-0.5500 -1.0500 0.028" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_6_14" type="box" size="0.05 0.05 0.01" pos="-0.5500 -0.9500 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_6_15" type="box" size="0.05 0.05 0.06" pos="-0.5500 -0.8500 0.06" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_7_0" type="box" size="0.05 0.05 0.0135" pos="-0.4500 -2.3500 0.0135" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_7_1" type="box" size="0.05 0.05 0.046" pos="-0.4500 -2.2500 0.046" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_7_2" type="box" size="0.05 0.05 0.006" pos="-0.4500 -2.1500 0.006" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_7_3" type="box" size="0.05 0.05 0.0465" pos="-0.4500 -2.0500 0.0465" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_7_4" type="box" size="0.05 0.05 0.016" pos="-0.4500 -1.9500 0.016" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_7_5" type="box" size="0.05 0.05 0.009" pos="-0.4500 -1.8500 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_7_6" type="box" size="0.05 0.05 0.009" pos="-0.4500 -1.7500 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_7_7" type="box" size="0.05 0.05 0.012" pos="-0.4500 -1.6500 0.012" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_7_8" type="box" size="0.05 0.05 0.0405" pos="-0.4500 -1.5500 0.0405" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_7_9" type="box" size="0.05 0.05 0.021" pos="-0.4500 -1.4500 0.021" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_7_10" type="box" size="0.05 0.05 0.033" pos="-0.4500 -1.3500 0.033" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_7_11" type="box" size="0.05 0.05 0.0085" pos="-0.4500 -1.2500 0.0085" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_7_12" type="box" size="0.05 0.05 0.016" pos="-0.4500 -1.1500 0.016" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_7_13" type="box" size="0.05 0.05 0.035" pos="-0.4500 -1.0500 0.035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_7_14" type="box" size="0.05 0.05 0.0435" pos="-0.4500 -0.9500 0.0435" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cy_cube_7_15" type="box" size="0.05 0.05 0.0145" pos="-0.4500 -0.8500 0.0145" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_0_0" type="box" size="0.05 0.05 0.0225" pos="-1.1500 -3.9500 0.0225" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_0_1" type="box" size="0.05 0.05 0.0475" pos="-1.1500 -3.8500 0.0475" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_0_2" type="box" size="0.05 0.05 0.012" pos="-1.1500 -3.7500 0.012" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_0_3" type="box" size="0.05 0.05 0.0075" pos="-1.1500 -3.6500 0.0075" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_0_4" type="box" size="0.05 0.05 0.05" pos="-1.1500 -3.5500 0.05" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_0_5" type="box" size="0.05 0.05 0.0455" pos="-1.1500 -3.4500 0.0455" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_0_6" type="box" size="0.05 0.05 0.048" pos="-1.1500 -3.3500 0.048" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_0_7" type="box" size="0.05 0.05 0.0125" pos="-1.1500 -3.2500 0.0125" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_0_8" type="box" size="0.05 0.05 0.002" pos="-1.1500 -3.1500 0.002" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_0_9" type="box" size="0.05 0.05 0.035" pos="-1.1500 -3.0500 0.035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_0_10" type="box" size="0.05 0.05 0.0295" pos="-1.1500 -2.9500 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_0_11" type="box" size="0.05 0.05 0.043" pos="-1.1500 -2.8500 0.043" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_0_12" type="box" size="0.05 0.05 0.0495" pos="-1.1500 -2.7500 0.0495" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_0_13" type="box" size="0.05 0.05 0.042" pos="-1.1500 -2.6500 0.042" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_0_14" type="box" size="0.05 0.05 0.053" pos="-1.1500 -2.5500 0.053" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_0_15" type="box" size="0.05 0.05 0.009" pos="-1.1500 -2.4500 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_1_0" type="box" size="0.05 0.05 0.0475" pos="-1.0500 -3.9500 0.0475" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_1_1" type="box" size="0.05 0.05 0.0405" pos="-1.0500 -3.8500 0.0405" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_1_2" type="box" size="0.05 0.05 0.0315" pos="-1.0500 -3.7500 0.0315" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_1_3" type="box" size="0.05 0.05 0.0195" pos="-1.0500 -3.6500 0.0195" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_1_4" type="box" size="0.05 0.05 0.0385" pos="-1.0500 -3.5500 0.0385" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_1_5" type="box" size="0.05 0.05 0.0495" pos="-1.0500 -3.4500 0.0495" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_1_6" type="box" size="0.05 0.05 0.028" pos="-1.0500 -3.3500 0.028" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_1_7" type="box" size="0.05 0.05 0.0375" pos="-1.0500 -3.2500 0.0375" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_1_8" type="box" size="0.05 0.05 0.0485" pos="-1.0500 -3.1500 0.0485" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_1_9" type="box" size="0.05 0.05 0.0285" pos="-1.0500 -3.0500 0.0285" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_1_10" type="box" size="0.05 0.05 0.0195" pos="-1.0500 -2.9500 0.0195" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_1_11" type="box" size="0.05 0.05 0.0105" pos="-1.0500 -2.8500 0.0105" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_1_12" type="box" size="0.05 0.05 0.0265" pos="-1.0500 -2.7500 0.0265" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_1_13" type="box" size="0.05 0.05 0.059" pos="-1.0500 -2.6500 0.059" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_1_14" type="box" size="0.05 0.05 0.0155" pos="-1.0500 -2.5500 0.0155" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_1_15" type="box" size="0.05 0.05 0.009" pos="-1.0500 -2.4500 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_2_0" type="box" size="0.05 0.05 0.0135" pos="-0.9500 -3.9500 0.0135" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_2_1" type="box" size="0.05 0.05 0.0215" pos="-0.9500 -3.8500 0.0215" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_2_2" type="box" size="0.05 0.05 0.03" pos="-0.9500 -3.7500 0.03" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_2_3" type="box" size="0.05 0.05 0.0295" pos="-0.9500 -3.6500 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_2_4" type="box" size="0.05 0.05 0.0385" pos="-0.9500 -3.5500 0.0385" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_2_5" type="box" size="0.05 0.05 0.0345" pos="-0.9500 -3.4500 0.0345" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_2_6" type="box" size="0.05 0.05 0.045" pos="-0.9500 -3.3500 0.045" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_2_7" type="box" size="0.05 0.05 0.0425" pos="-0.9500 -3.2500 0.0425" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_2_8" type="box" size="0.05 0.05 0.0385" pos="-0.9500 -3.1500 0.0385" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_2_9" type="box" size="0.05 0.05 0.0585" pos="-0.9500 -3.0500 0.0585" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_2_10" type="box" size="0.05 0.05 0.0575" pos="-0.9500 -2.9500 0.0575" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_2_11" type="box" size="0.05 0.05 0.054" pos="-0.9500 -2.8500 0.054" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_2_12" type="box" size="0.05 0.05 0.053" pos="-0.9500 -2.7500 0.053" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_2_13" type="box" size="0.05 0.05 0.0105" pos="-0.9500 -2.6500 0.0105" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_2_14" type="box" size="0.05 0.05 0.058" pos="-0.9500 -2.5500 0.058" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_2_15" type="box" size="0.05 0.05 0.046" pos="-0.9500 -2.4500 0.046" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_3_0" type="box" size="0.05 0.05 0.03" pos="-0.8500 -3.9500 0.03" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_3_1" type="box" size="0.05 0.05 0.0535" pos="-0.8500 -3.8500 0.0535" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_3_2" type="box" size="0.05 0.05 0.018" pos="-0.8500 -3.7500 0.018" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_3_3" type="box" size="0.05 0.05 0.029" pos="-0.8500 -3.6500 0.029" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_3_4" type="box" size="0.05 0.05 0.0295" pos="-0.8500 -3.5500 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_3_5" type="box" size="0.05 0.05 0.0375" pos="-0.8500 -3.4500 0.0375" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_3_6" type="box" size="0.05 0.05 0.0315" pos="-0.8500 -3.3500 0.0315" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_3_7" type="box" size="0.05 0.05 0.035" pos="-0.8500 -3.2500 0.035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_3_8" type="box" size="0.05 0.05 0.0425" pos="-0.8500 -3.1500 0.0425" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_3_9" type="box" size="0.05 0.05 0.02" pos="-0.8500 -3.0500 0.02" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_3_10" type="box" size="0.05 0.05 0.0265" pos="-0.8500 -2.9500 0.0265" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_3_11" type="box" size="0.05 0.05 0.0005" pos="-0.8500 -2.8500 0.0005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_3_12" type="box" size="0.05 0.05 0.049" pos="-0.8500 -2.7500 0.049" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_3_13" type="box" size="0.05 0.05 0.058" pos="-0.8500 -2.6500 0.058" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_3_14" type="box" size="0.05 0.05 0.003" pos="-0.8500 -2.5500 0.003" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_3_15" type="box" size="0.05 0.05 0.0035" pos="-0.8500 -2.4500 0.0035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_4_0" type="box" size="0.05 0.05 0.026" pos="-0.7500 -3.9500 0.026" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_4_1" type="box" size="0.05 0.05 0.0535" pos="-0.7500 -3.8500 0.0535" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_4_2" type="box" size="0.05 0.05 0.0135" pos="-0.7500 -3.7500 0.0135" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_4_3" type="box" size="0.05 0.05 0.006" pos="-0.7500 -3.6500 0.006" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_4_4" type="box" size="0.05 0.05 0.022" pos="-0.7500 -3.5500 0.022" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_4_5" type="box" size="0.05 0.05 0.06" pos="-0.7500 -3.4500 0.06" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_4_6" type="box" size="0.05 0.05 0.0365" pos="-0.7500 -3.3500 0.0365" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_4_7" type="box" size="0.05 0.05 0.039" pos="-0.7500 -3.2500 0.039" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_4_8" type="box" size="0.05 0.05 0.01" pos="-0.7500 -3.1500 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_4_9" type="box" size="0.05 0.05 0.0005" pos="-0.7500 -3.0500 0.0005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_4_10" type="box" size="0.05 0.05 0.048" pos="-0.7500 -2.9500 0.048" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_4_11" type="box" size="0.05 0.05 0.038" pos="-0.7500 -2.8500 0.038" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_4_12" type="box" size="0.05 0.05 0.0175" pos="-0.7500 -2.7500 0.0175" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_4_13" type="box" size="0.05 0.05 0.0285" pos="-0.7500 -2.6500 0.0285" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_4_14" type="box" size="0.05 0.05 0.012" pos="-0.7500 -2.5500 0.012" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_4_15" type="box" size="0.05 0.05 0.005" pos="-0.7500 -2.4500 0.005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_5_0" type="box" size="0.05 0.05 0.044" pos="-0.6500 -3.9500 0.044" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_5_1" type="box" size="0.05 0.05 0.01" pos="-0.6500 -3.8500 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_5_2" type="box" size="0.05 0.05 0.0585" pos="-0.6500 -3.7500 0.0585" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_5_3" type="box" size="0.05 0.05 0.0295" pos="-0.6500 -3.6500 0.0295" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_5_4" type="box" size="0.05 0.05 0.034" pos="-0.6500 -3.5500 0.034" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_5_5" type="box" size="0.05 0.05 0.021" pos="-0.6500 -3.4500 0.021" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_5_6" type="box" size="0.05 0.05 0.046" pos="-0.6500 -3.3500 0.046" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_5_7" type="box" size="0.05 0.05 0.031" pos="-0.6500 -3.2500 0.031" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_5_8" type="box" size="0.05 0.05 0.023" pos="-0.6500 -3.1500 0.023" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_5_9" type="box" size="0.05 0.05 0.0345" pos="-0.6500 -3.0500 0.0345" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_5_10" type="box" size="0.05 0.05 0.0325" pos="-0.6500 -2.9500 0.0325" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_5_11" type="box" size="0.05 0.05 0.0375" pos="-0.6500 -2.8500 0.0375" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_5_12" type="box" size="0.05 0.05 0.0585" pos="-0.6500 -2.7500 0.0585" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_5_13" type="box" size="0.05 0.05 0.038" pos="-0.6500 -2.6500 0.038" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_5_14" type="box" size="0.05 0.05 0.001" pos="-0.6500 -2.5500 0.001" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_5_15" type="box" size="0.05 0.05 0.005" pos="-0.6500 -2.4500 0.005" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_6_0" type="box" size="0.05 0.05 0.014" pos="-0.5500 -3.9500 0.014" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_6_1" type="box" size="0.05 0.05 0.0455" pos="-0.5500 -3.8500 0.0455" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_6_2" type="box" size="0.05 0.05 0.0055" pos="-0.5500 -3.7500 0.0055" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_6_3" type="box" size="0.05 0.05 0.013" pos="-0.5500 -3.6500 0.013" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_6_4" type="box" size="0.05 0.05 0.0205" pos="-0.5500 -3.5500 0.0205" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_6_5" type="box" size="0.05 0.05 0.056" pos="-0.5500 -3.4500 0.056" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_6_6" type="box" size="0.05 0.05 0.04" pos="-0.5500 -3.3500 0.04" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_6_7" type="box" size="0.05 0.05 0.0525" pos="-0.5500 -3.2500 0.0525" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_6_8" type="box" size="0.05 0.05 0.01" pos="-0.5500 -3.1500 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_6_9" type="box" size="0.05 0.05 0.017" pos="-0.5500 -3.0500 0.017" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_6_10" type="box" size="0.05 0.05 0.0515" pos="-0.5500 -2.9500 0.0515" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_6_11" type="box" size="0.05 0.05 0.0205" pos="-0.5500 -2.8500 0.0205" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_6_12" type="box" size="0.05 0.05 0.0405" pos="-0.5500 -2.7500 0.0405" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_6_13" type="box" size="0.05 0.05 0.028" pos="-0.5500 -2.6500 0.028" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_6_14" type="box" size="0.05 0.05 0.01" pos="-0.5500 -2.5500 0.01" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_6_15" type="box" size="0.05 0.05 0.06" pos="-0.5500 -2.4500 0.06" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_7_0" type="box" size="0.05 0.05 0.0135" pos="-0.4500 -3.9500 0.0135" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_7_1" type="box" size="0.05 0.05 0.046" pos="-0.4500 -3.8500 0.046" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_7_2" type="box" size="0.05 0.05 0.006" pos="-0.4500 -3.7500 0.006" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_7_3" type="box" size="0.05 0.05 0.0465" pos="-0.4500 -3.6500 0.0465" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_7_4" type="box" size="0.05 0.05 0.016" pos="-0.4500 -3.5500 0.016" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_7_5" type="box" size="0.05 0.05 0.009" pos="-0.4500 -3.4500 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_7_6" type="box" size="0.05 0.05 0.009" pos="-0.4500 -3.3500 0.009" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_7_7" type="box" size="0.05 0.05 0.012" pos="-0.4500 -3.2500 0.012" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_7_8" type="box" size="0.05 0.05 0.0405" pos="-0.4500 -3.1500 0.0405" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_7_9" type="box" size="0.05 0.05 0.021" pos="-0.4500 -3.0500 0.021" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_7_10" type="box" size="0.05 0.05 0.033" pos="-0.4500 -2.9500 0.033" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_7_11" type="box" size="0.05 0.05 0.0085" pos="-0.4500 -2.8500 0.0085" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_7_12" type="box" size="0.05 0.05 0.016" pos="-0.4500 -2.7500 0.016" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_7_13" type="box" size="0.05 0.05 0.035" pos="-0.4500 -2.6500 0.035" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_7_14" type="box" size="0.05 0.05 0.0435" pos="-0.4500 -2.5500 0.0435" rgba="0.6 0.4 0.3 1"/>
+        <geom name="cz_cube_7_15" type="box" size="0.05 0.05 0.0145" pos="-0.4500 -2.4500 0.0145" rgba="0.6 0.4 0.3 1"/>
+    </body>
+
+
+  
+    
+    <!-- landing platform at top -->
+
+    <!-- ===== ROBOT ===== -->
+    <body name="body_middle6" pos="-6.5 0.3 0.008" euler="0 0 90">
+      <joint name="root_free" type="free"/>
+      <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.2 0.28 0.12 1"/>
+      <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
+
+      <body name="motor_L6" pos="0 0 0">
+        <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+        <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.08 0.08 0.08 1"/>
+        <body name="o_leg_L6" pos="0 0 0">
+          <joint name="knee_joint_L6" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+          <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+          <geom name="o_leg_L6" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
+        </body>
+      </body>
+
+      <body name="motor_R6" pos="0 0 0">
+        <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+        <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.08 0.08 0.08 1"/>
+        <body name="o_leg_R6" pos="0 0 0">
+          <joint name="knee_joint_R6" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+          <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+          <geom name="o_leg_R6" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
+        </body>
+      </body>
+
+      <body name="vertjoint6" pos="0 0 0">
+        <joint name="vertjoint_hinge6" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
+        <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
+        <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.08 0.08 0.08 1"/>
+
+        <body name="horzjoint6_body" pos="0 0 0">
+          <joint name="horzjoint6" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
+          <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
+
+          <!-- ===== SECTION 2 ===== -->
+          <body name="body_middle5" pos="0.00357 -0.18092 0.003">
+            <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.2 0.28 0.12 1"/>
+            <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
+
+            <body name="motor_L5" pos="0 0 0">
+              <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+              <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.08 0.08 0.08 1"/>
+              <body name="o_leg_L5" pos="0 0 0">
+                <joint name="knee_joint_L5" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                <geom name="o_leg_L5" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
+              </body>
+            </body>
+
+            <body name="motor_R5" pos="0 0 0">
+              <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+              <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.08 0.08 0.08 1"/>
+              <body name="o_leg_R5" pos="0 0 0">
+                <joint name="knee_joint_R5" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                <geom name="o_leg_R5" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
+              </body>
+            </body>
+
+            <body name="vertjoint5" pos="0 0 0">
+              <joint name="vertjoint_hinge5" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
+              <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
+              <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.08 0.08 0.08 1"/>
+
+              <body name="horzjoint5_body" pos="0 0 0">
+                <joint name="horzjoint5" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
+                <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
+
+                <!-- ===== SECTION 1 ===== -->
+                <body name="body_middle4" pos="0.00357 -0.18092 0.003">
+                  <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.2 0.28 0.12 1"/>
+                  <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
+
+                  <body name="motor_L4" pos="0 0 0">
+                    <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                    <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.08 0.08 0.08 1"/>
+                    <body name="o_leg_L4" pos="0 0 0">
+                      <joint name="knee_joint_L4" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                      <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                      <geom name="o_leg_L4" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
+                    </body>
+                  </body>
+
+                  <body name="motor_R4" pos="0 0 0">
+                    <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                    <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.08 0.08 0.08 1"/>
+                    <body name="o_leg_R4" pos="0 0 0">
+                      <joint name="knee_joint_R4" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                      <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                      <geom name="o_leg_R4" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
+                    </body>
+                  </body>
+
+                  <body name="vertjoint4" pos="0 0 0">
+                    <joint name="vertjoint_hinge4" type="hinge" pos="0.094905 0.086975 0.02858" axis="1 0 0" range="-90 90" damping="0.5"/>
+                    <inertial pos="0.077976 0.038797 0.027871" mass="0.15853000" diaginertia="0.00004786090 0.00019459966 0.00019531491"/>
+                    <geom size="0.018 0.0375" pos="0.077976 0.038797 0.027871" quat="0.499998 -0.500002 0.5 0.5" type="cylinder" rgba="0.08 0.08 0.08 1"/>
+
+                    <body name="horzjoint4_body" pos="0 0 0">
+                      <joint name="horzjoint4" type="hinge" pos="0.07753 -0.009025 0.045952" axis="0 0 1" range="-90 90" damping="0.5"/>
+                      <inertial pos="0.07753 -0.009025 0.045952" mass="0.0004" diaginertia="0.000001 0.000001 0.000001"/>
+
+                      <!-- ===== SECTION 4 ===== -->
+                      <body name="body_middle3" pos="0.00357 -0.18092 0.003">
+                        <camera name="robot_center_scene_camera" pos="0.074 0.064 0.120" xyaxes="-1 0 0 0 0 1" fovy="90"/>
+                        <geom size="0.0666575 0.041973 0.0374445" pos="0.074417 0.12845 0.025525" type="box" rgba="0.2 0.28 0.12 1"/>
+                        <inertial pos="0.074417 0.12845 0.025525" mass="0.08684000" diaginertia="0.00009158204 0.00016920278 0.00017961293"/>
+
+                        <body name="motor_L3" pos="0 0 0">
+                          <inertial pos="0.13525 0.12938 0.022634" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                          <geom size="0.009 0.012 0.0215" pos="0.13525 0.12938 0.022634" type="box" rgba="0.08 0.08 0.08 1"/>
+                          <body name="o_leg_L3" pos="0 0 0">
+                            <joint name="knee_joint_L3" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                            <inertial pos="0.16407 0.12939 -0.027134" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                            <geom name="o_leg_L3" size="0.045 0.006" pos="0.16407 0.12939 -0.027134" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
+                          </body>
+                        </body>
+
+                        <body name="motor_R3" pos="0 0 0">
+                          <inertial pos="0.012712 0.12941 0.022604" mass="0.04388000" diaginertia="0.00000721932 0.00001081797 0.00001232792"/>
+                          <geom size="0.009 0.012 0.0215" pos="0.012712 0.12941 0.022604" type="box" rgba="0.08 0.08 0.08 1"/>
+                          <body name="o_leg_R3" pos="0 0 0">
+                            <joint name="knee_joint_R3" type="hinge" pos="-0.009764 0.1294 0.01076" axis="1 0 0" damping="0.5"/>
+                            <inertial pos="-0.016106 0.1294 -0.027164" mass="0.10587964" diaginertia="0.00004860956 0.00005124607 0.00009533636"/>
+                            <geom name="o_leg_R3" size="0.045 0.006" pos="-0.016106 0.1294 -0.027164" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.10 0.10 0.10 1"/>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <position name="knee_L6" joint="knee_joint_L6" kp="10" forcerange="-4 4"/>
+    <position name="knee_R6" joint="knee_joint_R6" kp="10" forcerange="-4 4"/>
+    <position name="vertjoint6" joint="vertjoint_hinge6" ctrlrange="-100 100" kp="10" forcerange="-5 5"/>
+    <position name="horzjoint6" joint="horzjoint6" ctrlrange="-100 100" kp="10"/>
+    <position name="knee_L5" joint="knee_joint_L5" kp="10" forcerange="-4 4"/>
+    <position name="knee_R5" joint="knee_joint_R5" kp="10" forcerange="-4 4"/>
+    <position name="vertjoint5" joint="vertjoint_hinge5" ctrlrange="-100 100" kp="10" forcerange="-5 5"/>
+    <position name="horzjoint5" joint="horzjoint5" ctrlrange="-100 100" kp="10"/>
+    <position name="knee_L4" joint="knee_joint_L4" kp="10" forcerange="-4 4"/>
+    <position name="knee_R4" joint="knee_joint_R4" kp="10" forcerange="-4 4"/>
+    <position name="vertjoint4" joint="vertjoint_hinge4" ctrlrange="-100 100" kp="10" forcerange="-5 5"/>
+    <position name="horzjoint4" joint="horzjoint4" ctrlrange="-100 100" kp="10"/>
+    <position name="knee_L3" joint="knee_joint_L3" kp="10" forcerange="-4 4"/>
+    <position name="knee_R3" joint="knee_joint_R3" kp="10" forcerange="-4 4"/>
+  </actuator>
+</mujoco>

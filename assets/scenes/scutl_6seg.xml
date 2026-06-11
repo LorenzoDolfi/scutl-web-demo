@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="o_leg_3sections">
-  <option timestep="0.002" gravity="0 0 -9.81"/>
+
+  <option timestep="0.004" gravity="0 0 -9.81"/>
   <visual>
     <global offwidth="1920" offheight="1080"/>
   </visual>
@@ -8,33 +9,6 @@
     <texture name="grid" type="2d" builtin="checker" rgb1=".1 .2 .3" rgb2=".2 .3 .4" width="300" height="300"/>
     <material name="grid" texture="grid" texrepeat="30 30" reflectance="0"/>
     <material name="robot_green" rgba="0.1 0.35 0.1 1"/>
-    <mesh name="garden_visual" file="garden_collision.stl" scale="2 2 2"/>
-    <mesh name="garden_col_0" file="garden_collision_parts/garden_col_0.stl" scale="2 2 2"/>
-    <mesh name="garden_col_1" file="garden_collision_parts/garden_col_1.stl" scale="2 2 2"/>
-    <mesh name="garden_col_2" file="garden_collision_parts/garden_col_2.stl" scale="2 2 2"/>
-    <mesh name="garden_col_3" file="garden_collision_parts/garden_col_3.stl" scale="2 2 2"/>
-    <mesh name="garden_col_4" file="garden_collision_parts/garden_col_4.stl" scale="2 2 2"/>
-    <mesh name="garden_col_5" file="garden_collision_parts/garden_col_5.stl" scale="2 2 2"/>
-    <mesh name="garden_col_6" file="garden_collision_parts/garden_col_6.stl" scale="2 2 2"/>
-    <mesh name="garden_col_7" file="garden_collision_parts/garden_col_7.stl" scale="2 2 2"/>
-    <mesh name="garden_col_8" file="garden_collision_parts/garden_col_8.stl" scale="2 2 2"/>
-    <mesh name="garden_col_9" file="garden_collision_parts/garden_col_9.stl" scale="2 2 2"/>
-    <mesh name="garden_col_10" file="garden_collision_parts/garden_col_10.stl" scale="2 2 2"/>
-    <mesh name="garden_col_11" file="garden_collision_parts/garden_col_11.stl" scale="2 2 2"/>
-    <mesh name="garden_col_12" file="garden_collision_parts/garden_col_12.stl" scale="2 2 2"/>
-    <mesh name="garden_col_13" file="garden_collision_parts/garden_col_13.stl" scale="2 2 2"/>
-    <mesh name="garden_col_14" file="garden_collision_parts/garden_col_14.stl" scale="2 2 2"/>
-    <mesh name="garden_col_15" file="garden_collision_parts/garden_col_15.stl" scale="2 2 2"/>
-    <mesh name="garden_col_16" file="garden_collision_parts/garden_col_16.stl" scale="2 2 2"/>
-    <mesh name="garden_col_17" file="garden_collision_parts/garden_col_17.stl" scale="2 2 2"/>
-    <mesh name="garden_col_18" file="garden_collision_parts/garden_col_18.stl" scale="2 2 2"/>
-    <mesh name="garden_col_19" file="garden_collision_parts/garden_col_19.stl" scale="2 2 2"/>
-    <mesh name="garden_col_20" file="garden_collision_parts/garden_col_20.stl" scale="2 2 2"/>
-    <mesh name="garden_col_21" file="garden_collision_parts/garden_col_21.stl" scale="2 2 2"/>
-    <mesh name="garden_col_22" file="garden_collision_parts/garden_col_22.stl" scale="2 2 2"/>
-    <mesh name="garden_col_23" file="garden_collision_parts/garden_col_23.stl" scale="2 2 2"/>
-    <mesh name="garden_col_24" file="garden_collision_parts/garden_col_24.stl" scale="2 2 2"/>
-    <mesh name="garden_col_25" file="garden_collision_parts/garden_col_25.stl" scale="2 2 2"/>
   </asset>
   <worldbody>
     <geom name="ground" type="plane" pos="0 0 -2.12" size="10 10 0.4" material="grid" friction="0.5 0 0"/>
@@ -254,96 +228,6 @@
           </body>
         </body>
       </body>
-    </body>
-    <body name="garden_collision_body" pos="1.1 -3.4 -2.8" euler="0 0 5">
-      <geom
-    name="test_cube"
-    type="box"
-    pos="0.25 3.4 0.5"
-    size="0.1 0.5 0.35"
-    rgba="1 0 0 1"
-    euler=" 0 0 112"/>
-      <geom
-    name="test_cube1"
-    type="box"
-    pos="1 3.7 0.5"
-    size="0.1 0.5 0.35"
-    rgba="1 0 0 1"
-    euler=" 0 0 115"/>
-      <geom
-    name="test_cube2"
-    type="box"
-    pos="0.47 4 0.5"
-    size="0.1 0.5 0.35"
-    rgba="1 0 0 1"
-    euler=" 0 0 20"/>
-      <geom
-    name="test_cube3"
-    type="box"
-    pos="0.9 3 0.5"
-    size="0.1 0.5 0.35"
-    rgba="1 0 0 1"
-    euler=" 0 0 20"/>
-
-
-
-      <geom
-    name="test_cube11"
-    type="box"
-    pos="0.25 4.5 1"
-    size="0.1 0.5 0.1"
-    rgba="1 0 0 1"
-    euler=" 90 0 0"/>
-      <geom
-    name="test_cube21"
-    type="box"
-    pos="-0.35 3.2 1"
-    size="0.1 0.5 0.1"
-    rgba="1 0 0 1"
-    euler=" 90 20 0"/>
-      <geom
-    name="test_cube31"
-    type="box"
-    pos="1 2.6 1"
-    size="0.1 0.5 0.1"
-    rgba="1 0 0 1"
-    euler=" 90 0 0"/>
-      <geom
-    name="test_cube41"
-    type="box"
-    pos="1.55 3.95 1"
-    size="0.1 0.5 0.1"
-    rgba="1 0 0 1"
-    euler=" 90 20 0"/>
-
-      <geom name="garden_visual_geom" type="mesh" mesh="garden_visual" contype="0" conaffinity="0" rgba="1 0 0 0.0"/>
-      <geom name="garden_col_geom_0" type="mesh" mesh="garden_col_0" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_1" type="mesh" mesh="garden_col_1" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_2" type="mesh" mesh="garden_col_2" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_3" type="mesh" mesh="garden_col_3" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_4" type="mesh" mesh="garden_col_4" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_5" type="mesh" mesh="garden_col_5" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_6" type="mesh" mesh="garden_col_6" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_7" type="mesh" mesh="garden_col_7" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_8" type="mesh" mesh="garden_col_8" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_9" type="mesh" mesh="garden_col_9" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_10" type="mesh" mesh="garden_col_10" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_11" type="mesh" mesh="garden_col_11" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_12" type="mesh" mesh="garden_col_12" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_13" type="mesh" mesh="garden_col_13" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_14" type="mesh" mesh="garden_col_14" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_15" type="mesh" mesh="garden_col_15" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_16" type="mesh" mesh="garden_col_16" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_17" type="mesh" mesh="garden_col_17" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_18" type="mesh" mesh="garden_col_18" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_19" type="mesh" mesh="garden_col_19" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_20" type="mesh" mesh="garden_col_20" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_21" type="mesh" mesh="garden_col_21" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_22" type="mesh" mesh="garden_col_22" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_23" type="mesh" mesh="garden_col_23" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_24" type="mesh" mesh="garden_col_24" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-      <geom name="garden_col_geom_25" type="mesh" mesh="garden_col_25" contype="1" conaffinity="1" rgba="0 1 0 0.25"/>
-
     </body>
   </worldbody>
 
