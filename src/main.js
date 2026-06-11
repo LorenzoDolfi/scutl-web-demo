@@ -310,7 +310,7 @@ export class MuJoCoDemo {
     Object.assign(envBox.style, {
       position: "fixed",
       top: "0.25vw",
-      right: "30vw",
+      right: "10vw",
       zIndex: "1001",
       background: "#161a24",
       color: "#e2e8f0",
@@ -364,7 +364,7 @@ export class MuJoCoDemo {
     Object.assign(camBox.style, {
       position: "fixed",
       top: "0.25vw",
-      right: "43vw",
+      right: "30vw",
       zIndex: "1001",
       background: "#161a24",
       color: "#e2e8f0",
